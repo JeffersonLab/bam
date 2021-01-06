@@ -1,0 +1,34 @@
+.control-participation-table td,
+.control-participation-table th {
+    padding: 0.5em;
+    text-align: center;
+}
+.control-participation-table.editable td {
+    cursor: pointer;
+    outline: 2px dotted blue;
+}
+.control-participation-table button {
+    height: 2.5em;
+    width: 4em;
+    display: block;
+    margin: 0 auto;
+}
+.control-participation-table {
+    font-size: 0.7em;
+}
+.credited-control-header {
+    width: 20%;
+}
+.destination-header {
+    width: 8%; /*This will break if the # of beam destinations changes!*/
+}
+.control-participation-table th {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+#operability-notes-edit-button {
+    display: none;
+}
+.participation-scroll-pane {
+    overflow: auto;
+}

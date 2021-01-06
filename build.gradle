@@ -1,0 +1,21 @@
+plugins {
+    id 'war'  
+}
+repositories {
+    jcenter()
+    maven {
+        url 'http://build.acc.jlab.org/artifactory/gradle-release'
+    }
+}
+dependencies {
+    compile 'org.jsoup:jsoup:1.11.3',
+            'org.jlab:smoothness-weblib:2.21.0'
+    providedCompile 'javax:javaee-api:7.0',
+            'org.tuckey:urlrewritefilter:4.0.4',
+            'org.hibernate:hibernate-core:5.4.2.Final',
+            'org.apache.taglibs:taglibs-standard-impl:1.2.5',
+            'org.jlab:jlog:3.2.0'
+}
+compileJava {
+    options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+}

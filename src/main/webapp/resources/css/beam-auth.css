@@ -1,0 +1,74 @@
+#page-header-logo {
+    background: url("../img/logo32x32.png") 0 0;
+}
+/* Definition Lists */
+dt {
+    display: block;
+    font-weight: bold;
+}
+dd {
+    display: block;
+    margin: 1em;
+}
+dd ul {
+    margin: 0;
+    padding: 0 1em;
+}
+/* Icons */
+.small-icon {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    vertical-align: top;
+}
+/*Prepares buttons for ajax spinner icon*/
+.ajax-button {
+    min-width: 78px;
+    min-height: 26px;
+}
+.dialog-button-panel .ajax-button {
+    vertical-align: top;
+}
+.inline-button {
+    vertical-align: middle;
+}
+/*Icons*/
+.small-icon.verified-icon {
+    background: url("../img/ready.png") repeat scroll 0 0 transparent;
+}
+.small-icon.provisional-icon {
+    background: url("../img/warning.png") repeat scroll 0 0 transparent;
+}
+.small-icon.not-verified-icon {
+    background: url("../img/not-ready.png") repeat scroll 0 0 transparent;
+}
+.icon-cell {
+    text-align: center;
+}
+
+
+.baseline-small-icon {
+    vertical-align: baseline;
+}
+
+.ui-dialog-content h3:first-child {
+    margin-top: 0;
+}
+.single-char-button {
+    min-width: 1em;
+    vertical-align: middle;
+    font-size: 1em;
+}
+
+.date-time-field {
+    font-family: monospace !important;
+}
+/*Hide time input labels and internal now button*/
+.ui-datepicker-current,
+.ui_tpicker_time_label,
+.ui_tpicker_time {
+    display: none;
+}
+.expiring-soon {
+    color: red;
+}
