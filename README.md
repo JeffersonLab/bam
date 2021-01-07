@@ -2,7 +2,7 @@
 Beam authorization app
 
 ## Build
-This project uses the [Gradle](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
+This [Java](https://adoptopenjdk.net/) project uses the [Gradle](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
 
 ```
 git clone https://github.com/JeffersonLab/beam-auth
