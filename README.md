@@ -4,7 +4,7 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for Beam
 ---
  - [Build](https://github.com/JeffersonLab/beam-auth#build)
  - [Configure](https://github.com/JeffersonLab/beam-auth#configure)
- - [Install](https://github.com/JeffersonLab/beam-auth#run)
+ - [Install](https://github.com/JeffersonLab/beam-auth#install)
 ---
 
 ## Build
