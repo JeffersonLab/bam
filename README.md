@@ -1,8 +1,8 @@
 # beam-auth
-Beam authorization app
+A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for Beam authorization at Jefferson Lab.
 
 ## Build
-This [Java](https://adoptopenjdk.net/) project uses the [Gradle](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
+This [Java 8](https://adoptopenjdk.net/) project uses the [Gradle 5](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
 
 ```
 git clone https://github.com/JeffersonLab/beam-auth
