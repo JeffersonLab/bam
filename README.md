@@ -1,5 +1,5 @@
 # beam-auth
-A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for Beam authorization at Jefferson Lab.
+A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam authorization at Jefferson Lab.
 
 ---
  - [Build](https://github.com/JeffersonLab/beam-auth#build)
