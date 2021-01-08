@@ -29,7 +29,7 @@ gradlew build
 | LOGBOOK_OPS_BOOKS_CSV | Comma separated list of logbook names |
 
 ### Database
-The Beam Auth application requires an Oracle database with the following [schema](https://github.com/JeffersonLab/beam-auth/tree/main/schema) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
+The Beam Auth application requires an Oracle 18 database with the following [schema](https://github.com/JeffersonLab/beam-auth/tree/main/schema) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
 
 ## Install
    1. Download [Wildfly 16](https://www.wildfly.org/downloads/)
