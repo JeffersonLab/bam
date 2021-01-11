@@ -30,7 +30,9 @@ Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoo
 |---|---|
 | BA_PERMISSIONS_BOOKS_CSV | Comma separated list of Jefferson Lab Logbook names to log to when permissions are updated |
 | BA_PERMISSIONS_EMAIL_CSV | Comma separated list of email recipients of permissions updated email |
-| BA_PERMISSIONS_EMAIL_SUBJECT | Subject of email indicating permissions updated |
+| BA_PERMISSIONS_SUBJECT | Subject of log entries and emails indicating permissions updated |
+| BA_EXPIRATION_SUBJECT | Subject of log entries and emails indicating expiration of permissions and control verifications |
+| BA_EMAIL_SENDER | Sender (and from address) of emails |
 
 ### Database
 The Beam Auth application requires an Oracle 18 database with the following [schema](https://github.com/JeffersonLab/beam-auth/tree/main/schema) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
