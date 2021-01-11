@@ -8,7 +8,7 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam
 ---
 
 ## Build
-This [Java 8](https://adoptopenjdk.net/) project uses the [Gradle 5](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
+This [Java 11](https://adoptopenjdk.net/) project uses the [Gradle 5](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
 
 ```
 git clone https://github.com/JeffersonLab/beam-auth
