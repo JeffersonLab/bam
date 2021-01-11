@@ -1,6 +1,12 @@
 plugins {
     id 'war'  
 }
+description = 'Beam authorization app'
+group 'org.jlab'
+version '2.10.0'
+ext.releaseDate = 'Jan 11 2021'
+ext.resourceVersion = '31'
+
 repositories {
     jcenter()
     maven {
@@ -17,5 +23,20 @@ dependencies {
             'org.jlab:jlog:4.0.1'
 }
 compileJava {
+    options.encoding = 'UTF-8'
     options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+}
+war {
+    archiveName 'beam-auth.war'
+    filesMatching('WEB-INF/web.xml') {
+        filter {
+            String line -> line.replaceAll("@VERSION@", project.version)
+        }
+        filter {
+            String line -> line.replaceAll("@RELEASE_DATE@", releaseDate)
+        }
+        filter {
+            String line -> line.replaceAll("@RESOURCE_VERSION@", resourceVersion)
+        }
+    }
 }
