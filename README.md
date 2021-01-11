@@ -1,6 +1,8 @@
 # beam-auth
 A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam authorization at Jefferson Lab built with the [Smoothness](https://github.com/JeffersonLab/smoothness) web template.
 
+![Screenshot](https://github.com/JeffersonLab/beam-auth/raw/main/Screenshot.png?raw=true "Screenshot")
+
 ---
  - [Build](https://github.com/JeffersonLab/beam-auth#build)
  - [Configure](https://github.com/JeffersonLab/beam-auth#configure)
