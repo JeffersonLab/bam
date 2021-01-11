@@ -24,7 +24,13 @@ gradlew build
 ## Configure
 
 ### Environment Variables
-Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#environment-variables)
+Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#environment-variables) plus the following application specific:
+
+| Name | Description |
+|---|---|
+| BA_PERMISSIONS_BOOKS_CSV | Comma separated list of Jefferson Lab Logbook names to log to when permissions are updated |
+| BA_PERMISSIONS_EMAIL_CSV | Comma separated list of email recipients of permissions updated email |
+| BA_PERMISSIONS_EMAIL_SUBJECT | Subject of email indicating permissions updated |
 
 ### Database
 The Beam Auth application requires an Oracle 18 database with the following [schema](https://github.com/JeffersonLab/beam-auth/tree/main/schema) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
