@@ -1,4 +1,4 @@
-# beam-auth
+# beam-auth [![Java CI with Gradle](https://github.com/JeffersonLab/beam-auth/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/JeffersonLab/beam-auth/actions?query=workflow%3A%22Java+CI+with+Gradle%22)
 A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam authorization at Jefferson Lab built with the [Smoothness](https://github.com/JeffersonLab/smoothness) web template.
 
 ![Screenshot](https://github.com/JeffersonLab/beam-auth/raw/main/Screenshot.png?raw=true "Screenshot")
