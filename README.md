@@ -1,5 +1,5 @@
 # beam-auth
-A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam authorization at Jefferson Lab.
+A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam authorization at Jefferson Lab built with the [Smoothness](https://github.com/JeffersonLab/smoothness) web template.
 
 ---
  - [Build](https://github.com/JeffersonLab/beam-auth#build)
@@ -22,11 +22,7 @@ gradlew build
 ## Configure
 
 ### Environment Variables
-| Name | Description |
-|---|---|
-| PROXY_HOSTNAME | Name of outermost proxy host (for use in hyperlinks in generated emails and log entries) |
-| LOGBOOK_HOSTNAME | Hostname of Jefferson Lab logbook server |
-| LOGBOOK_OPS_BOOKS_CSV | Comma separated list of logbook names |
+Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#environment-variables)
 
 ### Database
 The Beam Auth application requires an Oracle 18 database with the following [schema](https://github.com/JeffersonLab/beam-auth/tree/main/schema) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
