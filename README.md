@@ -30,10 +30,11 @@ Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoo
 |---|---|
 | BA_PERMISSIONS_BOOKS_CSV | Comma separated list of Jefferson Lab Logbook names to log to when permissions are updated |
 | BA_PERMISSIONS_EMAIL_CSV | Comma separated list of email recipients of permissions updated email |
-| BA_PERMISSIONS_SUBJECT | Subject of log entries and emails indicating permissions updated |
-| BA_EXPIRATION_SUBJECT | Subject of log entries and emails indicating expiration of permissions and control verifications |
 | BA_UPCOMING_EXPIRATION_EMAIL_CSV | Comma separated list of email recipients of both expired and upcoming expirations (admin heads-up email) |
 | BA_EXPIRED_EMAIL_CSV | Comma separated list of email recipients of expired permissions and control verifications (ops semi-synchronous notification of expiration) |
+| BA_PERMISSIONS_SUBJECT | Subject of log entries and emails indicating permissions updated |
+| BA_UPCOMING_EXPIRATION_SUBJECT | Subject of log entries and emails indicating both expired and upcoming expiration of permissions and control verifications (admin heads-up email) |
+| BA_EXPIRED_SUBJECT | Subject of log entries and emails indicating expiration of permissions and control verifications (ops semi-synchrounous notification of expiration) |
 | BA_EMAIL_SENDER | Sender (and from address) of emails |
 
 ### Database
