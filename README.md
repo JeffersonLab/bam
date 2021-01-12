@@ -32,9 +32,11 @@ Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoo
 | BA_PERMISSIONS_EMAIL_CSV | Comma separated list of email recipients of permissions updated email |
 | BA_UPCOMING_EXPIRATION_EMAIL_CSV | Comma separated list of email recipients of both expired and upcoming expirations (admin heads-up email) |
 | BA_EXPIRED_EMAIL_CSV | Comma separated list of email recipients of expired permissions and control verifications (ops semi-synchronous notification of expiration) |
+| BA_DOWNGRADED_EMAIL_CSV | Comma separated list of email recipients for control verifications downgrades |
 | BA_PERMISSIONS_SUBJECT | Subject of log entries and emails indicating permissions updated |
 | BA_UPCOMING_EXPIRATION_SUBJECT | Subject of emails indicating both expired and upcoming expiration of permissions and control verifications (admin heads-up email) |
 | BA_EXPIRED_SUBJECT | Subject of emails indicating expiration of permissions and control verifications (ops semi-synchrounous notification of expiration) |
+| BA_DOWNGRADED_SUBJECT | Subject of emails indicating downgrade of control verifications |
 | BA_EMAIL_SENDER | Sender (and from address) of emails |
 
 ### Database
