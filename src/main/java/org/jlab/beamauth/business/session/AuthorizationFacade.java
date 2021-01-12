@@ -206,21 +206,31 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
 
     @RolesAllowed("oability")
-    public void sendOpsNewAuthorizationEmail(String proxyServerName) throws UserFriendlyException {
+    public void sendOpsNewAuthorizationEmail(String linkHostName) throws UserFriendlyException {
 
-        String subject = "Beam Authorization Updated";
-        String toCsv = ControlVerificationFacade.OPS_EMAIL;
-        String body = "<a href=\"https://accweb.acc.jlab.org/beam-auth\">https://accweb.acc.jlab.org/beam-auth</a>";
+        String toCsv = System.getenv("BA_PERMISSIONS_EMAIL_CSV");
 
-        if(!"accweb.acc.jlab.org".equals(proxyServerName)) {
-            subject = "[TESTING] " + subject;
-            toCsv = "ryans@jlab.org";
-            body = "<a href=\"https://accwebtest.acc.jlab.org/beam-auth\">https://accwebtest.acc.jlab.org/beam-auth</a>";
+        if (toCsv == null || toCsv.isEmpty()) {
+            LOGGER.log(Level.WARNING,
+                    "Environment variable 'BA_PERMISSIONS_EMAIL_CSV' not found, aborting");
+            return;
+        }
+
+        String subject = System.getenv("BA_PERMISSIONS_SUBJECT");
+
+        String body = "<a href=\"https://" + linkHostName + "/beam-auth\">https://" + linkHostName + "/beam-auth</a>";
+
+        String sender = System.getenv("BA_PERMISSIONS_EMAIL_SENDER");
+
+        if (sender == null || sender.isEmpty()) {
+            LOGGER.log(Level.WARNING,
+                    "Environment variable 'BA_PERMISSIONS_EMAIL_SENDER' not found, aborting");
+            return;
         }
 
         EmailService emailService = new EmailService();
 
-        emailService.sendEmail("beam-auth@jlab.org", "beam-auth@jlab.org", toCsv, subject, body, true);
+        emailService.sendEmail(sender, sender, toCsv, subject, body, true);
     }
 
     @RolesAllowed("oability")
@@ -236,14 +246,14 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         //String body = getELogHTMLBody(authorization);
         String body = getAlternateELogHTMLBody(proxyServerName);
 
-        String subject = "Beam Authorization";
+        String subject = System.getenv("BA_PERMISSIONS_SUBJECT");
 
-        String logbooks = System.getenv("LOGBOOK_OPS_BOOKS_CSV");
+        String logbooks = System.getenv("BA_PERMISSIONS_BOOKS_CSV");
 
         if (logbooks == null || logbooks.isEmpty()) {
             logbooks = "TLOG";
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'LOGBOOK_OPS_BOOKS_CSV' not found, using default TLOG");
+                    "Environment variable 'BA_PERMISSIONS_BOOKS_CSV' not found, using default TLOG");
         }
 
         Properties config = Library.getConfiguration();

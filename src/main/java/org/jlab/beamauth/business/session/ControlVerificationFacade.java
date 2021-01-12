@@ -43,7 +43,6 @@ import org.jlab.smoothness.business.util.TimeUtil;
 @DeclareRoles({"oability"})
 public class ControlVerificationFacade extends AbstractFacade<ControlVerification> {
 
-    public static final String OPS_EMAIL = "mcc_ops@jlab.org";
     private static final Logger LOGGER = Logger.getLogger(
             ControlVerificationFacade.class.getName());
     @PersistenceContext(unitName = "beam-authorizationPU")
@@ -390,24 +389,17 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
     @PermitAll
     public void sendVerificationDowngradedEmail(String body) throws UserFriendlyException {
-            BeamAuthSettings settings = settingsFacade.findSettings();
-            String toCsv = settings.getDowngradedOrExpiredAddressCsv();
+            String toCsv = System.getenv("BA_DOWNGRADED_EMAIL_CSV");
 
             String proxyHostname = System.getenv("PROXY_HOSTNAME");
 
-            if ("accweb.acc.jlab.org".equals(proxyHostname)) {
-                if(toCsv.trim().isEmpty()) {
-                    toCsv = OPS_EMAIL;
-                } else {
-                    toCsv = toCsv + "," + OPS_EMAIL;
-                }
-            }
-
-            String subject = "Beam Authorization: Credited Control Downgraded";
+            String subject = System.getenv("BA_DOWNGRADED_SUBJECT");
 
             EmailService emailService = new EmailService();
 
-            emailService.sendEmail("beam-auth@jlab.org","beam-auth@jlab.org", toCsv, subject, body, true);
+            String sender = System.getenv("BA_EMAIL_SENDER");
+
+            emailService.sendEmail(sender,sender, toCsv, subject, body, true);
     }
 
     @PermitAll
@@ -635,10 +627,12 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     public void notifyAdmins(List<DestinationAuthorization> expiredAuthorizationList,
             List<ControlVerification> expiredVerificationList,
             List<DestinationAuthorization> upcomingAuthorizationExpirationList,
-            List<ControlVerification> upcomingVerificationExpirationList, String subject,
+            List<ControlVerification> upcomingVerificationExpirationList,
             String proxyServerName) throws MessagingException, UserFriendlyException {
-        BeamAuthSettings settings = settingsFacade.findSettings();
-        String toCsv = settings.getDowngradedOrExpiredAddressCsv();
+        String toCsv = System.getenv("BA_UPCOMING_EXPIRATION_EMAIL_CSV");
+
+        String subject = System.getenv("BA_UPCOMING_EXPIRATION_SUBJECT");
+
         String body = getExpiredMessageBody(proxyServerName, expiredAuthorizationList,
                 expiredVerificationList,
                 upcomingAuthorizationExpirationList,
@@ -646,33 +640,38 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         EmailService emailService = new EmailService();
 
-        emailService.sendEmail("beam-auth@jlab.org", "beam-auth@jlab.org", toCsv, subject, body, true);
+        String sender = System.getenv("BA_EMAIL_SENDER");
+
+        emailService.sendEmail(sender, sender, toCsv, subject, body, true);
     }
 
     @PermitAll
     public void notifyOps(List<DestinationAuthorization> expiredAuthorizationList,
-            List<ControlVerification> expiredVerificationList, String subject,
+            List<ControlVerification> expiredVerificationList,
             String proxyServerName) throws MessagingException, UserFriendlyException {
-        String toCsv = OPS_EMAIL;
+        String toCsv = System.getenv("BA_EXPIRED_EMAIL_CSV");
+
+        String subject = System.getenv("BA_EXPIRED_SUBJECT");
 
         String body = getExpiredMessageBody(proxyServerName, expiredAuthorizationList,
                 expiredVerificationList, null, null);
 
         EmailService emailService = new EmailService();
 
-        if("accweb.acc.jlab.org".equals(proxyServerName)) {
-            emailService.sendEmail("beam-auth@jlab.org", "beam-auth@jlab.org", toCsv, subject, body, true);
-        } else {
-            LOGGER.log(Level.FINEST, "notifyOps, toCsv: {0], body: {1}", new Object[]{toCsv, body});
-        }
+        String sender = System.getenv("BA_EMAIL_SENDER");
+
+        emailService.sendEmail(sender, sender, toCsv, subject, body, true);
+        LOGGER.log(Level.FINEST, "notifyOps, toCsv: {0], body: {1}", new Object[]{toCsv, body});
     }
 
     @PermitAll
     public void notifyGroups(List<ControlVerification> expiredList,
-            List<ControlVerification> upcomingExpirationsList, String subject,
+            List<ControlVerification> upcomingExpirationsList,
             String proxyServerName) throws MessagingException, UserFriendlyException {
         Map<Workgroup, List<ControlVerification>> expiredGroupMap = new HashMap<>();
         Map<Workgroup, List<ControlVerification>> upcomingExpirationGroupMap = new HashMap<>();
+
+        String subject = System.getenv("BA_UPCOMING_EXPIRATION_SUBJECT");
 
         LOGGER.log(Level.FINEST, "Expirations:");
         if (expiredList != null) {
@@ -725,6 +724,8 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             List<ControlVerification> groupUpcomingExpirationsList = upcomingExpirationGroupMap.get(
                     w);
 
+            String sender = System.getenv("BA_EMAIL_SENDER");
+
             String body = getExpiredMessageBody(proxyServerName, null, groupExpiredList,
                     null, groupUpcomingExpirationsList);
 
@@ -738,7 +739,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 }
 
                 if("accweb.acc.jlab.org".equals(proxyServerName)) {
-                    emailService.sendEmail("beam-auth@jlab.org", "beam-auth@jlab.org", toCsv, subject, body, true);
+                    emailService.sendEmail(sender, sender, toCsv, subject, body, true);
                 } else {
                     LOGGER.log(Level.FINEST, "notifyGroups, toCsv: {0}, body: {1}", new Object[]{toCsv, body});
                 }
@@ -764,33 +765,25 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         if (expiredAuth || expiredVer || upcomingAuth || upcomingVer) {
 
             LOGGER.log(Level.FINEST, "Notifying users");
-            String subject = "Beam Authorization: Expired / Expiring Soon";
             String proxyServerName = System.getenv("PROXY_HOSTNAME");
-            // If null or empty set to sensible (production) default
-            if (proxyServerName == null || proxyServerName.trim().isEmpty()) {
-                proxyServerName = "accweb.acc.jlab.org";
-            }
 
-            if(!"accweb.acc.jlab.org".equals(proxyServerName)) {
-                subject = "[TESTING] " + subject;
-            }
+
 
             try {
                 // Admins
                 notifyAdmins(expiredAuthorizationList, expiredVerificationList,
                         upcomingAuthorizationExpirationList,
-                        upcomingVerificationExpirationList, subject, proxyServerName);
+                        upcomingVerificationExpirationList, proxyServerName);
 
                     // Ops
                     if (expiredAuth || expiredVer) {
-                        notifyOps(expiredAuthorizationList, expiredVerificationList, subject,
+                        notifyOps(expiredAuthorizationList, expiredVerificationList,
                                 proxyServerName);
                     }
 
                     // Groups
                     if (expiredVer || upcomingVer) {
                         notifyGroups(expiredVerificationList, upcomingVerificationExpirationList,
-                                subject,
                                 proxyServerName);
                     }
 
