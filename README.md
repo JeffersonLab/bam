@@ -49,7 +49,7 @@ The Beam Auth application requires an Oracle 18 database with the following [sch
 
 ## Install
    1. Download [Wildfly 16](https://www.wildfly.org/downloads/)
-   1. Download [beam-auth.war](https://github.com/JeffersonLab/beam-auth/releases) and drop it into the Wildfly webaps directory
+   1. Download [beam-auth.war](https://github.com/JeffersonLab/beam-auth/releases) and deploy it to Wildfly
    1. Start Wildfly and navigate your web browser to localhost:8080/beam-auth
 
 **Note:** beam-auth presumably works with any Java EE 8 compatible server such as [GlassFish](https://javaee.github.io/glassfish/) or [TomEE](https://tomee.apache.org/).
