@@ -16,7 +16,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.jlab.beamauth.persistence.entity.Authorization;
-import org.jlab.beamauth.persistence.entity.BeamAuthSettings;
 import org.jlab.beamauth.persistence.entity.BeamDestination;
 import org.jlab.beamauth.persistence.entity.ControlVerification;
 import org.jlab.beamauth.persistence.entity.CreditedControl;
@@ -53,8 +52,6 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     BeamDestinationFacade destinationFacade;
     @EJB
     StaffFacade staffFacade;
-    @EJB
-    BeamAuthSettingsFacade settingsFacade;
     @EJB
     AuthorizationFacade authorizationFacade;
     @EJB
