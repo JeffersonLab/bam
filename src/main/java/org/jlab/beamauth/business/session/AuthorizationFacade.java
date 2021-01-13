@@ -220,11 +220,11 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         String body = "<a href=\"https://" + linkHostName + "/beam-auth\">https://" + linkHostName + "/beam-auth</a>";
 
-        String sender = System.getenv("BA_PERMISSIONS_EMAIL_SENDER");
+        String sender = System.getenv("BA_EMAIL_SENDER");
 
         if (sender == null || sender.isEmpty()) {
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'BA_PERMISSIONS_EMAIL_SENDER' not found, aborting");
+                    "Environment variable 'BA_EMAIL_SENDER' not found, aborting");
             return;
         }
 
