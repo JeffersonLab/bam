@@ -248,12 +248,12 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         String subject = System.getenv("BA_PERMISSIONS_SUBJECT");
 
-        String logbooks = System.getenv("BA_PERMISSIONS_BOOKS_CSV");
+        String logbooks = System.getenv("BA_BOOKS_CSV");
 
         if (logbooks == null || logbooks.isEmpty()) {
             logbooks = "TLOG";
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'BA_PERMISSIONS_BOOKS_CSV' not found, using default TLOG");
+                    "Environment variable 'BA_BOOKS_CSV' not found, using default TLOG");
         }
 
         Properties config = Library.getConfiguration();

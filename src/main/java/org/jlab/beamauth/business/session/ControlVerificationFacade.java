@@ -353,14 +353,14 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             UserFriendlyException {
         String username = checkAuthenticated();
 
-        String subject = "Beam Authorization: Credited Control Downgraded";
+        String subject = System.getenv("BA_DOWNGRADED_SUBJECT");
 
-        String logbooks = System.getenv("LOGBOOK_OPS_BOOKS_CSV");
+        String logbooks = System.getenv("BA_BOOKS_CSV");
 
         if (logbooks == null || logbooks.isEmpty()) {
             logbooks = "TLOG";
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'LOGBOOK_OPS_BOOKS_CSV' not found, using default TLOG");
+                    "Environment variable 'BA_BOOKS_CSV' not found, using default TLOG");
         }
 
         Properties config = Library.getConfiguration();
