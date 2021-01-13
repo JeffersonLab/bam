@@ -13,6 +13,12 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam
 ## Background
 The Beam Authorization application allows the Director of Operations (or a delegate) to clearly communicate and document the maximum current and beam mode ("permissions") are authorized for a given beam destination.  This information is stored in a database and presented via the web for easy access.   There are three machines, each with their own set of beam destinations and beam modes: CEBAF, LERF, UITF.  In addition to director authorization, the app also tracks Credited Controls and their verification.  Each beam destination is assigned a set of controls and each control is assigned to a particular responsible group.  A beam desintation is ready for beam only if all the controls assigned are verified by their responsible group.  Both group verifications and director permissions have expirations.   Emails and Jefferson Lab logbook entires are created to aid communication of new director permissions, responsible group verifications (upgrades and downgrades), and verification and permissions expirations.
 
+### Roles
+ - **Operations Director** - Responsible for authrozing beam
+ - **Operability / Admin** - Responsible for process administration and continuous improvement
+ - **Operator** - Must honor permissions set by the Director when running the machines
+ - **Group Leader** - Responsible for verifying Credited Control readiness and assigning expiration dates for when new checks are required
+
 
 ## Build
 This [Java 11](https://adoptopenjdk.net/) project uses the [Gradle 5](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
