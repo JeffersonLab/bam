@@ -36,14 +36,14 @@ import org.jlab.beamauth.persistence.entity.BeamDestination;
 import org.jlab.beamauth.persistence.entity.DestinationAuthorization;
 import org.jlab.beamauth.persistence.entity.Staff;
 import org.jlab.beamauth.presentation.util.BeamAuthFunctions;
-import org.jlab.elog.Body.ContentType;
-import org.jlab.elog.Library;
-import org.jlab.elog.LogEntry;
-import org.jlab.elog.LogEntryAdminExtension;
-import org.jlab.elog.exception.AttachmentSizeException;
-import org.jlab.elog.exception.LogCertificateException;
-import org.jlab.elog.exception.LogIOException;
-import org.jlab.elog.exception.LogRuntimeException;
+import org.jlab.jlog.Body;
+import org.jlab.jlog.Library;
+import org.jlab.jlog.LogEntry;
+import org.jlab.jlog.LogEntryAdminExtension;
+import org.jlab.jlog.exception.AttachmentSizeException;
+import org.jlab.jlog.exception.LogCertificateException;
+import org.jlab.jlog.exception.LogIOException;
+import org.jlab.jlog.exception.LogRuntimeException;
 import org.jlab.smoothness.business.exception.UserFriendlyException;
 import org.jlab.smoothness.business.service.EmailService;
 import org.jlab.smoothness.business.util.IOUtil;
@@ -263,7 +263,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         LogEntry entry = new LogEntry(subject, logbooks);
 
-        entry.setBody(body, ContentType.HTML);
+        entry.setBody(body, Body.ContentType.HTML);
         entry.setTags("Readme");
 
         LogEntryAdminExtension extension = new LogEntryAdminExtension(entry);

@@ -8,26 +8,23 @@ ext.releaseDate = 'Jan 13 2021'
 ext.resourceVersion = '32'
 
 repositories {
-    jcenter()
-    maven {
-        url "https://dl.bintray.com/slominskir/maven"
-    }
+    mavenCentral()
 }
 dependencies {
     if (project.hasProperty("provided")) {
         providedCompile 'org.jsoup:jsoup:1.11.3',
-                'org.jlab:smoothness-weblib:2.23.0',
+                'org.jlab:smoothness-weblib:3.0.0',
                 'org.tuckey:urlrewritefilter:4.0.4',
                 'org.hibernate:hibernate-core:5.4.2.Final',
-                'org.jlab:jlog:4.0.1',
+                'org.jlab:jlog:5.0.0',
                 'org.jsoup:jsoup:1.11.3',
                 'org.jlab:smoothness-weblib:2.23.0'
     } else {
         implementation 'org.jsoup:jsoup:1.11.3',
-                'org.jlab:smoothness-weblib:2.23.0',
+                'org.jlab:smoothness-weblib:3.0.0',
                 'org.tuckey:urlrewritefilter:4.0.4',
                 'org.hibernate:hibernate-core:5.4.2.Final',
-                'org.jlab:jlog:4.0.1',
+                'org.jlab:jlog:5.0.0',
                 'org.jsoup:jsoup:1.11.3',
                 'org.jlab:smoothness-weblib:2.23.0'
     }

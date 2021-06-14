@@ -25,10 +25,10 @@ import org.jlab.beamauth.persistence.entity.Staff;
 import org.jlab.beamauth.persistence.entity.VerificationHistory;
 import org.jlab.beamauth.persistence.entity.Workgroup;
 import org.jlab.beamauth.presentation.util.BeamAuthFunctions;
-import org.jlab.elog.Body.ContentType;
-import org.jlab.elog.Library;
-import org.jlab.elog.LogEntry;
-import org.jlab.elog.LogEntryAdminExtension;
+import org.jlab.jlog.Body;
+import org.jlab.jlog.Library;
+import org.jlab.jlog.LogEntry;
+import org.jlab.jlog.LogEntryAdminExtension;
 import org.jlab.smoothness.business.exception.UserFriendlyException;
 import org.jlab.smoothness.business.service.EmailService;
 import org.jlab.smoothness.business.util.IOUtil;
@@ -367,7 +367,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         LogEntry entry = new LogEntry(subject, logbooks);
 
-        entry.setBody(body, ContentType.HTML);
+        entry.setBody(body, Body.ContentType.HTML);
         entry.setTags("Readme");
 
         LogEntryAdminExtension extension = new LogEntryAdminExtension(entry);
