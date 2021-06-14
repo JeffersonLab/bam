@@ -17,16 +17,20 @@ dependencies {
                 'org.tuckey:urlrewritefilter:4.0.4',
                 'org.hibernate:hibernate-core:5.4.2.Final',
                 'org.jlab:jlog:5.0.0',
-                'org.jsoup:jsoup:1.11.3',
-                'org.jlab:smoothness-weblib:2.23.0'
+                'org.jsoup:jsoup:1.11.3'
     } else {
         implementation 'org.jsoup:jsoup:1.11.3',
                 'org.jlab:smoothness-weblib:3.0.0',
                 'org.tuckey:urlrewritefilter:4.0.4',
                 'org.hibernate:hibernate-core:5.4.2.Final',
                 'org.jlab:jlog:5.0.0',
-                'org.jsoup:jsoup:1.11.3',
-                'org.jlab:smoothness-weblib:2.23.0'
+                'org.jsoup:jsoup:1.11.3'
+    }
+
+    providedCompile('antlr:antlr') {
+        version {
+            strictly "2.7.7"
+        }
     }
 
     // No matter what the Java EE API is provided by the application server
