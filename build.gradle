@@ -1,7 +1,7 @@
 plugins {
     id 'war'  
 }
-description = 'Beam authorization app'
+description = 'Beam authorization manager app'
 group 'org.jlab'
 version '2.11.0'
 ext.releaseDate = 'Jan 13 2021'
