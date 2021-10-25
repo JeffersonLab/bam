@@ -33,6 +33,8 @@ dependencies {
 
     // No matter what the Java EE API is provided by the application server
     providedCompile 'javax:javaee-api:8.0'
+
+    testRuntime 'com.oracle.database.jdbc:ojdbc11:21.3.0.0'
 }
 compileJava {
     options.encoding = 'UTF-8'
@@ -52,3 +54,11 @@ war {
         }
     }
 }
+
+task prepareTestWithOracle(type: Copy) {
+    from configurations.testRuntime
+    into "$buildDir"
+    include 'ojdbc11-*.jar'
+}
+
+build.dependsOn(prepareTestWithOracle)
