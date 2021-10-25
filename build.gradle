@@ -39,7 +39,7 @@ compileJava {
     options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
 }
 war {
-    archiveName 'beam-auth.war'
+    archiveName 'bam.war'
     filesMatching('WEB-INF/web.xml') {
         filter {
             String line -> line.replaceAll("@VERSION@", project.version)
