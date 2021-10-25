@@ -28,4 +28,5 @@ services:
     volumes:
       - ./build/libs/:/opt/jboss/wildfly/standalone/deployments/
       - ./docker/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
-      - ./build/ojdbc11-21.3.0.0.jar:/opt/jboss/wildfly/standalone/modules/com/oracle/database/jdbc/ojdbc11-21.3.0.0.jar
+      - ./docker/oradrv/module.xml:/opt/jboss/wildfly/standalone/modules/com/oracle/database/jdbc/main/module.xml
+      - ./build/ojdbc11-21.3.0.0.jar:/opt/jboss/wildfly/standalone/modules/com/oracle/database/jdbc/main/ojdbc11-21.3.0.0.jar

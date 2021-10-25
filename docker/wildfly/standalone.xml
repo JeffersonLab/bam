@@ -149,6 +149,35 @@
         <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
+                <datasource jndi-name="java:/jdbc/beam-auth" pool-name="jdbc/beam-auth">
+                    <connection-url>jdbc:oracle:thin:@//oracle:1521/xepdb1</connection-url>
+                    <driver>oracle</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>3</max-pool-size>
+                        <flush-strategy>EntirePool</flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>bam_owner</user-name>
+                        <password>password</password>
+                    </security>
+                    <validation>
+                        <check-valid-connection-sql>select 1 from dual</check-valid-connection-sql>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>true</background-validation>
+                        <background-validation-millis>30000</background-validation-millis>
+                        <use-fast-fail>true</use-fast-fail>
+                    </validation>
+                    <timeout>
+                        <blocking-timeout-millis>5000</blocking-timeout-millis>
+                        <idle-timeout-minutes>5</idle-timeout-minutes>
+                        <query-timeout>30</query-timeout>
+                    </timeout>
+                    <statement>
+                        <prepared-statement-cache-size>10</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+                </datasource>
                 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver>h2</driver>
@@ -161,6 +190,7 @@
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
+                    <driver name="oracle" module="com.oracle.database.jdbc"/>
                 </drivers>
             </datasources>
         </subsystem>
@@ -401,6 +431,9 @@
             <mail-session name="default" jndi-name="java:jboss/mail/Default">
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
+            <mail-session name="jlab" jndi-name="java:/mail/jlab" from="wildfly@jlab.org">
+                <smtp-server outbound-socket-binding-ref="mail-smtp-jlab"/>
+            </mail-session>
         </subsystem>
         <subsystem xmlns="urn:wildfly:microprofile-config-smallrye:1.0"/>
         <subsystem xmlns="urn:wildfly:microprofile-health-smallrye:1.0" security-enabled="false"/>
@@ -513,6 +546,9 @@
         <socket-binding name="txn-status-manager" port="4713"/>
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
+        </outbound-socket-binding>
+        <outbound-socket-binding name="mail-smtp-jlab">
+            <remote-destination host="smtpmail.jlab.org" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
