@@ -1,5 +1,7 @@
 alter session set container = XEPDB1;
 
+ALTER SYSTEM SET db_create_file_dest = '/opt/oracle/oradata';
+
 create tablespace BAM;
 
 create user "BAM_OWNER" profile "DEFAULT" identified by "password" default tablespace "BAM" account unlock;
