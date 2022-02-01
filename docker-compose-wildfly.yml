@@ -1,0 +1,19 @@
+---
+version: '3.8'
+
+services:
+  wildfly:
+    image: jboss/wildfly:16.0.0.Final
+    hostname: wildfly
+    container_name: wildfly
+    ports:
+      - 8080:8080
+      - 9990:9990
+    command: '/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0'
+    environment:
+      CDN_HOSTNAME: 'localhost'
+    volumes:
+      - ./build/libs/:/opt/jboss/wildfly/standalone/deployments/
+      - ./docker/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+      - ./docker/oradrv/module.xml:/opt/jboss/wildfly/standalone/modules/com/oracle/database/jdbc/main/module.xml
+      - ./build/ojdbc11-21.3.0.0.jar:/opt/jboss/wildfly/standalone/modules/com/oracle/database/jdbc/main/ojdbc11-21.3.0.0.jar
