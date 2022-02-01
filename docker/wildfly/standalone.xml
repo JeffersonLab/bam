@@ -489,7 +489,7 @@
             </deployment-permissions>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:transactions:5.0">
-            <core-environment node-identifier="${jboss.tx.node.id:1}">
+            <core-environment node-identifier="docker-node-1">
                 <process-id>
                     <uuid/>
                 </process-id>
