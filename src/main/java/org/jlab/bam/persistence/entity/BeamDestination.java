@@ -6,26 +6,47 @@ import org.jlab.bam.persistence.view.BeamDestinationVerification;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "BEAM_DESTINATION", schema = "BAM_OWNER")
 public class BeamDestination {
+
+    @Id
+    @Column(name = "BEAM_DESTINATION_ID", nullable = false, precision = 0)
     private BigInteger beamDestinationId;
+
+    @Basic
+    @Column(name = "MACHINE", nullable = false, length = 32)
     private String machine;
+
+    @Basic
+    @Column(name = "CURRENT_LIMIT_UNITS", nullable = false, length = 3)
     private String currentLimitUnits;
+
+    @Basic
+    @Column(name = "ACTIVE_YN", nullable = false, length = 1)
+    @Convert(converter=YnStringToBoolean.class)
     private boolean active;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BEAM_DESTINATION_ID")
     private BeamDestinationVerification verification;
-    @OneToMany(mappedBy = "beamDestination", fetch = FetchType.LAZY)
-    private List<ControlVerification> controlVerificationList;
+
     @Size(max = 128)
     @Column(length = 128)
     private String name;
+
+    @OneToMany(mappedBy = "beamDestination", fetch = FetchType.LAZY)
+    private List<ControlVerification> controlVerificationList;
+
     private BigInteger weight;
+
+    public List<ControlVerification> getControlVerificationList() {
+        return controlVerificationList;
+    }
 
     public String getName() {
         return name;
@@ -47,12 +68,6 @@ public class BeamDestination {
         return verification;
     }
 
-    public List<ControlVerification> getControlVerificationList() {
-        return controlVerificationList;
-    }
-
-    @Id
-    @Column(name = "BEAM_DESTINATION_ID", nullable = false, precision = 0)
     public BigInteger getBeamDestinationId() {
         return beamDestinationId;
     }
@@ -61,8 +76,6 @@ public class BeamDestination {
         this.beamDestinationId = beamDestinationId;
     }
 
-    @Basic
-    @Column(name = "MACHINE", nullable = false, length = 32)
     public String getMachine() {
         return machine;
     }
@@ -71,8 +84,6 @@ public class BeamDestination {
         this.machine = machine;
     }
 
-    @Basic
-    @Column(name = "CURRENT_LIMIT_UNITS", nullable = false, length = 3)
     public String getCurrentLimitUnits() {
         return currentLimitUnits;
     }
@@ -81,9 +92,6 @@ public class BeamDestination {
         this.currentLimitUnits = currentLimitUnits;
     }
 
-    @Basic
-    @Column(name = "ACTIVE_YN", nullable = false, length = 1)
-    @Convert(converter=YnStringToBoolean.class)
     public boolean isActive() {
         return active;
     }
