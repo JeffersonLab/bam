@@ -1,4 +1,4 @@
 /build/
 /.gradle/
 /.idea/
-/docker/oradata/
+/docker/oracle/oradata/

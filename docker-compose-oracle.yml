@@ -12,5 +12,5 @@ services:
     environment:
       ORACLE_PASSWORD: testing
     volumes:
-      - ./docker/oradata:/opt/oracle/oradata
-      - ./docker/orasetup:/container-entrypoint-initdb.d
+      - ./docker/oracle/oradata:/opt/oracle/oradata
+      - ./docker/oracle/setup:/container-entrypoint-initdb.d

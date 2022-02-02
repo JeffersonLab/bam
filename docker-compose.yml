@@ -12,8 +12,8 @@ services:
     environment:
       ORACLE_PASSWORD: testing
     volumes:
-      - ./docker/oradata:/opt/oracle/oradata
-      - ./docker/orasetup:/container-entrypoint-initdb.d
+      - ./docker/oracle/oradata:/opt/oracle/oradata
+      - ./docker/oracle/setup:/container-entrypoint-initdb.d
 
   keycloak:
     image: quay.io/keycloak/keycloak:16.1.1
@@ -39,5 +39,5 @@ services:
     volumes:
       - ./build/libs/:/opt/jboss/wildfly/standalone/deployments/
       - ./docker/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
-      - ./docker/oradrv/module.xml:/opt/jboss/wildfly/modules/com/oracle/database/jdbc/main/module.xml
+      - ./docker/wildfly/module.xml:/opt/jboss/wildfly/modules/com/oracle/database/jdbc/main/module.xml
       - ./build/ojdbc11-21.3.0.0.jar:/opt/jboss/wildfly/modules/com/oracle/database/jdbc/main/ojdbc11-21.3.0.0.jar
