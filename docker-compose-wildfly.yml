@@ -7,8 +7,8 @@ services:
     hostname: wildfly
     container_name: wildfly
     ports:
-      - 8080:8080
-      - 9990:9990
+      - "8080:8080"
+      - "9990:9990"
     entrypoint: '/docker-entrypoint.sh'
     environment:
       CDN_HOSTNAME: 'localhost'
