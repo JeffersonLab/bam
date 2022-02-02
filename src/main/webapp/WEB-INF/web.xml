@@ -82,8 +82,7 @@
         </user-data-constraint>
     </security-constraint>
     <login-config>
-        <auth-method>KEYCLOAK</auth-method>
-        <realm-name>jlab</realm-name>
+        <auth-method>OIDC</auth-method>
     </login-config>
     <security-role>
         <role-name>oability</role-name>

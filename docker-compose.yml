@@ -24,7 +24,7 @@ services:
       KEYCLOAK_PASSWORD: admin
 
   wildfly:
-    image: jboss/wildfly:16.0.0.Final
+    image: quay.io/wildfly/wildfly:26.0.1.Final
     hostname: wildfly
     container_name: wildfly
     depends_on:
