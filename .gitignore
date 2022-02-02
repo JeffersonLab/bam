@@ -3,3 +3,4 @@
 /.idea/
 /docker/oracle/oradata/
 /docker/wildfly/deployments/
+/docker/wildfly/configuration/standalone_xml_history/
