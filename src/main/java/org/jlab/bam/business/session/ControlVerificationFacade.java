@@ -402,7 +402,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public List<DestinationAuthorization> checkForAuthorizedButExpired(Authorization mostRecent) {
         TypedQuery<DestinationAuthorization> q = em.createQuery(
-                "select a from DestinationAuthorization a where a.authorization.authorizationId = :authId and a.expirationDate < sysdate and a.beamMode != 'None' and a.destination.authDestination.active = true order by a.destinationAuthorizationPK.beamDestinationId asc",
+                "select a from DestinationAuthorization a where a.authorization.authorizationId = :authId and a.expirationDate < sysdate and a.beamMode != 'None' and a.destination.active = true order by a.destinationAuthorizationPK.beamDestinationId asc",
                 DestinationAuthorization.class);
 
         BigInteger authId = mostRecent.getAuthorizationId();
@@ -415,7 +415,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public List<ControlVerification> checkForExpired() {
         TypedQuery<ControlVerification> q = em.createQuery(
-                "select a from ControlVerification a join fetch a.creditedControl where a.expirationDate < sysdate and a.beamDestination.authDestination.active = true order by a.creditedControl.weight asc",
+                "select a from ControlVerification a join fetch a.creditedControl where a.expirationDate < sysdate and a.beamDestination.active = true order by a.creditedControl.weight asc",
                 ControlVerification.class);
 
         return q.getResultList();
@@ -424,7 +424,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public List<ControlVerification> checkForVerifiedButExpired() {
         TypedQuery<ControlVerification> q = em.createQuery(
-                "select a from ControlVerification a join fetch a.creditedControl where a.expirationDate < sysdate and a.beamDestination.authDestination.active = true and a.verificationId in (1, 50) order by a.creditedControl.weight asc",
+                "select a from ControlVerification a join fetch a.creditedControl where a.expirationDate < sysdate and a.beamDestination.active = true and a.verificationId in (1, 50) order by a.creditedControl.weight asc",
                 ControlVerification.class);
 
         return q.getResultList();
@@ -593,7 +593,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public List<ControlVerification> checkForUpcomingVerificationExpirations() {
         TypedQuery<ControlVerification> q = em.createQuery(
-                "select a from ControlVerification a join fetch a.creditedControl where a.expirationDate >= sysdate and (a.expirationDate - 7) <= sysdate and a.verificationId in (1, 50) and a.beamDestination.authDestination.active = true order by a.creditedControl.weight asc",
+                "select a from ControlVerification a join fetch a.creditedControl where a.expirationDate >= sysdate and (a.expirationDate - 7) <= sysdate and a.verificationId in (1, 50) and a.beamDestination.active = true order by a.creditedControl.weight asc",
                 ControlVerification.class);
 
         return q.getResultList();
