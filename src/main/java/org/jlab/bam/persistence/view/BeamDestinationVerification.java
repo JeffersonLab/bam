@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * @author ryans
  */
 @Entity
-@Table(name = "BEAM_DESTINATION_VERIFICATION", schema = "BEAM_AUTH_OWNER")
+@Table(name = "BEAM_DESTINATION_VERIFICATION", schema = "BAM_OWNER")
 public class BeamDestinationVerification implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,10 +37,6 @@ public class BeamDestinationVerification implements Serializable {
 
     public BigInteger getBeamDestinationId() {
         return beamDestinationId;
-    }
-
-    public void setBeamDestinationId(BigInteger beamDestinationId) {
-        this.beamDestinationId = beamDestinationId;
     }
 
     public Integer getVerificationId() {
