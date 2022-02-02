@@ -372,7 +372,18 @@
                 </server-ssl-contexts>
             </tls>
         </subsystem>
-        <subsystem xmlns="urn:wildfly:elytron-oidc-client:1.0"/>
+        <subsystem xmlns="urn:wildfly:elytron-oidc-client:1.0">
+            <provider name="keycloak">
+                <provider-url>http://localhost:8081/auth/realms/test-realm</provider-url>
+                <ssl-required>external</ssl-required>
+                <enable-cors>true</enable-cors>
+            </provider>
+            <secure-deployment name="bam.war">
+                <provider>keycloak</provider>
+                <client-id>bam</client-id>
+                <credential name="secret" secret="test-secret" />
+            </secure-deployment>
+        </subsystem>
         <subsystem xmlns="urn:wildfly:health:1.0" security-enabled="false"/>
         <subsystem xmlns="urn:jboss:domain:infinispan:13.0">
             <cache-container name="ejb" default-cache="passivation" marshaller="PROTOSTREAM" aliases="sfsb" modules="org.wildfly.clustering.ejb.infinispan">
