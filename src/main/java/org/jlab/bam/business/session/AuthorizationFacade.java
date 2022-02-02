@@ -79,7 +79,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
     public HashMap<BigInteger, String> getUnitsMap() {
         HashMap<BigInteger, String> units = new HashMap<>();
 
-        Query q = em.createNativeQuery("select a.BEAM_DESTINATION_ID, a.CURRENT_LIMIT_UNITS from beam_auth_destination a where a.ACTIVE_YN = 'Y'");
+        Query q = em.createNativeQuery("select a.BEAM_DESTINATION_ID, a.CURRENT_LIMIT_UNITS from beam_destination a where a.ACTIVE_YN = 'Y'");
 
         List<Object[]> results = q.getResultList();
 
