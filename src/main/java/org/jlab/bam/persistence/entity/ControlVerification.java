@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(name = "CONTROL_VERIFICATION", schema = "BEAM_AUTH_OWNER")
+@Table(name = "CONTROL_VERIFICATION", schema = "BAM_OWNER")
 @NamedQueries({
     @NamedQuery(name = "ControlVerification.findAll", query = "SELECT c FROM ControlVerification c")})
 public class ControlVerification implements Serializable, Comparable<ControlVerification> {
@@ -40,7 +40,6 @@ public class ControlVerification implements Serializable, Comparable<ControlVeri
     @NotNull
     @Column(name = "CONTROL_VERIFICATION_ID", nullable = false, precision = 22, scale = 0)
     private BigInteger controlVerificationId;
-    @Basic(optional = false)
     @NotNull
     @JoinColumn(name = "BEAM_DESTINATION_ID", referencedColumnName = "BEAM_DESTINATION_ID")
     @ManyToOne(fetch = FetchType.EAGER)

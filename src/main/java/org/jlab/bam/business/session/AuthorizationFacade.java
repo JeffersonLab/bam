@@ -326,7 +326,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
                 }
 
                 builder.append("<tr><td>");
-                builder.append(IOUtil.escapeXml(BeamAuthFunctions.formatDestination(destination)));
+                builder.append(IOUtil.escapeXml(destination.getName()));
                 builder.append("</td><td>");
                 builder.append(da.getBeamMode());
                 builder.append("</td><td>");

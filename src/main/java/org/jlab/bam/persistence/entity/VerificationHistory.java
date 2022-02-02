@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  * @author ryans
  */
 @Entity
-@Table(name = "VERIFICATION_HISTORY", schema = "BEAM_AUTH_OWNER")
+@Table(name = "VERIFICATION_HISTORY", schema = "BAM_OWNER")
 public class VerificationHistory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

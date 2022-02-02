@@ -3,15 +3,7 @@ package org.jlab.bam.persistence.entity;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,7 +12,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(name="WORKGROUP")
+@Table(name="WORKGROUP", schema = "BAM_OWNER")
 public class Workgroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,8 +30,10 @@ public class Workgroup implements Serializable {
         @JoinColumn(name = "STAFF_ID", referencedColumnName = "STAFF_ID", nullable = false)})   
     @ManyToMany
     @OrderBy("lastname asc")
-    private List<Staff> groupLeaderList;    
-    
+    private List<Staff> groupLeaderList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    private List<CreditedControl> ccList;
+
     public BigInteger getWorkgroupId() {
         return workgroupId;
     }

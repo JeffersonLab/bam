@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jlab.bam.business.session.ResponsibleGroupFacade;
-import org.jlab.bam.persistence.entity.ResponsibleGroup;
+import org.jlab.bam.business.session.WorkgroupFacade;
+import org.jlab.bam.persistence.entity.Workgroup;
 import org.jlab.smoothness.presentation.util.ParamConverter;
 
 /**
@@ -20,7 +20,7 @@ import org.jlab.smoothness.presentation.util.ParamConverter;
 public class GroupInformation extends HttpServlet {
 
     @EJB
-    ResponsibleGroupFacade groupFacade;
+    WorkgroupFacade groupFacade;
 
     /**
      * Handles the HTTP
@@ -37,7 +37,7 @@ public class GroupInformation extends HttpServlet {
 
         BigInteger groupId = ParamConverter.convertBigInteger(request, "groupId");
 
-        ResponsibleGroup group = null;
+        Workgroup group = null;
         
         if (groupId != null) {
             group = groupFacade.findWithLeaders(groupId);

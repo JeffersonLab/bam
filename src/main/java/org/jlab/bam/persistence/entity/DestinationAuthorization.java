@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(name = "DESTINATION_AUTHORIZATION", schema = "BEAM_AUTH_OWNER")
+@Table(name = "DESTINATION_AUTHORIZATION", schema = "BAM_OWNER")
 @NamedQueries({
     @NamedQuery(name = "DestinationAuthorization.findAll", query
             = "SELECT d FROM DestinationAuthorization d")})

@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(name = "CREDITED_CONTROL", schema = "BEAM_AUTH_OWNER")
+@Table(name = "CREDITED_CONTROL", schema = "BAM_OWNER")
 @NamedQueries({
     @NamedQuery(name = "CreditedControl.findAll", query = "SELECT c FROM CreditedControl c")})
 public class CreditedControl implements Serializable, Comparable<CreditedControl> {
@@ -42,9 +42,9 @@ public class CreditedControl implements Serializable, Comparable<CreditedControl
     @Column(length = 2048)
     private String description;
     @NotNull
-    @JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID", nullable = false)
+    @JoinColumn(name = "WORKGROUP_ID", referencedColumnName = "WORKGROUP_ID", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private ResponsibleGroup group;
+    private Workgroup group;
     private BigInteger weight;
     @Column(name = "VERIFICATION_FREQUENCY", nullable = true, length = 128)
     @Size(min = 0, max = 128)
@@ -86,11 +86,11 @@ public class CreditedControl implements Serializable, Comparable<CreditedControl
         this.description = description;
     }
 
-    public ResponsibleGroup getGroup() {
+    public Workgroup getGroup() {
         return group;
     }
 
-    public void setGroup(ResponsibleGroup group) {
+    public void setGroup(Workgroup group) {
         this.group = group;
     }
 

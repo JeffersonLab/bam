@@ -60,7 +60,7 @@ public class CreditedControls extends HttpServlet {
                 }
             }
 
-            adminOrLeader = ccFacade.isAdminOrGroupLeader(username, creditedControl.getGroup().getLeaderWorkgroup().getWorkgroupId());
+            adminOrLeader = ccFacade.isAdminOrGroupLeader(username, creditedControl.getGroup().getWorkgroupId());
         } else {
             expiredList = verificationFacade.checkForExpired();
             expiringList = verificationFacade.checkForUpcomingVerificationExpirations();

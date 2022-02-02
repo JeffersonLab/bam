@@ -174,7 +174,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                         + " not found");
             }
 
-            checkAdminOrGroupLeader(username, verification.getCreditedControl().getGroup().getLeaderWorkgroup());
+            checkAdminOrGroupLeader(username, verification.getCreditedControl().getGroup());
 
             boolean downgrade = false;
 
@@ -231,7 +231,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             builder.append("<h1>--- Expired Director's Authorizations ---</h1>\n");
             for (DestinationAuthorization authorization : expiredAuthorizationList) {
                 builder.append("</div>\n<div><b>Beam Destination:</b> ");
-                builder.append(BeamAuthFunctions.formatDestination(authorization.getDestination()));
+                builder.append(authorization.getDestination().getName());
                 builder.append("</div>\n<div><b>Expired On:</b> ");
                 builder.append(formatter.format(authorization.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -249,7 +249,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("<div><b>Credited Control:</b> ");
                 builder.append(v.getCreditedControl().getName());
                 builder.append("</div>\n<div><b>Beam Destination:</b> ");
-                builder.append(BeamAuthFunctions.formatDestination(v.getBeamDestination()));
+                builder.append(v.getBeamDestination().getName());
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
@@ -271,7 +271,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             for (DestinationAuthorization authorization : upcomingAuthorizationExpirationList) {
 
                 builder.append("<div><b>Beam Destination:</b> ");
-                builder.append(BeamAuthFunctions.formatDestination(authorization.getDestination()));
+                builder.append(authorization.getDestination().getName());
                 builder.append("</div>\n<div><b>Expires On:</b> ");
                 builder.append(formatter.format(authorization.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -292,7 +292,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("<div><b>Credited Control:</b> ");
                 builder.append(v.getCreditedControl().getName());
                 builder.append("</div>\n<div><b>Beam Destination:</b> ");
-                builder.append(BeamAuthFunctions.formatDestination(v.getBeamDestination()));
+                builder.append(v.getBeamDestination().getName());
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
@@ -326,7 +326,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         builder.append("</div>\n<div><b>Beam Destinations:</b> ");
         for (ControlVerification v : downgradeList) {
             builder.append("<div>");
-            builder.append(BeamAuthFunctions.formatDestination(v.getBeamDestination()));
+            builder.append(v.getBeamDestination().getName());
             builder.append("</div>");
         }
         builder.append("</div>\n<div><b>Modified On:</b> ");
@@ -674,7 +674,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         if (expiredList != null) {
             for (ControlVerification c : expiredList) {
                 LOGGER.log(Level.FINEST, c.toString());
-                Workgroup workgroup = c.getCreditedControl().getGroup().getLeaderWorkgroup();
+                Workgroup workgroup = c.getCreditedControl().getGroup();
                 List<ControlVerification> groupList = expiredGroupMap.get(workgroup);
                 if (groupList == null) {
                     groupList = new ArrayList<>();
@@ -690,7 +690,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         if (upcomingExpirationsList != null) {
             for (ControlVerification c : upcomingExpirationsList) {
                 LOGGER.log(Level.FINEST, c.toString());
-                Workgroup workgroup = c.getCreditedControl().getGroup().getLeaderWorkgroup();
+                Workgroup workgroup = c.getCreditedControl().getGroup();
                 List<ControlVerification> groupList = upcomingExpirationGroupMap.get(workgroup);
                 if (groupList == null) {
                     groupList = new ArrayList<>();

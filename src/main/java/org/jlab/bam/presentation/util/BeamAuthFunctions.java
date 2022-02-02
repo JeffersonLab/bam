@@ -42,24 +42,6 @@ public final class BeamAuthFunctions {
         return builder.toString();
     }
 
-    public static String formatDestination(BeamDestination destination) {
-        if (destination != null) {
-            if(destination.getAuthDestination() == null) {
-                LOGGER.log(Level.WARNING, "Could not find auth destination with ID: " + destination.getBeamDestinationId());
-                return destination.getName();
-            }
-            String name = destination.getAuthDestination().getDisplayName();
-
-            if(name == null) {
-                name = destination.getName();
-            }
-
-            return name;
-        } else {
-            return null;
-        }
-    }
-
     public static List<String> beamModeList(String facility) {
         List<String> modes = null;
 

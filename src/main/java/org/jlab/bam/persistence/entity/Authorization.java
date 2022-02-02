@@ -29,7 +29,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(schema = "BEAM_AUTH_OWNER")
+@Table(schema = "BAM_OWNER")
 @NamedQueries({
     @NamedQuery(name = "Authorization.findAll", query = "SELECT a FROM Authorization a")})
 public class Authorization implements Serializable {
