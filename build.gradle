@@ -63,11 +63,9 @@ task prepareTestWithOracle(type: Copy) {
 
 build.dependsOn(prepareTestWithOracle)
 
-task copyToDeployments {
+tasks.war.doLast {
     copy {
         from war
         into 'docker/wildfly/deployments'
     }
 }
-
-tasks.war.finalizedBy(copyToDeployments)
