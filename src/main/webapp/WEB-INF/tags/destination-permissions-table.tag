@@ -32,7 +32,7 @@
             <c:set var="destinationAuthorization" value="${destinationAuthorizationMap[destination.beamDestinationId]}"/>
             <c:set var="units" value="${unitsMap[destination.beamDestinationId] ne null ? unitsMap[destination.beamDestinationId] : 'uA'}"/>
             <tr>
-                <td><a data-dialog-title="${beamauth:formatDestination(destination)} Information" class="dialog-ready" href="beam-destination-information?beamDestinationId=${destination.beamDestinationId}"><c:out value="${beamauth:formatDestination(destination)}"/></a></td>
+                <td><a data-dialog-title="${destination.name} Information" class="dialog-ready" href="beam-destination-information?beamDestinationId=${destination.beamDestinationId}"><c:out value="${destination.name}"/></a></td>
                     <c:if test="${not isHistory}">
                     <td class="icon-cell">
                         <c:choose>
@@ -100,7 +100,7 @@
                 </td>
                 <c:if test="${not isHistory}">
                     <td class="icon-cell">
-                        <a data-dialog-title="${beamauth:formatDestination(destination)} Information" class="dialog-ready" href="beam-destination-information?beamDestinationId=${destination.beamDestinationId}">
+                        <a data-dialog-title="${destination.name} Information" class="dialog-ready" href="beam-destination-information?beamDestinationId=${destination.beamDestinationId}">
                             <c:choose>
                                 <c:when test="${destination.verification.verificationId eq 1}">
                                     <span title="Verified" class="small-icon verified-icon"></span>
