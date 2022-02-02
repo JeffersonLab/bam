@@ -381,7 +381,7 @@
             <secure-deployment name="bam.war">
                 <provider>keycloak</provider>
                 <client-id>bam</client-id>
-                <credential name="secret" secret="test-secret" />
+                <credential name="secret" secret="test-secret"/>
             </secure-deployment>
         </subsystem>
         <subsystem xmlns="urn:wildfly:health:1.0" security-enabled="false"/>
