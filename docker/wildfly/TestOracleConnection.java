@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TestOracleConnection {
-    public static void testConnection() throws ClassNotFoundException, SQLException {
+    public static void testConnection(String connectUrl) throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.OracleDriver");
 
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@oracle:1521/xepdb1", "BAM_OWNER", "password");
+                Connection con = DriverManager.getConnection(connectUrl);
                 Statement stmt = con.createStatement();
         ){
             ResultSet rs = stmt.executeQuery("select 1 from dual");
@@ -19,7 +19,7 @@ public class TestOracleConnection {
 
     public static void main(String[] args) {
         try {
-            testConnection();
+            testConnection(args[0]);
         } catch(Throwable t) {
             //t.printStackTrace();
             System.exit(-1);
