@@ -1,3 +1,4 @@
+alter session set container = XEPDB1;
 
 -- Populate Verification
 insert into BAM_OWNER.VERIFICATION (VERIFICATION_ID, NAME) values (1, 'Verified');
