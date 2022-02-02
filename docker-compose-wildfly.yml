@@ -17,5 +17,5 @@ services:
       - ./docker/wildfly/TestOracleConnection.java:/TestOracleConnection.java
       - ./docker/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
       - ./docker/wildfly/module.xml:/opt/jboss/wildfly/modules/com/oracle/database/jdbc/main/module.xml
+      - ./docker/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
       - ./build/ojdbc11-21.3.0.0.jar:/opt/jboss/wildfly/modules/com/oracle/database/jdbc/main/ojdbc11-21.3.0.0.jar
-      - ./build/libs/:/opt/jboss/wildfly/standalone/deployments/

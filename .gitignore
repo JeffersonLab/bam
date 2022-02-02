@@ -2,3 +2,4 @@
 /.gradle/
 /.idea/
 /docker/oracle/oradata/
+/docker/wildfly/deployments/
