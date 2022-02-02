@@ -796,10 +796,14 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     public void performExpirationCheck(boolean checkForUpcoming) {
         LOGGER.log(Level.FINEST, "Expiration Check: Director's authorizations...");
         Authorization auth = authorizationFacade.findCurrent();
-        List<DestinationAuthorization> expiredAuthorizationList = checkForAuthorizedButExpired(auth);
-        if (expiredAuthorizationList != null && !expiredAuthorizationList.isEmpty()) {
-            LOGGER.log(Level.FINEST, "Expiration Check: Revoking expired authorization");
-            revokeExpiredAuthorizations(expiredAuthorizationList);
+        List<DestinationAuthorization> expiredAuthorizationList = null;
+
+        if(auth != null) {
+            expiredAuthorizationList = checkForAuthorizedButExpired(auth);
+            if (expiredAuthorizationList != null && !expiredAuthorizationList.isEmpty()) {
+                LOGGER.log(Level.FINEST, "Expiration Check: Revoking expired authorization");
+                revokeExpiredAuthorizations(expiredAuthorizationList);
+            }
         }
 
         LOGGER.log(Level.FINEST, "Expiration Check: Checking for expired verifications...");
