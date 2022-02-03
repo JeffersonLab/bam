@@ -11,7 +11,8 @@ services:
       - "9990:9990"
     entrypoint: '/docker-entrypoint.sh'
     environment:
-      CDN_HOSTNAME: 'localhost'
+      SKIP_DB_WAIT: 'true'
+      CDN_HOSTNAME: 'localhost:8080/bam/resources'
     volumes:
       - ./docker/wildfly/docker-entrypoint.sh:/docker-entrypoint.sh
       - ./docker/wildfly/TestOracleConnection.java:/TestOracleConnection.java
