@@ -7,7 +7,7 @@
 <%@attribute name="stylesheets" fragment="true" %>
 <%@attribute name="scripts" fragment="true" %>
 <%@attribute name="secondaryNavigation" fragment="true" %>
-<s:tabbed-page title="${title}" category="${category}" keycloakClientIdKey="KEYCLOAK_CLIENT_ID_BEAM_AUTH" resourceLocation="CDN">
+<s:tabbed-page title="${title}" category="${category}" keycloakClientIdKey="KEYCLOAK_CLIENT_ID_BEAM_AUTH" resourceLocation="LOCAL">
     <jsp:attribute name="stylesheets">
         <link rel="stylesheet" type="text/css" href="${cdnContextPath}/jquery-plugins/timepicker/jquery-ui-timepicker-1.3.1.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/beam-auth.css"/>
