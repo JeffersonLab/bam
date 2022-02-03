@@ -822,7 +822,9 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
             LOGGER.log(Level.FINEST,
                     "Expiration Check: Checking for upcoming authorization expirations...");
-            upcomingAuthorizationExpirationList = checkForUpcomingAuthorizationExpirations(auth);
+            if(auth != null) {
+                upcomingAuthorizationExpirationList = checkForUpcomingAuthorizationExpirations(auth);
+            }
         }
 
         notifyUsersOfExpirationsAndUpcomingExpirations(expiredAuthorizationList,
