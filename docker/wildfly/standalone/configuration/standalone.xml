@@ -127,7 +127,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:6.0">
             <datasources>
                 <datasource jndi-name="java:/jdbc/beam-auth" pool-name="jdbc/beam-auth">
-                    <connection-url>jdbc:oracle:thin:@//oracle:1521/xepdb1</connection-url>
+                    <connection-url>jdbc:oracle:thin:@//${env.ORACLE_SERVER}/xepdb1</connection-url>
                     <driver>oracle</driver>
                     <pool>
                         <min-pool-size>1</min-pool-size>
@@ -374,7 +374,7 @@
         </subsystem>
         <subsystem xmlns="urn:wildfly:elytron-oidc-client:1.0">
             <provider name="keycloak">
-                <provider-url>http://localhost:8081/auth/realms/test-realm</provider-url>
+                <provider-url>http://${env.KEYCLOAK_SERVER}/auth/realms/test-realm</provider-url>
                 <ssl-required>external</ssl-required>
                 <enable-cors>true</enable-cors>
             </provider>
