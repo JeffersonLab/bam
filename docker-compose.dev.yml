@@ -1,0 +1,12 @@
+---
+version: '3.9'
+
+services:
+  bam:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./docker/wildfly/docker-entrypoint.sh:/docker-entrypoint.sh
+      - ./docker/wildfly/standalone/configuration/:/opt/jboss/wildfly/standalone/configuration/
+      - ./docker/wildfly/standalone/deployments/:/opt/jboss/wildfly/standalone/deployments/

@@ -2,5 +2,5 @@
 /.gradle/
 /.idea/
 /docker/oracle/oradata/
-/docker/wildfly/deployments/
-/docker/wildfly/configuration/standalone_xml_history/
+/docker/wildfly/standalone/deployments/
+/docker/wildfly/standalone/configuration/standalone_xml_history/

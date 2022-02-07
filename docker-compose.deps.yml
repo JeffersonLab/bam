@@ -1,0 +1,39 @@
+---
+version: '3.9'
+
+services:
+  oracle:
+    image: gvenzl/oracle-xe:21.3.0
+    hostname: oracle
+    container_name: oracle
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    environment:
+      ORACLE_PASSWORD: testing
+    volumes:
+      - ./docker/oracle/oradata:/opt/oracle/oradata
+      - ./docker/oracle/setup:/container-entrypoint-initdb.d
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:16.1.1
+    hostname: keycloak
+    container_name: keycloak
+    ports:
+      - "8081:8080"
+      - "9991:9990"
+    environment:
+      DB_VENDOR: h2
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_IMPORT: /realm.json
+    volumes:
+      - ./docker/keycloak/realm.json:/realm.json
+      - ./docker/keycloak/setup.sh:/opt/jboss/startup-scripts/setup.sh
+
+  puppet:
+    image: slominskir/puppet-show:2.1.1
+    hostname: puppet
+    container_name: puppet
+    ports:
+      - "3000:3000"

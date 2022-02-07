@@ -7,6 +7,9 @@ version '2.11.0'
 ext.releaseDate = 'Jan 13 2021'
 ext.resourceVersion = '32'
 
+project.sourceCompatibility = JavaVersion.VERSION_11
+project.targetCompatibility = JavaVersion.VERSION_11
+
 repositories {
     mavenCentral()
 
@@ -14,6 +17,11 @@ repositories {
         url "https://s01.oss.sonatype.org/content/repositories/releases/"
     }
 }
+
+configurations {
+    dockerBuild.extendsFrom testRuntimeOnly
+}
+
 dependencies {
     if (project.hasProperty("provided")) {
         providedCompile 'org.jsoup:jsoup:1.11.3',
@@ -38,14 +46,14 @@ dependencies {
     // No matter what the Java EE API is provided by the application server
     providedCompile 'javax:javaee-api:8.0'
 
-    testRuntime 'com.oracle.database.jdbc:ojdbc11:21.3.0.0'
+    dockerBuild 'com.oracle.database.jdbc:ojdbc11:21.3.0.0'
 }
 compileJava {
     options.encoding = 'UTF-8'
     options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
 }
 war {
-    archiveName 'bam.war'
+    archiveFileName = 'bam.war'
     filesMatching('WEB-INF/web.xml') {
         filter {
             String line -> line.replaceAll("@VERSION@", project.version)
@@ -60,8 +68,8 @@ war {
 }
 
 task prepareTestWithOracle(type: Copy) {
-    from configurations.testRuntime
-    into "$buildDir"
+    from configurations.dockerBuild
+    into './docker/wildfly/modules/com/oracle/database/jdbc/main'
     include 'ojdbc11-*.jar'
 }
 
@@ -70,6 +78,6 @@ build.dependsOn(prepareTestWithOracle)
 tasks.war.doLast {
     copy {
         from war
-        into 'docker/wildfly/deployments'
+        into './docker/wildfly/standalone/deployments'
     }
 }
