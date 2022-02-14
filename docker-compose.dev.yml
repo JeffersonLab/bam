@@ -2,7 +2,27 @@
 version: '3.9'
 
 services:
+  oracle:
+    extends:
+      file: docker-compose.yml
+      service: oracle
+    volumes:
+      - ./run/oracle/oradata:/opt/oracle/oradata
+
+  keycloak:
+    extends:
+      file: docker-compose.yml
+      service: keycloak
+
+  puppet:
+    extends:
+      file: docker-compose.yml
+      service: puppet
+
   bam:
+    extends:
+      file: docker-compose.yml
+      service: smoothness
     build:
       context: .
       dockerfile: Dockerfile

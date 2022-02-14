@@ -12,7 +12,6 @@ services:
     environment:
       ORACLE_PASSWORD: testing
     volumes:
-      - ./docker/oracle/oradata:/opt/oracle/oradata
       - ./docker/oracle/setup:/container-entrypoint-initdb.d
 
   keycloak:
