@@ -1,4 +1,4 @@
-FROM gradle:7.3.3-jdk17 as builder
+FROM gradle:7.4-jdk17 as builder
 
 USER root
 WORKDIR /
@@ -7,7 +7,7 @@ RUN git clone https://github.com/JeffersonLab/bam \
    && cd bam \
    && gradle build -x test
 
-FROM slominskir/smoothness:3.2.0
+FROM slominskir/smoothness:3.3.0
 
 USER root
 

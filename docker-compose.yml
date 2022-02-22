@@ -4,17 +4,17 @@ version: '3.9'
 services:
   oracle:
     extends:
-      file: docker-compose.deps.yml
+      file: deps.yml
       service: oracle
 
   keycloak:
     extends:
-      file: docker-compose.deps.yml
+      file: deps.yml
       service: keycloak
 
   puppet:
     extends:
-      file: docker-compose.deps.yml
+      file: deps.yml
       service: puppet
 
   bam:

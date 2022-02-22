@@ -22,10 +22,9 @@ services:
   bam:
     extends:
       file: docker-compose.yml
-      service: smoothness
+      service: bam
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./docker/wildfly/standalone/configuration/:/opt/jboss/wildfly/standalone/configuration/
-      - ./docker/wildfly/standalone/deployments/:/opt/jboss/wildfly/standalone/deployments/
+      args:
+        BUILD_TYPE: local-src

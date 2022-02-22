@@ -1,7 +1,4 @@
 /build/
 /.gradle/
 /.idea/
-/docker/oracle/oradata/
-/docker/wildfly/standalone/deployments/
-/docker/wildfly/standalone/configuration/standalone_xml_history/
-/docker/wildfly/modules/com/oracle/database/jdbc/main/ojdbc11-21.3.0.0.jar
+/run
