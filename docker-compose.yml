@@ -28,3 +28,6 @@ services:
       KEYCLOAK_SERVER: 'keycloak:8080'
       LOGBOOK_SERVER: 'elog'
       PUPPET_SHOW_SERVER: 'puppet:3000'
+      DB_USER: 'BAM_OWNER'
+      DB_PASS: 'password'
+      DB_SERVICE: 'xepdb1'

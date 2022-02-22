@@ -67,17 +67,32 @@ war {
     }
 }
 
-task prepareTestWithOracle(type: Copy) {
-    from configurations.dockerBuild
-    into './docker/wildfly/modules/com/oracle/database/jdbc/main'
-    include 'ojdbc11-*.jar'
+task initOracleRunSetup {
+    outputs.dir "$rootDir/run/oracle/oradata"
+    outputs.upToDateWhen {
+        file("$rootDir/run/oracle/oradata").exists()
+    }
+    doLast {
+        mkdir "$rootDir/run/oracle/oradata"
+    }
 }
 
-build.dependsOn(prepareTestWithOracle)
+task initWildflyRunSetup(type: Copy) {
+    from "$rootDir/docker/wildfly"
+    into "$rootDir/run/wildfly"
+    exclude("docker-entrypoint.sh")
+}
+
+task dockerRunSetup {
+    dependsOn(initOracleRunSetup)
+    dependsOn(initWildflyRunSetup)
+}
+
+tasks.war.dependsOn(dockerRunSetup)
 
 tasks.war.doLast {
     copy {
         from war
-        into './docker/wildfly/standalone/deployments'
+        into "$rootDir/run/wildfly/standalone/deployments"
     }
 }
