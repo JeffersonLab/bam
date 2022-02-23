@@ -373,15 +373,14 @@
             </tls>
         </subsystem>
         <subsystem xmlns="urn:wildfly:elytron-oidc-client:1.0">
-            <provider name="keycloak">
-                <provider-url>http://${env.KEYCLOAK_SERVER}/auth/realms/test-realm</provider-url>
+            <secure-deployment name="bam.war">
+                <auth-server-url>http://${env.KEYCLOAK_SERVER}/auth</auth-server-url>
+                <realm>test-realm</realm>
                 <ssl-required>external</ssl-required>
                 <enable-cors>true</enable-cors>
-            </provider>
-            <secure-deployment name="bam.war">
-                <provider>keycloak</provider>
+                <principal-attribute>preferred_username</principal-attribute>
                 <client-id>bam</client-id>
-                <credential name="secret" secret="test-secret"/>
+                <credential name="secret" secret="9AubPamv1H9fAWo0q239EP7wPuH5ihb7"/>
             </secure-deployment>
         </subsystem>
         <subsystem xmlns="urn:wildfly:health:1.0" security-enabled="false"/>

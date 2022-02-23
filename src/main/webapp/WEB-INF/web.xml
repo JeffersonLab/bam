@@ -75,7 +75,7 @@
             <url-pattern>/sso</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>ipausers</role-name>
+            <role-name>bam-user</role-name>
         </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
@@ -85,10 +85,10 @@
         <auth-method>OIDC</auth-method>
     </login-config>
     <security-role>
-        <role-name>oability</role-name>
+        <role-name>bam-user</role-name>
     </security-role>
     <security-role>
-        <role-name>ipausers</role-name>
+        <role-name>bam-admin</role-name>
     </security-role>
     <distributable/>
 </web-app>
