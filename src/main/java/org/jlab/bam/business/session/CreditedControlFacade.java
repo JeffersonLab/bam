@@ -71,7 +71,7 @@ public class CreditedControlFacade extends AbstractFacade<CreditedControl> {
         return ccList;
     }
 
-    @RolesAllowed("oability")
+    @RolesAllowed("bam-admin")
     public void updateComments(BigInteger creditedControlId, String comments) {
         CreditedControl control = find(creditedControlId);
 

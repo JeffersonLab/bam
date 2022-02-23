@@ -24,7 +24,7 @@ import org.jlab.bam.persistence.entity.Staff;
  *
  * @author ryans
  */
-@DeclareRoles({"oability"})
+@DeclareRoles({"bam-admin"})
 public abstract class AbstractFacade<T> {
     @Resource
     private SessionContext context;
@@ -156,7 +156,7 @@ public abstract class AbstractFacade<T> {
     protected boolean isAdminOrGroupLeader(String username, Workgroup group) {
         boolean isAdminOrLeader = false;
 
-        boolean isAdmin = context.isCallerInRole("oability");
+        boolean isAdmin = context.isCallerInRole("bam-admin");
         if (isAdmin) {
             isAdminOrLeader = true;
         } else {

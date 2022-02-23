@@ -53,7 +53,7 @@ import org.jlab.smoothness.business.util.IOUtil;
  * @author ryans
  */
 @Stateless
-@DeclareRoles({"oability"})
+@DeclareRoles({"bam-admin"})
 public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
     private static final Logger LOGGER = Logger.getLogger(
@@ -146,7 +146,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         return destinationAuthorizationMap;
     }
 
-    @RolesAllowed("oability")
+    @RolesAllowed("bam-admin")
     public void saveAuthorization(String comments,
             List<DestinationAuthorization> destinationAuthorizationList) throws UserFriendlyException {
         String username = checkAuthenticated();
@@ -205,7 +205,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
     }
 
 
-    @RolesAllowed("oability")
+    @RolesAllowed("bam-admin")
     public void sendOpsNewAuthorizationEmail(String linkHostName) throws UserFriendlyException {
 
         String toCsv = System.getenv("BA_PERMISSIONS_EMAIL_CSV");
@@ -233,7 +233,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         emailService.sendEmail(sender, sender, toCsv, subject, body, true);
     }
 
-    @RolesAllowed("oability")
+    @RolesAllowed("bam-admin")
     public long sendELog(String proxyServerName, String logbookServerName) throws UserFriendlyException {
         String username = checkAuthenticated();
 

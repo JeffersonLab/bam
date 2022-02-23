@@ -39,7 +39,7 @@ import org.jlab.smoothness.business.util.TimeUtil;
  * @author ryans
  */
 @Stateless
-@DeclareRoles({"oability"})
+@DeclareRoles({"bam-admin"})
 public class ControlVerificationFacade extends AbstractFacade<ControlVerification> {
 
     private static final Logger LOGGER = Logger.getLogger(
@@ -77,7 +77,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         return q.getResultList();
     }
 
-    @RolesAllowed("oability")
+    @RolesAllowed("bam-admin")
     public void toggle(BigInteger controlId, BigInteger destinationId) {
         ControlVerification verification = find(controlId, destinationId);
 
