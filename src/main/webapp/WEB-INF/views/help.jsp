@@ -13,8 +13,7 @@
     <jsp:body>
         <s:help-panel title="${title}">
             <ul>
-                <li><a href="https://jlabdoc.jlab.org/docushare/dsweb/Get/Document-187898">ASE Document</a></li>
-                <li><a href="https://jlabdoc.jlab.org/docushare/dsweb/Get/Document-21395">FSAD Document</a></li>
+                <li><a href="https://github.com/JeffersonLab/bam">BAM Home</a></li>
             </ul>
         </s:help-panel>
     </jsp:body>
