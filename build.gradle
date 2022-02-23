@@ -3,9 +3,9 @@ plugins {
 }
 description = 'Beam authorization manager app'
 group 'org.jlab'
-version '2.11.0'
-ext.releaseDate = 'Jan 13 2021'
-ext.resourceVersion = '32'
+version '3.0.0-alpha0'
+ext.releaseDate = 'Feb 23 2022'
+ext.resourceVersion = '33'
 
 project.sourceCompatibility = JavaVersion.VERSION_11
 project.targetCompatibility = JavaVersion.VERSION_11
