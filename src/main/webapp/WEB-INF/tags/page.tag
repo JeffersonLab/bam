@@ -9,13 +9,10 @@
 <%@attribute name="secondaryNavigation" fragment="true" %>
 <s:tabbed-page title="${title}" category="${category}">
     <jsp:attribute name="stylesheets">
-        <link rel="stylesheet" type="text/css" href="${cdnContextPath}/jquery-plugins/timepicker/jquery-ui-timepicker-1.3.1.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/beam-auth.css"/>
         <jsp:invoke fragment="stylesheets"/>
     </jsp:attribute>
     <jsp:attribute name="scripts">
-        <script type="text/javascript" src="${cdnContextPath}/jquery-plugins/timepicker/jquery-ui-timepicker-1.3.1.js"></script>
-        <script type="text/javascript" src="${cdnContextPath}/jquery-plugins/maskedinput/jquery.maskedinput-1.3.1.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/js/beam-auth.js"></script>
         <jsp:invoke fragment="scripts"/>
     </jsp:attribute>
