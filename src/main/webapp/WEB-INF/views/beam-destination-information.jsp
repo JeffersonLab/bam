@@ -5,7 +5,7 @@
 <%@taglib prefix="beamauth" uri="http://jlab.org/beamauth/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%> 
-<t:page title="Beam Destination Information: ${beamauth:formatDestination(beamDestination)}"> 
+<t:page title="Beam Destination Information: ${beamDestination.name}">
     <jsp:attribute name="stylesheets">
         <style type="text/css">
         </style>
@@ -14,7 +14,7 @@
     </jsp:attribute>        
     <jsp:body>
         <section>
-            <h2>${beamauth:formatDestination(beamDestination)} Information</h2>
+            <h2>${beamDestination.name} Information</h2>
             <div class="dialog-content">
                 <h3>
                     <c:choose>
@@ -28,7 +28,7 @@
                             <span title="Not Verified" class="small-icon baseline-small-icon not-verified-icon"></span>
                         </c:otherwise>
                     </c:choose>  
-                    <a href="destinations?destinationId=${beamDestination.beamDestinationId}"><c:out value="${beamauth:formatDestination(beamDestination)}"/></a> Credited Control Status
+                    <a href="destinations?destinationId=${beamDestination.beamDestinationId}"><c:out value="${beamDestination.name}"/></a> Credited Control Status
                 </h3>
                 <c:choose>
                     <c:when test="${fn:length(verificationList) > 0}">

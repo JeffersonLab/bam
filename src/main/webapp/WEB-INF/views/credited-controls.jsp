@@ -117,7 +117,7 @@
                                                         <input class="destination-checkbox" type="checkbox" name="destination-checkbox" value="${verification.controlVerificationId}"/>
                                                     </td>
                                                 </c:if>
-                                                <td><c:out value="${beamauth:formatDestination(verification.beamDestination)}"/></td>
+                                                <td><c:out value="${verification.beamDestination.name}"/></td>
                                                 <td class="icon-cell"><span title="${verification.verificationId eq 1 ? 'Verified' : (verification.verificationId eq 50 ? 'Provisionally Verified' : 'Not Verified')}" class="small-icon baseline-small-icon ${verification.verificationId eq 1 ? 'verified-icon' : (verification.verificationId eq 50 ? 'provisional-icon' : 'not-verified-icon')}"></span></td>
                                                 <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${verification.verificationDate}"/></td>
                                                 <td><c:out value="${beamauth:formatStaff(verification.verifiedBy)}"/></td>
@@ -244,7 +244,7 @@
                             <c:forEach items="${expiredList}" var="verification">
                                 <tr>
                                     <td><c:out value="${verification.creditedControl.name}"/></td>                                    
-                                    <td><c:out value="${beamauth:formatDestination(verification.beamDestination)}"/></td>
+                                    <td><c:out value="${verification.beamDestination.name}"/></td>
                                     <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${verification.expirationDate}"/></td>
                                 </tr>
                             </c:forEach>
@@ -271,7 +271,7 @@
                             <c:forEach items="${expiringList}" var="verification">
                                 <tr>
                                     <td><c:out value="${verification.creditedControl.name}"/></td>                                    
-                                    <td><c:out value="${beamauth:formatDestination(verification.beamDestination)}"/></td>
+                                    <td><c:out value="${verification.beamDestination.name}"/></td>
                                     <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${verification.expirationDate}"/></td>
                                 </tr>
                             </c:forEach>

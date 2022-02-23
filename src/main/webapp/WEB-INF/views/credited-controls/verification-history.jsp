@@ -20,7 +20,7 @@
                     <a href="${pageContext.request.contextPath}/credited-controls?creditedControlId=${verification.creditedControl.creditedControlId}">${verification.creditedControl.name}</a>
                 </li>
                 <li>
-                    <c:out value="${beamauth:formatDestination(verification.beamDestination)}"/> <span>History</span>
+                    <c:out value="${verification.beamDestination.name}"/> <span>History</span>
                 </li>
             </ul>
         </div>        
@@ -29,7 +29,7 @@
                 <h3>Name</h3>
                 <c:out value="${verification.creditedControl.name}"/>
                 <h3>Beam Destination</h3>
-                <c:out value="${beamauth:formatDestination(verification.beamDestination)}"/>
+                <c:out value="${verification.beamDestination.name}"/>
                 <h3>Group</h3>
                 <c:out value="${verification.creditedControl.group.name}"/>
                 <h3>History</h3>

@@ -35,7 +35,7 @@
                         <form method="get" action="destinations">
                             <select name="destinationId" class="change-submit">
                                 <c:forEach items="${destinationList}" var="destination">
-                                    <option value="${destination.beamDestinationId}"${param.destinationId eq destination.beamDestinationId ? ' selected="selected"' : ''}><c:out value="${beamauth:formatDestination(destination)}"/></option>
+                                    <option value="${destination.beamDestinationId}"${param.destinationId eq destination.beamDestinationId ? ' selected="selected"' : ''}><c:out value="${destination.name}"/></option>
                                 </c:forEach>
                             </select>
                         </form>
@@ -122,7 +122,7 @@
                                             <button class="single-char-button" type="submit">&rarr;</button>
                                         </form>
                                     </td>
-                                    <td><c:out value="${beamauth:formatDestination(destination)}"/></td>
+                                    <td><c:out value="${destination.name}"/></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

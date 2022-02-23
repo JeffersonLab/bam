@@ -28,7 +28,7 @@
                     <tr>
                         <c:forEach items="${destinationList}" var="destination">
                             <th class="destination-header">
-                                <c:out value="${beamauth:formatDestination(destination)}"/>
+                                <c:out value="${destination.name}"/>
                             </th>
                         </c:forEach>
                     </tr>
