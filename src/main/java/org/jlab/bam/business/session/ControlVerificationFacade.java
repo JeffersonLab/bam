@@ -350,14 +350,14 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             UserFriendlyException {
         String username = checkAuthenticated();
 
-        String subject = System.getenv("BA_DOWNGRADED_SUBJECT");
+        String subject = System.getenv("BAM_DOWNGRADED_SUBJECT");
 
-        String logbooks = System.getenv("BA_BOOKS_CSV");
+        String logbooks = System.getenv("BAM_BOOKS_CSV");
 
         if (logbooks == null || logbooks.isEmpty()) {
             logbooks = "TLOG";
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'BA_BOOKS_CSV' not found, using default TLOG");
+                    "Environment variable 'BAM_BOOKS_CSV' not found, using default TLOG");
         }
 
         Properties config = Library.getConfiguration();
@@ -386,15 +386,15 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
     @PermitAll
     public void sendVerificationDowngradedEmail(String body) throws UserFriendlyException {
-            String toCsv = System.getenv("BA_DOWNGRADED_EMAIL_CSV");
+            String toCsv = System.getenv("BAM_DOWNGRADED_EMAIL_CSV");
 
             String proxyHostname = System.getenv("PROXY_HOSTNAME");
 
-            String subject = System.getenv("BA_DOWNGRADED_SUBJECT");
+            String subject = System.getenv("BAM_DOWNGRADED_SUBJECT");
 
             EmailService emailService = new EmailService();
 
-            String sender = System.getenv("BA_EMAIL_SENDER");
+            String sender = System.getenv("BAM_EMAIL_SENDER");
 
             emailService.sendEmail(sender,sender, toCsv, subject, body, true);
     }
@@ -626,9 +626,9 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             List<DestinationAuthorization> upcomingAuthorizationExpirationList,
             List<ControlVerification> upcomingVerificationExpirationList,
             String proxyServerName) throws MessagingException, UserFriendlyException {
-        String toCsv = System.getenv("BA_UPCOMING_EXPIRATION_EMAIL_CSV");
+        String toCsv = System.getenv("BAM_UPCOMING_EXPIRATION_EMAIL_CSV");
 
-        String subject = System.getenv("BA_UPCOMING_EXPIRATION_SUBJECT");
+        String subject = System.getenv("BAM_UPCOMING_EXPIRATION_SUBJECT");
 
         String body = getExpiredMessageBody(proxyServerName, expiredAuthorizationList,
                 expiredVerificationList,
@@ -637,7 +637,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         EmailService emailService = new EmailService();
 
-        String sender = System.getenv("BA_EMAIL_SENDER");
+        String sender = System.getenv("BAM_EMAIL_SENDER");
 
         emailService.sendEmail(sender, sender, toCsv, subject, body, true);
     }
@@ -646,16 +646,16 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     public void notifyOps(List<DestinationAuthorization> expiredAuthorizationList,
             List<ControlVerification> expiredVerificationList,
             String proxyServerName) throws MessagingException, UserFriendlyException {
-        String toCsv = System.getenv("BA_EXPIRED_EMAIL_CSV");
+        String toCsv = System.getenv("BAM_EXPIRED_EMAIL_CSV");
 
-        String subject = System.getenv("BA_EXPIRED_SUBJECT");
+        String subject = System.getenv("BAM_EXPIRED_SUBJECT");
 
         String body = getExpiredMessageBody(proxyServerName, expiredAuthorizationList,
                 expiredVerificationList, null, null);
 
         EmailService emailService = new EmailService();
 
-        String sender = System.getenv("BA_EMAIL_SENDER");
+        String sender = System.getenv("BAM_EMAIL_SENDER");
 
         emailService.sendEmail(sender, sender, toCsv, subject, body, true);
         LOGGER.log(Level.FINEST, "notifyOps, toCsv: {0], body: {1}", new Object[]{toCsv, body});
@@ -668,7 +668,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         Map<Workgroup, List<ControlVerification>> expiredGroupMap = new HashMap<>();
         Map<Workgroup, List<ControlVerification>> upcomingExpirationGroupMap = new HashMap<>();
 
-        String subject = System.getenv("BA_UPCOMING_EXPIRATION_SUBJECT");
+        String subject = System.getenv("BAM_UPCOMING_EXPIRATION_SUBJECT");
 
         LOGGER.log(Level.FINEST, "Expirations:");
         if (expiredList != null) {
@@ -721,7 +721,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             List<ControlVerification> groupUpcomingExpirationsList = upcomingExpirationGroupMap.get(
                     w);
 
-            String sender = System.getenv("BA_EMAIL_SENDER");
+            String sender = System.getenv("BAM_EMAIL_SENDER");
 
             String body = getExpiredMessageBody(proxyServerName, null, groupExpiredList,
                     null, groupUpcomingExpirationsList);

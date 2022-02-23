@@ -208,23 +208,23 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
     @RolesAllowed("bam-admin")
     public void sendOpsNewAuthorizationEmail(String linkHostName) throws UserFriendlyException {
 
-        String toCsv = System.getenv("BA_PERMISSIONS_EMAIL_CSV");
+        String toCsv = System.getenv("BAM_PERMISSIONS_EMAIL_CSV");
 
         if (toCsv == null || toCsv.isEmpty()) {
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'BA_PERMISSIONS_EMAIL_CSV' not found, aborting");
+                    "Environment variable 'BAM_PERMISSIONS_EMAIL_CSV' not found, aborting");
             return;
         }
 
-        String subject = System.getenv("BA_PERMISSIONS_SUBJECT");
+        String subject = System.getenv("BAM_PERMISSIONS_SUBJECT");
 
         String body = "<a href=\"https://" + linkHostName + "/beam-auth\">https://" + linkHostName + "/beam-auth</a>";
 
-        String sender = System.getenv("BA_EMAIL_SENDER");
+        String sender = System.getenv("BAM_EMAIL_SENDER");
 
         if (sender == null || sender.isEmpty()) {
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'BA_EMAIL_SENDER' not found, aborting");
+                    "Environment variable 'BAM_EMAIL_SENDER' not found, aborting");
             return;
         }
 
@@ -246,14 +246,14 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         //String body = getELogHTMLBody(authorization);
         String body = getAlternateELogHTMLBody(proxyServerName);
 
-        String subject = System.getenv("BA_PERMISSIONS_SUBJECT");
+        String subject = System.getenv("BAM_PERMISSIONS_SUBJECT");
 
-        String logbooks = System.getenv("BA_BOOKS_CSV");
+        String logbooks = System.getenv("BAM_BOOKS_CSV");
 
         if (logbooks == null || logbooks.isEmpty()) {
             logbooks = "TLOG";
             LOGGER.log(Level.WARNING,
-                    "Environment variable 'BA_BOOKS_CSV' not found, using default TLOG");
+                    "Environment variable 'BAM_BOOKS_CSV' not found, using default TLOG");
         }
 
         Properties config = Library.getConfiguration();
