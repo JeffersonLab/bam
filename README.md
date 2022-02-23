@@ -1,4 +1,4 @@
-# bam [![Java CI with Gradle](https://github.com/JeffersonLab/bam/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/JeffersonLab/bam/actions?query=workflow%3A%22Java+CI+with+Gradle%22)
+# bam [![Java CI with Gradle](https://github.com/JeffersonLab/bam/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/JeffersonLab/bam/actions?query=workflow%3A%22Java+CI+with+Gradle%22) [![Docker](https://img.shields.io/docker/v/slominskir/bam?sort=semver&label=DockerHub)](https://hub.docker.com/r/slominskir/bam)
 A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam authorization at Jefferson Lab built with the [Smoothness](https://github.com/JeffersonLab/smoothness) web template.
 
 ![Screenshot](https://github.com/JeffersonLab/bam/raw/main/Screenshot.png?raw=true "Screenshot")
