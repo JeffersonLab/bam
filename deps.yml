@@ -26,6 +26,7 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
       KEYCLOAK_IMPORT: /realm.json
+      KEYCLOAK_FRONTEND_URL: 'http://localhost:8081/auth'
     volumes:
       - ./docker/keycloak/realm.json:/realm.json
       - ./docker/keycloak/setup.sh:/opt/jboss/startup-scripts/setup.sh
