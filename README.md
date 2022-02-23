@@ -21,6 +21,10 @@ The Beam Authorization application allows the Director of Operations (or a deleg
  - **Operator** - Must honor permissions set by the Director when running the machines
  - **Group Leader** - Responsible for verifying Credited Control readiness and assigning expiration dates for when new checks are required
 
+### JLab Internal Docs
+ - [ASE Document](https://jlabdoc.jlab.org/docushare/dsweb/Get/Document-187898)
+ - [FSAD Document](https://jlabdoc.jlab.org/docushare/dsweb/Get/Document-21395)
+
 ## Usage
 
 ### Quick Start with Compose
