@@ -176,13 +176,10 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
             checkAdminOrGroupLeader(username, verification.getCreditedControl().getGroup());
 
-            boolean downgrade = false;
+            boolean downgrade = verification.getVerificationId() != verificationId
+                    && verification.getVerificationId() < verificationId;
 
             // If verificationId is changing and it is a downgrade
-            if (verification.getVerificationId() != verificationId
-                    && verification.getVerificationId() < verificationId) {
-                downgrade = true;
-            }
 
             Date modifiedDate = new Date();
 

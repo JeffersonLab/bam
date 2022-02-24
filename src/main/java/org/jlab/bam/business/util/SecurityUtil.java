@@ -8,9 +8,9 @@ import java.security.cert.X509Certificate;
 
 public class SecurityUtil {
 
-    private static SSLSocketFactory defaultFactory =
+    private static final SSLSocketFactory defaultFactory =
             (SSLSocketFactory) SSLSocketFactory.getDefault();
-    private static HostnameVerifier defaultVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
+    private static final HostnameVerifier defaultVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
 
     private SecurityUtil() {
         // Can't instantiate publicly

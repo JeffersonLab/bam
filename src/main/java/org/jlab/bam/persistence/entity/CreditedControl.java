@@ -154,10 +154,7 @@ public class CreditedControl implements Serializable, Comparable<CreditedControl
             return false;
         }
         CreditedControl other = (CreditedControl) object;
-        if ((this.creditedControlId == null && other.creditedControlId != null) || (this.creditedControlId != null && !this.creditedControlId.equals(other.creditedControlId))) {
-            return false;
-        }
-        return true;
+        return (this.creditedControlId != null || other.creditedControlId == null) && (this.creditedControlId == null || this.creditedControlId.equals(other.creditedControlId));
     }
 
     @Override

@@ -92,10 +92,7 @@ public class Staff implements Serializable {
             return false;
         }
         Staff other = (Staff) object;
-        if ((this.staffId == null && other.staffId != null) || (this.staffId != null && !this.staffId.equals(other.staffId))) {
-            return false;
-        }
-        return true;
+        return (this.staffId != null || other.staffId == null) && (this.staffId == null || this.staffId.equals(other.staffId));
     }
 
     @Override

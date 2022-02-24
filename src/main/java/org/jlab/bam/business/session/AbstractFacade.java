@@ -29,7 +29,7 @@ public abstract class AbstractFacade<T> {
     @Resource
     private SessionContext context;
     
-    private Class<T> entityClass;
+    private final Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -109,8 +109,8 @@ public abstract class AbstractFacade<T> {
 
     public static class OrderDirective {
 
-        private String field;
-        private boolean asc;
+        private final String field;
+        private final boolean asc;
 
         public OrderDirective(String field) {
             this(field, true);

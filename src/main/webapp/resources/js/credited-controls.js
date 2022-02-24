@@ -139,11 +139,11 @@ $(document).on("click", ".verify-button", function () {
 
     var $verificationList = $("#verification-table tbody tr");
 
-    var statusArray = new Array(),
-            verificationDateArray = new Array(),
-            verifiedByArray = new Array(),
-            expirationDateArray = new Array(),
-            commentsArray = new Array();
+    var statusArray = [],
+            verificationDateArray = [],
+            verifiedByArray = [],
+            expirationDateArray = [],
+            commentsArray = [];
 
 
     $verificationList.each(function (index, value) {

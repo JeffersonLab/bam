@@ -138,10 +138,7 @@ public class Authorization implements Serializable {
             return false;
         }
         Authorization other = (Authorization) object;
-        if ((this.authorizationId == null && other.authorizationId != null) || (this.authorizationId != null && !this.authorizationId.equals(other.authorizationId))) {
-            return false;
-        }
-        return true;
+        return (this.authorizationId != null || other.authorizationId == null) && (this.authorizationId == null || this.authorizationId.equals(other.authorizationId));
     }
 
     @Override

@@ -64,10 +64,7 @@ public class DestinationAuthorizationPK implements Serializable {
         if ((this.beamDestinationId == null && other.beamDestinationId != null) || (this.beamDestinationId != null && !this.beamDestinationId.equals(other.beamDestinationId))) {
             return false;
         }
-        if ((this.authorizationId == null && other.authorizationId != null) || (this.authorizationId != null && !this.authorizationId.equals(other.authorizationId))) {
-            return false;
-        }
-        return true;
+        return (this.authorizationId != null || other.authorizationId == null) && (this.authorizationId == null || this.authorizationId.equals(other.authorizationId));
     }
 
     @Override

@@ -96,7 +96,7 @@ public class BeamDestination {
         return active;
     }
 
-    public void setActive(boolean active){this.active = active;};
+    public void setActive(boolean active){this.active = active;}
 
     @Override
     public boolean equals(Object o) {

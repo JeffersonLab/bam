@@ -179,10 +179,7 @@ public class ControlVerification implements Serializable, Comparable<ControlVeri
             return false;
         }
         ControlVerification other = (ControlVerification) object;
-        if ((this.controlVerificationId == null && other.controlVerificationId != null) || (this.controlVerificationId != null && !this.controlVerificationId.equals(other.controlVerificationId))) {
-            return false;
-        }
-        return true;
+        return (this.controlVerificationId != null || other.controlVerificationId == null) && (this.controlVerificationId == null || this.controlVerificationId.equals(other.controlVerificationId));
     }
 
     @Override

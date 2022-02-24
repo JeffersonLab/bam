@@ -153,12 +153,9 @@ public class DestinationAuthorization implements Serializable {
             return false;
         }
         DestinationAuthorization other = (DestinationAuthorization) object;
-        if ((this.destinationAuthorizationPK == null && other.destinationAuthorizationPK != null)
-                || (this.destinationAuthorizationPK != null
-                && !this.destinationAuthorizationPK.equals(other.destinationAuthorizationPK))) {
-            return false;
-        }
-        return true;
+        return (this.destinationAuthorizationPK != null || other.destinationAuthorizationPK == null)
+                && (this.destinationAuthorizationPK == null
+                || this.destinationAuthorizationPK.equals(other.destinationAuthorizationPK));
     }
 
     @Override

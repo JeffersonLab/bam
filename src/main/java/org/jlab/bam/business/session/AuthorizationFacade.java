@@ -84,7 +84,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         List<Object[]> results = q.getResultList();
 
         for(Object[] result: results) {
-            Object[] row = (Object[])result;
+            Object[] row = result;
             Number id = (Number)row[0];
             String unit = (String)row[1];
             //LOGGER.log(Level.WARNING, "ID: {0}, Unit: {1}", new Object[]{id, unit});
@@ -351,7 +351,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         return builder.toString();
     }
 
-    private File grabPermissionsScreenshot(String serviceHostname) throws MalformedURLException,
+    private File grabPermissionsScreenshot(String serviceHostname) throws
             IOException {
         URL url = new URL("https://" + serviceHostname + "/puppet-show/screenshot?url=https%3A%2F%2F"
                 + serviceHostname

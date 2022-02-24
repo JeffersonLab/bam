@@ -74,9 +74,6 @@ public class Workgroup implements Serializable {
             return false;
         }
         final Workgroup other = (Workgroup) obj;
-        if (this.workgroupId != other.workgroupId && (this.workgroupId == null || !this.workgroupId.equals(other.workgroupId))) {
-            return false;
-        }
-        return true;
+        return this.workgroupId == other.workgroupId || (this.workgroupId != null && this.workgroupId.equals(other.workgroupId));
     }
 }

@@ -152,10 +152,7 @@ public class VerificationHistory implements Serializable {
             return false;
         }
         VerificationHistory other = (VerificationHistory) object;
-        if ((this.verificationHistoryId == null && other.verificationHistoryId != null) || (this.verificationHistoryId != null && !this.verificationHistoryId.equals(other.verificationHistoryId))) {
-            return false;
-        }
-        return true;
+        return (this.verificationHistoryId != null || other.verificationHistoryId == null) && (this.verificationHistoryId == null || this.verificationHistoryId.equals(other.verificationHistoryId));
     }
 
     @Override
