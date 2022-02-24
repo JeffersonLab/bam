@@ -7,7 +7,7 @@ version '3.0.0-alpha0'
 ext.releaseDate = 'Feb 23 2022'
 ext.resourceVersion = '33'
 
-compileJava {
+tasks.withType(JavaCompile) {
     options.release = 11
     options.encoding = 'UTF-8'
     options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
