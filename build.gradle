@@ -7,8 +7,11 @@ version '3.0.0-alpha0'
 ext.releaseDate = 'Feb 23 2022'
 ext.resourceVersion = '33'
 
-project.sourceCompatibility = JavaVersion.VERSION_11
-project.targetCompatibility = JavaVersion.VERSION_11
+compileJava {
+    options.release = 11
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+}
 
 repositories {
     mavenCentral()
@@ -48,10 +51,7 @@ dependencies {
 
     dockerBuild 'com.oracle.database.jdbc:ojdbc11:21.3.0.0'
 }
-compileJava {
-    options.encoding = 'UTF-8'
-    options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
-}
+
 war {
     archiveFileName = 'bam.war'
     filesMatching('WEB-INF/web.xml') {
