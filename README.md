@@ -5,9 +5,8 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam
 
 ---
  - [Overview](https://github.com/JeffersonLab/bam#overview)
- - [Usage](https://github.com/JeffersonLab/bam#usage)
-   - [Quick Start with Compose](https://github.com/JeffersonLab/bam#quick-start-with-compose) 
-   - [Install](https://github.com/JeffersonLab/bam#install)
+ - [Quick Start with Compose](https://github.com/JeffersonLab/bam#quick-start-with-compose) 
+ - [Install](https://github.com/JeffersonLab/bam#install)
  - [Configure](https://github.com/JeffersonLab/bam#configure)
  - [Build](https://github.com/JeffersonLab/bam#build)
 ---
@@ -25,9 +24,7 @@ The Beam Authorization application allows the Director of Operations (or a deleg
  - [ASE Document](https://jlabdoc.jlab.org/docushare/dsweb/Get/Document-187898)
  - [FSAD Document](https://jlabdoc.jlab.org/docushare/dsweb/Get/Document-21395)
 
-## Usage
-
-### Quick Start with Compose
+## Quick Start with Compose
 1. Grab project
 ```
 git clone https://github.com/JeffersonLab/bam
@@ -44,8 +41,7 @@ http://localhost:8080/smoothness-demo
 
 See: [Docker Compose Strategy](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c)
 
-
-### Install
+## Install
    1. Download [Wildfly 26](https://www.wildfly.org/downloads/)
    1. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
    1. Navigate your web browser to localhost:8080/bam
