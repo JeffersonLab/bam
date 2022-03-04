@@ -71,7 +71,7 @@ Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoo
 The Beam Auth application requires an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
 
 ## Build
-This [Java 17](https://adoptium.net/) project (compiled to Java 11 bytecode) uses the [Gradle 7](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
+This project is built with [Java 17](https://adoptium.net/) (compiled to Java 11 bytecode), and uses the [Gradle 7](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
 
 ```
 git clone https://github.com/JeffersonLab/bam
