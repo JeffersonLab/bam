@@ -36,7 +36,7 @@ docker compose up
 ```
 3. Navigate to page
 ```
-http://localhost:8080/smoothness-demo
+http://localhost:8080/bam
 ```
 
 See: [Docker Compose Strategy](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c)
