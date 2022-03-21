@@ -23,5 +23,3 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        BUILD_TYPE: local-src
