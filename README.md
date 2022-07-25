@@ -53,6 +53,7 @@ This application requires a Java 11+ JVM and standard library to run, plus a Jav
 
 ```
 docker compose up
+docker exec -it bam /opt/jboss/wildfly/bin/jboss-cli.sh --connect -c "undeploy bam.war"
 docker exec -it bam /opt/jboss/wildfly/bin/jboss-cli.sh --connect -c shutdown
 docker cp bam:/opt/jboss/wildfly .
 ```
