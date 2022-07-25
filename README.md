@@ -58,6 +58,8 @@ docker exec -it bam /opt/jboss/wildfly/bin/jboss-cli.sh --connect -c shutdown
 docker cp bam:/opt/jboss/wildfly .
 ```
 
+**Note**: The application requires an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
+
 ## Configure
 
 ### Environment Variables
