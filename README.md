@@ -44,12 +44,12 @@ See: [Docker Compose Strategy](https://gist.github.com/slominskir/a7da801e8259f5
 ## Install
 This application requires a Java 11+ JVM and standard library to run, plus a Java EE 8+ application server (developed with Wildfly).
 
-   1. Download [Wildfly 26](https://www.wildfly.org/downloads/)
+   1. Download [Wildfly 26.1.1](https://www.wildfly.org/downloads/)
    1. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
    1. Configure Wildfly<sup>Note</sup> and start it
    1. Navigate your web browser to localhost:8080/bam
 
-**Note**: The docker image configures Wildfly for use in the compose environment and that's a good starting point to copy from.  Outside of a compose environment you may need to tweak the configuration to use different host names and ports (For example Oracle and Keycloak host names would need to be updated to localhost when using the deps.yml and running Wildfly outside the compose network):
+**Note**: The docker image configures Wildfly for use in the compose environment and that's a good starting point to copy from.  Outside of a compose environment you may need to tweak the standalone.xml configuration to use different host names and ports (For example Oracle and Keycloak host names would need to be updated to localhost:1521 and localhost:8081 respectively when using the deps.yml and running Wildfly outside the compose network):
 
 ```
 docker compose up
