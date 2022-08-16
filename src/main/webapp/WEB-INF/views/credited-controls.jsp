@@ -158,7 +158,7 @@
                                     </td>
                                     <td><c:out value="${cc.name}"/></td>
                                     <td><c:out value="${cc.description}"/></td>
-                                    <td><a data-dialog-title="${cc.group.name} Information" class="dialog-ready" href="group-information?groupId=${cc.group.groupId}"><c:out value="${cc.group.name}"/></a></td>
+                                    <td><a data-dialog-title="${cc.group.name} Information" class="dialog-ready" href="group-information?groupId=${cc.group.workgroupId}"><c:out value="${cc.group.name}"/></a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

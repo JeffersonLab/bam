@@ -16,7 +16,7 @@
             <div class="dialog-content">
                 <h3>Group Leaders</h3>
                 <c:choose>
-                    <c:when test="${fn:length(group.leaderWorkgroup.groupLeaderList) > 0}">
+                    <c:when test="${fn:length(group.groupLeaderList) > 0}">
                         <table class="data-table stripped-table">
                             <thead>
                                 <tr>
@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${group.leaderWorkgroup.groupLeaderList}" var="leader">
+                                <c:forEach items="${group.groupLeaderList}" var="leader">
                                     <tr>
                                         <td><c:out value="${beamauth:formatStaff(leader)}"/></td>                    
                                     </tr>

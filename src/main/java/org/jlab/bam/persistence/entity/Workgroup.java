@@ -25,11 +25,12 @@ public class Workgroup implements Serializable {
     @Size(min = 1, max = 64)
     @Column(nullable = false, length = 64)
     private String name;
-    @JoinTable(name = "WORKGROUP_MEMBERSHIP", joinColumns = {
-        @JoinColumn(name = "WORKGROUP_ID", referencedColumnName = "WORKGROUP_ID", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "STAFF_ID", referencedColumnName = "STAFF_ID", nullable = false)})   
-    @ManyToMany
-    @OrderBy("lastname asc")
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "LEADER_ROLE_NAME", nullable = false, length = 64)
+    private String leaderRoleName;
+    @Transient
     private List<Staff> groupLeaderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<CreditedControl> ccList;
@@ -48,6 +49,14 @@ public class Workgroup implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLeaderRoleName() {
+        return leaderRoleName;
+    }
+
+    public void setLeaderRoleName(String leaderRoleName) {
+        this.leaderRoleName = leaderRoleName;
     }
 
     public List<Staff> getGroupLeaderList() {
