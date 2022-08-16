@@ -6,9 +6,9 @@ insert into BAM_OWNER.VERIFICATION (VERIFICATION_ID, NAME) values (50, 'Provisio
 insert into BAM_OWNER.VERIFICATION (VERIFICATION_ID, NAME) values (100, 'Not Verified');
 
 -- Populate Workgroup
-insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME) values (BAM_OWNER.WORKGROUP_ID.nextval, 'Group 1', 'group1Leaders');
-insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME) values (BAM_OWNER.WORKGROUP_ID.nextval, 'Group 2', 'group2Leaders');
-insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME) values (BAM_OWNER.WORKGROUP_ID.nextval, 'Group 3', 'group3Leaders');
+insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME, LEADER_ROLE_NAME) values (BAM_OWNER.WORKGROUP_ID.nextval, 'Group 1', 'group1Leaders');
+insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME, LEADER_ROLE_NAME) values (BAM_OWNER.WORKGROUP_ID.nextval, 'Group 2', 'group2Leaders');
+insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME, LEADER_ROLE_NAME) values (BAM_OWNER.WORKGROUP_ID.nextval, 'Group 3', 'group3Leaders');
 
 --Populate Credited Controls
 insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 1','Control 1 Description',1,1,'1 Year');

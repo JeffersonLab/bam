@@ -19,6 +19,7 @@ services:
       - "8081:8080"
       - "9991:9990"
     environment:
+      JAVA_OPTS_APPEND: '-Dkeycloak.profile.feature.upload_scripts=enabled'
       DB_VENDOR: h2
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
