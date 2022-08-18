@@ -51,16 +51,18 @@ public class CreditedControls extends HttpServlet {
         if (creditedControlId != null) {
             creditedControl = ccFacade.findWithVerificationList(creditedControlId);
 
-            String username = request.getRemoteUser();
+            if(creditedControl != null) {
+                String username = request.getRemoteUser();
 
-            if(username != null) {
-                String[] tokens = username.split(":");
-                if(tokens.length > 1) {
-                    username = tokens[2];
+                if(username != null) {
+                    String[] tokens = username.split(":");
+                    if(tokens.length > 1) {
+                        username = tokens[2];
+                    }
                 }
-            }
 
-            adminOrLeader = ccFacade.isAdminOrGroupLeader(username, creditedControl.getGroup().getWorkgroupId());
+                adminOrLeader = ccFacade.isAdminOrGroupLeader(username, creditedControl.getGroup().getWorkgroupId());
+            }
         } else {
             expiredList = verificationFacade.checkForExpired();
             expiringList = verificationFacade.checkForUpcomingVerificationExpirations();

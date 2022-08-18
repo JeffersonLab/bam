@@ -37,7 +37,7 @@ public class CreditedControlFacade extends AbstractFacade<CreditedControl> {
 
     @PermitAll
     public CreditedControl findWithVerificationList(BigInteger creditedControlId) {
-        TypedQuery<CreditedControl> q = em.createQuery("select a from CreditedControl a JOIN FETCH a.controlVerificationList as b where b.beamDestination.authDestination.active = true and a.creditedControlId = :creditedControlId", CreditedControl.class);
+        TypedQuery<CreditedControl> q = em.createQuery("select a from CreditedControl a JOIN FETCH a.controlVerificationList as b where b.beamDestination.active = true and a.creditedControlId = :creditedControlId", CreditedControl.class);
     
         q.setParameter("creditedControlId", creditedControlId);
         

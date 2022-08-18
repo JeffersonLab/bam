@@ -16,7 +16,7 @@ insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WOR
 insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 3','Control 3 Description',1,1,'1 Year');
 
 --Populate Beam Destinations
---insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 1', 'CEBAF', 'uA', 'Y', 1);
---insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 2', 'CEBAF', 'uA', 'Y', 2);
---insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 3', 'CEBAF', 'uA', 'Y', 3);
+insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 1', 'CEBAF', 'uA', 'Y', 1);
+insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 2', 'CEBAF', 'uA', 'Y', 2);
+insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 3', 'CEBAF', 'uA', 'Y', 3);
 
