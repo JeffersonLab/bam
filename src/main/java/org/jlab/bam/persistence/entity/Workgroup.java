@@ -1,5 +1,7 @@
 package org.jlab.bam.persistence.entity;
 
+import org.jlab.bam.persistence.view.User;
+
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
@@ -30,8 +32,6 @@ public class Workgroup implements Serializable {
     @Size(min = 1, max = 64)
     @Column(name = "LEADER_ROLE_NAME", nullable = false, length = 64)
     private String leaderRoleName;
-    @Transient
-    private List<Staff> groupLeaderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<CreditedControl> ccList;
 
@@ -57,14 +57,6 @@ public class Workgroup implements Serializable {
 
     public void setLeaderRoleName(String leaderRoleName) {
         this.leaderRoleName = leaderRoleName;
-    }
-
-    public List<Staff> getGroupLeaderList() {
-        return groupLeaderList;
-    }
-
-    public void setGroupLeaderList(List<Staff> groupLeaderList) {
-        this.groupLeaderList = groupLeaderList;
     }
 
     @Override

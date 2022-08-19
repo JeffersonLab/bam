@@ -36,17 +36,15 @@ public class VerificationHistory implements Serializable {
     @Column(name = "VERIFICATION_ID")
     @NotNull
     private Integer verificationId;    
-    @JoinColumn(name = "MODIFIED_BY", referencedColumnName = "STAFF_ID")
-    @ManyToOne(optional = true)
-    private Staff modifiedBy;
+    @Column(name = "MODIFIED_BY", nullable = false)
+    private String modifiedBy;
     @Basic(optional = false)
     @NotNull
     @Column(name = "MODIFIED_DATE", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;    
-    @JoinColumn(name = "VERIFIED_BY", referencedColumnName = "STAFF_ID")
-    @ManyToOne(optional = true)
-    private Staff verifiedBy;
+    @Column(name = "VERIFIED_BY", nullable = true)
+    private String verifiedBy;
     @Basic(optional = false)
     @NotNull
     @Column(name = "VERIFICATION_DATE", nullable = false)
@@ -82,11 +80,11 @@ public class VerificationHistory implements Serializable {
         this.verificationId = verificationId;
     }
 
-    public Staff getModifiedBy() {
+    public String getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(Staff modifiedBy) {
+    public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
@@ -98,11 +96,11 @@ public class VerificationHistory implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public Staff getVerifiedBy() {
+    public String getVerifiedBy() {
         return verifiedBy;
     }
 
-    public void setVerifiedBy(Staff verifiedBy) {
+    public void setVerifiedBy(String verifiedBy) {
         this.verifiedBy = verifiedBy;
     }
 

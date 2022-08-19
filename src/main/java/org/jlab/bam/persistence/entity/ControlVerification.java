@@ -48,9 +48,8 @@ public class ControlVerification implements Serializable, Comparable<ControlVeri
     @Column(name = "VERIFICATION_ID")
     @NotNull
     private Integer verificationId;
-    @JoinColumn(name = "MODIFIED_BY", referencedColumnName = "STAFF_ID")
-    @ManyToOne(optional = true)
-    private Staff modifiedBy;
+    @Column(name = "MODIFIED_BY", nullable = false)
+    private String modifiedBy;
     @Basic(optional = false)
     @NotNull
     @Column(name = "MODIFIED_DATE", nullable = false)
@@ -59,9 +58,8 @@ public class ControlVerification implements Serializable, Comparable<ControlVeri
     @Column(name = "VERIFICATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date verificationDate;
-    @JoinColumn(name = "VERIFIED_BY", referencedColumnName = "STAFF_ID")
-    @ManyToOne(optional = true)
-    private Staff verifiedBy;
+    @Column(name = "VERIFIED_BY", nullable = true)
+    private String verifiedBy;
     @Column(name = "EXPIRATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date expirationDate;
@@ -85,11 +83,11 @@ public class ControlVerification implements Serializable, Comparable<ControlVeri
         this.controlVerificationId = controlVerificationId;
     }
 
-    public Staff getModifiedBy() {
+    public String getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(Staff modifiedBy) {
+    public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
@@ -125,11 +123,11 @@ public class ControlVerification implements Serializable, Comparable<ControlVeri
         this.verificationDate = verificationDate;
     }
 
-    public Staff getVerifiedBy() {
+    public String getVerifiedBy() {
         return verifiedBy;
     }
 
-    public void setVerifiedBy(Staff verifiedBy) {
+    public void setVerifiedBy(String verifiedBy) {
         this.verifiedBy = verifiedBy;
     }
 

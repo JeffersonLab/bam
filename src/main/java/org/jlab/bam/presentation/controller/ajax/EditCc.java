@@ -13,8 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.jlab.bam.business.session.AbstractFacade;
 import org.jlab.bam.business.session.ControlVerificationFacade;
 import org.jlab.bam.persistence.entity.ControlVerification;
+import org.jlab.bam.persistence.view.User;
+import org.jlab.bam.presentation.util.UserAuthorization;
 import org.jlab.smoothness.business.exception.UserFriendlyException;
 import org.jlab.smoothness.presentation.util.ParamConverter;
 
@@ -53,6 +57,16 @@ public class EditCc extends HttpServlet {
             String verifiedByUsername = request.getParameter("verifiedBy");
             Date expirationDate = ParamConverter.convertFriendlyDateTime(request, "expirationDate");
             String comments = request.getParameter("comments");
+
+             String role = verification.getCreditedControl().getGroup().getLeaderRoleName();
+
+            UserAuthorization auth = UserAuthorization.getInstance(request);
+
+            List<User> leaders = auth.getUsersInRole(role);
+
+            String username = request.getRemoteUser();
+
+            verificationFacade.checkAdminOrGroupLeader(username, leaders);
 
             downgradeList = verificationFacade.edit(verificationIdArray, verificationId, verificationDate, verifiedByUsername, expirationDate, comments);
         } catch(UserFriendlyException e) {

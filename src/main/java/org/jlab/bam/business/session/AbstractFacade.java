@@ -17,8 +17,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
+
 import org.jlab.bam.persistence.entity.Workgroup;
-import org.jlab.bam.persistence.entity.Staff;
+import org.jlab.bam.persistence.view.User;
+import org.jlab.bam.presentation.util.UserAuthorization;
 
 /**
  *
@@ -145,24 +148,23 @@ public abstract class AbstractFacade<T> {
     }
     
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    protected void checkAdminOrGroupLeader(String username, Workgroup group) {
-        boolean isAdminOrLeader = isAdminOrGroupLeader(username, group);
+    public void checkAdminOrGroupLeader(String username, BigInteger groupId, HttpServletRequest request) {
+        boolean isAdminOrLeader = isAdminOrGroupLeader(username, groupId, request);
 
         if (!isAdminOrLeader) {
             throw new EJBAccessException("You must be an admin or group leader to perform the requested operation");
         }
     }
 
-    protected boolean isAdminOrGroupLeader(String username, Workgroup group) {
+    protected boolean isAdminOrGroupLeader(String username, List<User> leaders) {
         boolean isAdminOrLeader = false;
 
         boolean isAdmin = context.isCallerInRole("bam-admin");
         if (isAdmin) {
             isAdminOrLeader = true;
         } else {
-            List<Staff> leaders = group.getGroupLeaderList();
             boolean isLeader = false;
-            for (Staff leader : leaders) {
+            for (User leader : leaders) {
                 if (leader.getUsername().equals(username)) {
                     isLeader = true;
                     break;
@@ -177,7 +179,7 @@ public abstract class AbstractFacade<T> {
     }
 
     @PermitAll
-    public boolean isAdminOrGroupLeader(String username, BigInteger groupId) {
+    public boolean isAdminOrGroupLeader(String username, BigInteger groupId, HttpServletRequest request) {
         if (username == null || groupId == null) {
             return false;
         }
@@ -187,7 +189,11 @@ public abstract class AbstractFacade<T> {
         if(group == null) {
             return false;
         }
+
+        UserAuthorization auth = UserAuthorization.getInstance(request);
+
+        List<User> leaders = auth.getUsersInRole(group.getLeaderRoleName());
         
-        return isAdminOrGroupLeader(username, group);
+        return isAdminOrGroupLeader(username, leaders);
     }    
 }

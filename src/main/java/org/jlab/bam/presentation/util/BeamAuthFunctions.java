@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jlab.bam.persistence.entity.BeamDestination;
-import org.jlab.bam.persistence.entity.Staff;
+import org.jlab.bam.persistence.view.User;
 
 /**
  *
@@ -27,15 +25,29 @@ public final class BeamAuthFunctions {
         // cannot instantiate publicly
     }
 
-    public static String formatStaff(Staff staff) {
+    public static User lookupUserByUsername(String username) {
+        return null;
+    }
+
+    public static String formatUsername(String username) {
+        User user = lookupUserByUsername(username);
+
+        if(user != null) {
+            return formatUser(user);
+        } else {
+            return username;
+        }
+    }
+
+    public static String formatUser(User user) {
         StringBuilder builder = new StringBuilder();
 
-        if (staff != null) {
-            builder.append(staff.getLastname());
+        if (user != null) {
+            builder.append(user.getLastname());
             builder.append(", ");
-            builder.append(staff.getFirstname());
+            builder.append(user.getFirstname());
             builder.append(" (");
-            builder.append(staff.getUsername());
+            builder.append(user.getUsername());
             builder.append(")");
         }
 

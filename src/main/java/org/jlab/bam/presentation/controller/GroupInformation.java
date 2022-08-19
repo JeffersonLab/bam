@@ -40,7 +40,7 @@ public class GroupInformation extends HttpServlet {
         Workgroup group = null;
         
         if (groupId != null) {
-            group = groupFacade.findWithLeaders(groupId);
+            group = groupFacade.find(groupId);
         }
 
         request.setAttribute("group", group);

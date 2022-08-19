@@ -52,13 +52,11 @@ public class Authorization implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
     @NotNull
-    @JoinColumn(name = "AUTHORIZED_BY", referencedColumnName = "STAFF_ID")
-    @ManyToOne(optional = false)
-    private Staff authorizedBy;
+    @Column(name = "AUTHORIZED_BY", nullable = false)
+    private String authorizedBy;
     @NotNull
-    @JoinColumn(name = "MODIFIED_BY", referencedColumnName = "STAFF_ID")
-    @ManyToOne(optional = false)
-    private Staff modifiedBy;    
+    @Column(name = "MODIFIED_BY", nullable = false)
+    private String modifiedBy;
     @Size(max = 2048)
     @Column(length = 2048)
     private String comments;
@@ -92,19 +90,19 @@ public class Authorization implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public Staff getAuthorizedBy() {
+    public String getAuthorizedBy() {
         return authorizedBy;
     }
 
-    public void setAuthorizedBy(Staff authorizedBy) {
+    public void setAuthorizedBy(String authorizedBy) {
         this.authorizedBy = authorizedBy;
     }
 
-    public Staff getModifiedBy() {
+    public String getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(Staff modifiedBy) {
+    public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
@@ -148,12 +146,10 @@ public class Authorization implements Serializable {
 
     public Authorization createAdminClone() {
         Authorization other = new Authorization();
-        Staff admin = new Staff();
-        admin.setStaffId(BigInteger.valueOf(26L)); // Hopefully this doesn't update staff record!
         other.authorizationDate = this.authorizationDate;
         other.authorizedBy = this.authorizedBy;
         other.comments = this.comments;
-        other.setModifiedBy(admin);
+        other.setModifiedBy("bam-admin");
         other.setModifiedDate(new Date());
         return other;
     }

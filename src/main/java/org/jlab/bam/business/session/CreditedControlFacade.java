@@ -22,9 +22,6 @@ public class CreditedControlFacade extends AbstractFacade<CreditedControl> {
 
     @PersistenceContext(unitName = "beam-authorizationPU")
     private EntityManager em;
-
-    @EJB
-    StaffFacade staffFacade;
     
     @Override
     protected EntityManager getEntityManager() {

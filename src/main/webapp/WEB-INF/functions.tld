@@ -9,11 +9,21 @@
     <tlib-version>1.0</tlib-version>
     <short-name>beamauth</short-name>
     <uri>http://jlab.org/beamauth/functions</uri>
-     
+
     <function>
-        <name>formatStaff</name>
+        <name>lookupUserByUsername</name>
         <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
-        <function-signature>java.lang.String formatStaff(org.jlab.bam.persistence.entity.Staff)</function-signature>
+        <function-signature>org.jlab.bam.persistence.view.User lookupUserByUsername(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>formatUsername</name>
+        <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
+        <function-signature>java.lang.String formatUsername(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>formatUser</name>
+        <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
+        <function-signature>java.lang.String formatUser(org.jlab.bam.persistence.view.User)</function-signature>
     </function>
         <function>
         <name>beamModeList</name>

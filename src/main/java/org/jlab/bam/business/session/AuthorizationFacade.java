@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.KeyManagementException;
@@ -34,7 +33,6 @@ import org.jlab.bam.business.util.SecurityUtil;
 import org.jlab.bam.persistence.entity.Authorization;
 import org.jlab.bam.persistence.entity.BeamDestination;
 import org.jlab.bam.persistence.entity.DestinationAuthorization;
-import org.jlab.bam.persistence.entity.Staff;
 import org.jlab.bam.presentation.util.BeamAuthFunctions;
 import org.jlab.jlog.Body;
 import org.jlab.jlog.Library;
@@ -60,8 +58,6 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
             AuthorizationFacade.class.getName());
     @PersistenceContext(unitName = "beam-authorizationPU")
     private EntityManager em;
-    @EJB
-    StaffFacade staffFacade;
     @EJB
     BeamDestinationFacade destinationFacade;
 
@@ -151,14 +147,12 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
             List<DestinationAuthorization> destinationAuthorizationList) throws UserFriendlyException {
         String username = checkAuthenticated();
 
-        Staff staff = staffFacade.findByUsername(username);
-
         Authorization authorization = new Authorization();
         authorization.setComments(comments);
         authorization.setAuthorizationDate(new Date());
-        authorization.setAuthorizedBy(staff);
+        authorization.setAuthorizedBy(username);
         authorization.setModifiedDate(authorization.getAuthorizationDate());
-        authorization.setModifiedBy(staff);
+        authorization.setModifiedBy(username);
 
         create(authorization);
 
@@ -342,7 +336,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         builder.append("</div><div>\n<b>Comments:</b> ");
         builder.append(IOUtil.escapeXml(authorization.getComments()));
         builder.append("</div><div>\n\n<b>Authorized By:</b> ");
-        builder.append(BeamAuthFunctions.formatStaff(authorization.getAuthorizedBy()));
+        builder.append(BeamAuthFunctions.formatUsername(authorization.getAuthorizedBy()));
         builder.append("</div><div>\n\n<b>Authorized On:</b> ");
         builder.append(formatter.format(authorization.getAuthorizationDate()));
         builder.append(

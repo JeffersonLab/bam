@@ -21,9 +21,9 @@ import org.jlab.bam.persistence.entity.ControlVerification;
 import org.jlab.bam.persistence.entity.CreditedControl;
 import org.jlab.bam.persistence.entity.DestinationAuthorization;
 import org.jlab.bam.persistence.entity.DestinationAuthorizationPK;
-import org.jlab.bam.persistence.entity.Staff;
 import org.jlab.bam.persistence.entity.VerificationHistory;
 import org.jlab.bam.persistence.entity.Workgroup;
+import org.jlab.bam.persistence.view.User;
 import org.jlab.bam.presentation.util.BeamAuthFunctions;
 import org.jlab.jlog.Body;
 import org.jlab.jlog.Library;
@@ -50,8 +50,6 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     CreditedControlFacade controlFacade;
     @EJB
     BeamDestinationFacade destinationFacade;
-    @EJB
-    StaffFacade staffFacade;
     @EJB
     AuthorizationFacade authorizationFacade;
     @EJB
@@ -83,11 +81,9 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         String username = checkAuthenticated();
 
-        Staff modifiedStaff = staffFacade.findByUsername(username);
-
         if (verification == null) {
             verification = new ControlVerification();
-            verification.setModifiedBy(modifiedStaff);
+            verification.setModifiedBy(username);
             verification.setModifiedDate(new Date());
             CreditedControl control = controlFacade.find(controlId);
             verification.setCreditedControl(control);
@@ -126,20 +122,12 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             Date expirationDate, String comments) throws UserFriendlyException {
         String username = checkAuthenticated();
 
-        Staff modifiedStaff = staffFacade.findByUsername(username);
-
-        if (modifiedStaff == null) {
-            throw new UserFriendlyException("staff with username " + username + " not found");
+        if (username == null) {
+            throw new UserFriendlyException("username must not be empty");
         }
 
-        if (verifiedUsername == null || verifiedUsername.trim().isEmpty()) {
+        if (verifiedUsername == null) {
             throw new UserFriendlyException("verified by must not be empty");
-        }
-
-        Staff verifiedStaff = staffFacade.findByUsername(verifiedUsername);
-
-        if (verifiedStaff == null) {
-            throw new UserFriendlyException("verified by with username " + verifiedUsername + " not found");
         }
 
         if (verificationId == null) {
@@ -174,8 +162,6 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                         + " not found");
             }
 
-            checkAdminOrGroupLeader(username, verification.getCreditedControl().getGroup());
-
             boolean downgrade = verification.getVerificationId() != verificationId
                     && verification.getVerificationId() < verificationId;
 
@@ -183,11 +169,11 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
             Date modifiedDate = new Date();
 
-            verification.setModifiedBy(modifiedStaff);
+            verification.setModifiedBy(username);
             verification.setModifiedDate(modifiedDate);
             verification.setVerificationId(verificationId);
             verification.setVerificationDate(verificationDate);
-            verification.setVerifiedBy(verifiedStaff);
+            verification.setVerifiedBy(verifiedUsername);
             verification.setExpirationDate(expirationDate);
             verification.setComments(comments);
 
@@ -197,10 +183,10 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
             VerificationHistory history = new VerificationHistory();
             history.setVerificationId(verificationId);
-            history.setModifiedBy(modifiedStaff);
+            history.setModifiedBy(username);
             history.setModifiedDate(modifiedDate);
             history.setVerificationDate(verificationDate);
-            history.setVerifiedBy(verifiedStaff);
+            history.setVerifiedBy(verifiedUsername);
             history.setExpirationDate(expirationDate);
             history.setComments(comments);
             history.setControlVerification(verification);
@@ -250,7 +236,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
-                builder.append(BeamAuthFunctions.formatStaff(v.getVerifiedBy()));
+                builder.append(BeamAuthFunctions.formatUser(v.getVerifiedBy()));
                 builder.append("</div>\n<div><b>Expired On:</b> ");
                 builder.append(formatter.format(v.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -293,7 +279,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
-                builder.append(BeamAuthFunctions.formatStaff(v.getVerifiedBy()));
+                builder.append(BeamAuthFunctions.formatUser(v.getVerifiedBy()));
                 builder.append("</div>\n<div><b>Expiring On:</b> ");
                 builder.append(formatter.format(v.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -329,7 +315,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         builder.append("</div>\n<div><b>Modified On:</b> ");
         builder.append(formatter.format(verification.getVerificationDate()));
         builder.append("</div>\n<div><b>Modified By:</b> ");
-        builder.append(BeamAuthFunctions.formatStaff(verification.getVerifiedBy()));
+        builder.append(BeamAuthFunctions.formatUser(verification.getVerifiedBy()));
         builder.append("</div>\n<div><b>Verification:</b> ");
         builder.append(
                 verification.getVerificationId() == 1 ? "Verified" : (verification.getVerificationId()
@@ -573,9 +559,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     public void insertExpiredHistory(List<ControlVerification> verificationList, Date modifiedDate) {
         for (ControlVerification v : verificationList) {
             VerificationHistory history = new VerificationHistory();
-            Staff admin = new Staff();
-            admin.setStaffId(BigInteger.valueOf(26L));
-            history.setModifiedBy(admin);
+            history.setModifiedBy("bam-admin");
             history.setModifiedDate(modifiedDate);
             history.setVerificationId(100);
             history.setVerificationDate(modifiedDate);
@@ -707,7 +691,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             List<String> toAddresses = new ArrayList<>();
 
             if (w.getGroupLeaderList() != null) {
-                for (Staff s : w.getGroupLeaderList()) {
+                for (User s : w.getGroupLeaderList()) {
                     if (s.getUsername() != null) {
                         toAddresses.add((s.getUsername() + "@jlab.org"));
                     }
