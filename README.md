@@ -9,6 +9,7 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam
  - [Install](https://github.com/JeffersonLab/bam#install)
  - [Configure](https://github.com/JeffersonLab/bam#configure)
  - [Build](https://github.com/JeffersonLab/bam#build)
+ - [Release](https://github.com/JeffersonLab/bam#release)
 ---
 
 ## Overview
@@ -99,3 +100,10 @@ gradlew -Pprovided build
 ```
 
 **See**: [Docker Development Quick Reference](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c#development-quick-reference)
+
+## Release
+1. Bump the version number in build.gradle and commit and push to GitHub (using [Semantic Versioning](https://semver.org/)).
+2. Create a new release on the GitHub Releases page corresponding to the same version in the build.gradle.   The release should enumerate changes and link issues.   A war artifact can be attached to the release to facilitate easy install by users.
+3. Build and publish a new Docker image [from the GitHub tag](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c#8-build-an-image-based-of-github-tag).
+4. Bump and commit quick start [image version](https://github.com/JeffersonLab/bam/blob/main/docker-compose.override.yml)
+
