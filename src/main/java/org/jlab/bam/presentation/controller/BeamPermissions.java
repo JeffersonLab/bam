@@ -179,7 +179,6 @@ public class BeamPermissions extends HttpServlet {
             HttpServletRequest request) {
         List<DestinationAuthorization> destinationAuthorizationList
                 = new ArrayList<>();
-        String[] laseArray = request.getParameterValues("lase[]");
         String[] modeArray = request.getParameterValues("mode[]");
         String[] limitStrArray = request.getParameterValues("limit[]");
         String[] commentsArray = request.getParameterValues("comment[]");
@@ -201,11 +200,9 @@ public class BeamPermissions extends HttpServlet {
 
             for (int i = 0; i < modeArray.length; i++) {
                 String mode = modeArray[i];
-                String lase = laseArray[i];
                 
                 DestinationAuthorization da = new DestinationAuthorization();
 
-                da.setLaseMode(lase);
                 da.setBeamMode(mode);
 
                 String limitStr = limitStrArray[i];

@@ -46,7 +46,6 @@
                     </td>
                 </c:if>
                 <td>
-                    <input type="hidden" name="lase[]" value="None"/>                  
                     <c:set var="selectedBeamMode" value="${destinationAuthorization.beamMode eq null ? 'None' : destinationAuthorization.beamMode}"/>
                     <div class="readonly-field"><c:out value="${selectedBeamMode}"/></div>
                     <div class="editable-field">

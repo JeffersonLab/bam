@@ -38,11 +38,6 @@ public class DestinationAuthorization implements Serializable {
     @Size(min = 1, max = 16)
     @Column(name = "BEAM_MODE", nullable = false, length = 16)
     private String beamMode;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
-    @Column(name = "LASE_MODE", nullable = false, length = 8)
-    private String laseMode;
     @Column(name = "CW_LIMIT", precision = 24, scale = 12)
     private BigDecimal cwLimit;
     @Basic(optional = true)
@@ -97,14 +92,6 @@ public class DestinationAuthorization implements Serializable {
 
     public void setBeamMode(String beamMode) {
         this.beamMode = beamMode;
-    }
-
-    public String getLaseMode() {
-        return laseMode;
-    }
-
-    public void setLaseMode(String laseMode) {
-        this.laseMode = laseMode;
     }
 
     public BigDecimal getCwLimit() {
@@ -171,7 +158,6 @@ public class DestinationAuthorization implements Serializable {
         other.comments = this.comments;
         other.cwLimit = this.cwLimit;
         other.expirationDate = this.expirationDate;
-        other.laseMode = this.laseMode;
         other.destination = this.destination;
         
         return other;
