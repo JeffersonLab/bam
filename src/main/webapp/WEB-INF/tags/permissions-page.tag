@@ -38,7 +38,7 @@
                 <div class="signature-field">
                     <c:choose>
                         <c:when test="${authorization ne null}">
-                            <div class="readonly-field">Authorized by ${beamauth:formatStaff(authorization.authorizedBy)} on <fmt:formatDate value="${authorization.authorizationDate}" pattern="${s:getFriendlyDateTimePattern()}"/></div>
+                            <div class="readonly-field">Authorized by ${beamauth:formatUsername(authorization.authorizedBy)} on <fmt:formatDate value="${authorization.authorizationDate}" pattern="${s:getFriendlyDateTimePattern()}"/></div>
                         </c:when>
                         <c:otherwise>
                             <div class="readonly-field">None</div>
