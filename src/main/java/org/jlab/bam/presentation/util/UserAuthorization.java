@@ -128,10 +128,10 @@ public class UserAuthorization {
     private User lookupUserFromUsername(String username) {
         User user = new User();
 
-        UserResource userResource = keycloak.realm(realm).users().get(username);
+        List<UserRepresentation> users = keycloak.realm(realm).users().search(username, 0, 1);
 
-        if(userResource != null) {
-            UserRepresentation rep = userResource.toRepresentation();
+        if(users != null && !users.isEmpty()) {
+            UserRepresentation rep = users.get(0);
             user.setFirstname(rep.getFirstName());
             user.setLastname(rep.getLastName());
             user.setUsername(rep.getUsername());
