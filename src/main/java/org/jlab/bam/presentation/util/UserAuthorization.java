@@ -98,6 +98,10 @@ public class UserAuthorization {
     }
 
     private List<User> lookupUsersInRole(String role) {
+
+        System.err.println("Looking up role: " + role);
+        System.err.println("Using realm: " + realm);
+
         List<User> users = new ArrayList<>();
 
         RolesResource roles = keycloak.realm(realm).roles();

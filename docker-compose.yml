@@ -26,6 +26,7 @@ services:
       KEYCLOAK_RESOURCE: 'bam'
       KEYCLOAK_SECRET: '9AubPamv1H9fAWo0q239EP7wPuH5ihb7'
       KEYCLOAK_SERVER: 'keycloak:8080'
+      KEYCLOAK_SERVICE_URL: 'http://keycloak:8080'
       KEYCLOAK_WAR: 'bam.war'
       LOGBOOK_SERVER: 'elog'
       ORACLE_DATASOURCE: 'bam'
