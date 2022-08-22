@@ -52,6 +52,7 @@ public class DestinationsAuthorizationHistoryController extends HttpServlet {
         
         List<BeamDestination> cebafDestinationList = beamDestinationFacade.findCebafDestinations();
         List<BeamDestination> lerfDestinationList = beamDestinationFacade.findLerfDestinations();
+        List<BeamDestination> uitfDestinationList = beamDestinationFacade.findUitfDestinations();
         
         Map<BigInteger, DestinationAuthorization> destinationAuthorizationMap
                 = authorizationFacade.createDestinationAuthorizationMap(authorization);
@@ -60,6 +61,7 @@ public class DestinationsAuthorizationHistoryController extends HttpServlet {
         request.setAttribute("authorization", authorization);
         request.setAttribute("cebafDestinationList", cebafDestinationList);
         request.setAttribute("lerfDestinationList", lerfDestinationList);
+        request.setAttribute("uitfDestinationList", uitfDestinationList);
         request.setAttribute("destinationAuthorizationMap", destinationAuthorizationMap);
 
         request.getRequestDispatcher("/WEB-INF/views/permissions/destinations-authorization-history.jsp").forward(request, response);
