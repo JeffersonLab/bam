@@ -36,4 +36,4 @@ services:
       ORACLE_SERVICE: 'xepdb1'
       PUPPET_SHOW_SERVER: 'puppet:3000'
       WILDFLY_USER: 'admin'
-      WILDFLY_PASSW: 'admin'
+      WILDFLY_PASS: 'admin'
