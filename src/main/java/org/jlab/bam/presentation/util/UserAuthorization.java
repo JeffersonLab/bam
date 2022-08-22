@@ -9,13 +9,13 @@ import org.keycloak.admin.client.resource.RolesResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.idm.UserRepresentation;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserAuthorization {
-    private HashMap<String, List<User>> usersInRole = new HashMap<>();
-    private HashMap<String, User> userFromUsername = new HashMap<>();
+    private static UserAuthorization instance = null;
+    private ConcurrentHashMap<String, List<User>> usersInRole = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, User> userFromUsername = new ConcurrentHashMap<>();
     private Keycloak keycloak;
     private String realm;
     private String resource;
@@ -57,19 +57,18 @@ public class UserAuthorization {
                 .build();
     }
 
-    public static UserAuthorization getInstance(HttpServletRequest request) {
+    public synchronized static UserAuthorization getInstance() {
 
-        HttpSession session = request.getSession();
-
-        UserAuthorization auth = (UserAuthorization) session.getAttribute("userAuthorization");
-
-        if(auth == null) {
-            auth = new UserAuthorization();
-
-            session.setAttribute("userAuthorization", auth);
+        if(instance == null) {
+            instance = new UserAuthorization();
         }
 
-        return auth;
+        return instance;
+    }
+
+    public void clearCache() {
+        usersInRole.clear();
+        userFromUsername.clear();
     }
 
     public List<User> getUsersInRole(String role) {

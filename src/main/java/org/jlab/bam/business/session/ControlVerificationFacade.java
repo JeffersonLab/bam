@@ -25,6 +25,7 @@ import org.jlab.bam.persistence.entity.VerificationHistory;
 import org.jlab.bam.persistence.entity.Workgroup;
 import org.jlab.bam.persistence.view.User;
 import org.jlab.bam.presentation.util.BeamAuthFunctions;
+import org.jlab.bam.presentation.util.UserAuthorization;
 import org.jlab.jlog.Body;
 import org.jlab.jlog.Library;
 import org.jlab.jlog.LogEntry;
@@ -150,6 +151,8 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         List<ControlVerification> downgradeList = new ArrayList<>();
 
+        UserAuthorization auth = UserAuthorization.getInstance();
+
         for (BigInteger controlVerificationId : controlVerificationIdArray) {
             if (controlVerificationId == null) {
                 throw new UserFriendlyException("control verification ID must not be null");
@@ -168,6 +171,12 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             // If verificationId is changing and it is a downgrade
 
             Date modifiedDate = new Date();
+
+            String role = verification.getCreditedControl().getGroup().getLeaderRoleName();
+
+            List<User> leaders = auth.getUsersInRole(role);
+
+            checkAdminOrGroupLeader(username, leaders);
 
             verification.setModifiedBy(username);
             verification.setModifiedDate(modifiedDate);
@@ -236,7 +245,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
-                builder.append(BeamAuthFunctions.formatUser(v.getVerifiedBy()));
+                builder.append(BeamAuthFunctions.formatUsername(v.getVerifiedBy()));
                 builder.append("</div>\n<div><b>Expired On:</b> ");
                 builder.append(formatter.format(v.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -279,7 +288,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
-                builder.append(BeamAuthFunctions.formatUser(v.getVerifiedBy()));
+                builder.append(BeamAuthFunctions.formatUsername(v.getVerifiedBy()));
                 builder.append("</div>\n<div><b>Expiring On:</b> ");
                 builder.append(formatter.format(v.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -315,7 +324,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         builder.append("</div>\n<div><b>Modified On:</b> ");
         builder.append(formatter.format(verification.getVerificationDate()));
         builder.append("</div>\n<div><b>Modified By:</b> ");
-        builder.append(BeamAuthFunctions.formatUser(verification.getVerifiedBy()));
+        builder.append(BeamAuthFunctions.formatUsername(verification.getVerifiedBy()));
         builder.append("</div>\n<div><b>Verification:</b> ");
         builder.append(
                 verification.getVerificationId() == 1 ? "Verified" : (verification.getVerificationId()
@@ -690,8 +699,14 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
             List<String> toAddresses = new ArrayList<>();
 
-            if (w.getGroupLeaderList() != null) {
-                for (User s : w.getGroupLeaderList()) {
+            UserAuthorization auth = UserAuthorization.getInstance();
+
+            String role = w.getLeaderRoleName();
+
+            List<User> leaders = auth.getUsersInRole(role);
+
+            if (leaders != null) {
+                for (User s : leaders) {
                     if (s.getUsername() != null) {
                         toAddresses.add((s.getUsername() + "@jlab.org"));
                     }

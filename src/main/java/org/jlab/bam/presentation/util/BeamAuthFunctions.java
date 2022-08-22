@@ -26,7 +26,9 @@ public final class BeamAuthFunctions {
     }
 
     public static User lookupUserByUsername(String username) {
-        return null;
+        UserAuthorization auth = UserAuthorization.getInstance();
+
+        return auth.getUserFromUsername(username);
     }
 
     public static String formatUsername(String username) {

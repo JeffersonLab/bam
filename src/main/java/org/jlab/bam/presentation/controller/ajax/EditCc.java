@@ -58,16 +58,6 @@ public class EditCc extends HttpServlet {
             Date expirationDate = ParamConverter.convertFriendlyDateTime(request, "expirationDate");
             String comments = request.getParameter("comments");
 
-             String role = verification.getCreditedControl().getGroup().getLeaderRoleName();
-
-            UserAuthorization auth = UserAuthorization.getInstance(request);
-
-            List<User> leaders = auth.getUsersInRole(role);
-
-            String username = request.getRemoteUser();
-
-            verificationFacade.checkAdminOrGroupLeader(username, leaders);
-
             downgradeList = verificationFacade.edit(verificationIdArray, verificationId, verificationDate, verifiedByUsername, expirationDate, comments);
         } catch(UserFriendlyException e) {
             errorReason = e.getMessage();

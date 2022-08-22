@@ -148,8 +148,8 @@ public abstract class AbstractFacade<T> {
     }
     
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    public void checkAdminOrGroupLeader(String username, BigInteger groupId, HttpServletRequest request) {
-        boolean isAdminOrLeader = isAdminOrGroupLeader(username, groupId, request);
+    public void checkAdminOrGroupLeader(String username, List<User> leaders) {
+        boolean isAdminOrLeader = isAdminOrGroupLeader(username, leaders);
 
         if (!isAdminOrLeader) {
             throw new EJBAccessException("You must be an admin or group leader to perform the requested operation");
@@ -179,7 +179,7 @@ public abstract class AbstractFacade<T> {
     }
 
     @PermitAll
-    public boolean isAdminOrGroupLeader(String username, BigInteger groupId, HttpServletRequest request) {
+    public boolean isAdminOrGroupLeader(String username, BigInteger groupId) {
         if (username == null || groupId == null) {
             return false;
         }
@@ -190,7 +190,7 @@ public abstract class AbstractFacade<T> {
             return false;
         }
 
-        UserAuthorization auth = UserAuthorization.getInstance(request);
+        UserAuthorization auth = UserAuthorization.getInstance();
 
         List<User> leaders = auth.getUsersInRole(group.getLeaderRoleName());
         
