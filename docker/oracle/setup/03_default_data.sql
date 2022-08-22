@@ -12,11 +12,10 @@ insert into BAM_OWNER.WORKGROUP (WORKGROUP_ID, NAME, LEADER_ROLE_NAME) values (B
 
 --Populate Credited Controls
 insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 1','Control 1 Description',1,1,'1 Year');
-insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 2','Control 2 Description',1,1,'1 Year');
-insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 3','Control 3 Description',1,1,'1 Year');
+insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 2','Control 2 Description',1,2,'1 Year');
+insert into BAM_OWNER.CREDITED_CONTROL (CREDITED_CONTROL_ID,NAME,DESCRIPTION,WORKGROUP_ID,WEIGHT,VERIFICATION_FREQUENCY) values (BAM_OWNER.CREDITED_CONTROL_ID.nextval,'Control 3','Control 3 Description',1,3,'1 Year');
 
 --Populate Beam Destinations
-insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 1', 'CEBAF', 'uA', 'Y', 1);
-insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 2', 'CEBAF', 'uA', 'Y', 2);
-insert into BAM_OWNER.beam_destination values(BAM_OWNER.destination_id.nextval, 'Destination 3', 'CEBAF', 'uA', 'Y', 3);
-
+insert into BAM_OWNER.beam_destination (BEAM_DESTINATION_ID, NAME, MACHINE, CURRENT_LIMIT_UNITS, ACTIVE_YN, WEIGHT) values(BAM_OWNER.destination_id.nextval, 'Destination 1', 'CEBAF', 'uA', 'Y', 1);
+insert into BAM_OWNER.beam_destination (BEAM_DESTINATION_ID, NAME, MACHINE, CURRENT_LIMIT_UNITS, ACTIVE_YN, WEIGHT) values(BAM_OWNER.destination_id.nextval, 'Destination 2', 'CEBAF', 'uA', 'Y', 2);
+insert into BAM_OWNER.beam_destination (BEAM_DESTINATION_ID, NAME, MACHINE, CURRENT_LIMIT_UNITS, ACTIVE_YN, WEIGHT) values(BAM_OWNER.destination_id.nextval, 'Destination 3', 'CEBAF', 'uA', 'Y', 3);
