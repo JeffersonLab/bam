@@ -111,7 +111,7 @@
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${creditedControl.controlVerificationList}" var="verification">
-                                            <tr data-control-verification-id="${verification.controlVerificationId}" data-verified-username="${verification.verifiedBy.username}" data-status-id="${verification.verificationId}">
+                                            <tr data-control-verification-id="${verification.controlVerificationId}" data-verified-username="${verification.verifiedBy}" data-status-id="${verification.verificationId}">
                                                 <c:if test="${adminOrLeader && param.notEditable eq null}">
                                                     <td>
                                                         <input class="destination-checkbox" type="checkbox" name="destination-checkbox" value="${verification.controlVerificationId}"/>
