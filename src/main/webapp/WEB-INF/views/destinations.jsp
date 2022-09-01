@@ -7,7 +7,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%> 
 <t:page title="Destinations"> 
     <jsp:attribute name="stylesheets">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/credited-controls.css"/> 
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/css/credited-controls.css"/>
         <style type="text/css">
             .dialog-content {
                 padding-bottom: 1em;
@@ -22,7 +22,7 @@
             jlab = jlab || {};
             jlab.verificationType = 'Control-Group';
         </script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/js/credited-controls.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/js/credited-controls.js"></script>
     </jsp:attribute>        
     <jsp:body>
         <c:if test="${destination ne null}">

@@ -5,7 +5,6 @@ description = 'Beam authorization manager app'
 group 'org.jlab'
 version '3.0.0-alpha2'
 ext.releaseDate = 'Aug 22 2022'
-ext.resourceVersion = '33'
 
 tasks.withType(JavaCompile) {
     options.release = 11
@@ -56,9 +55,6 @@ war {
         }
         filter {
             String line -> line.replaceAll("@RELEASE_DATE@", releaseDate)
-        }
-        filter {
-            String line -> line.replaceAll("@RESOURCE_VERSION@", resourceVersion)
         }
     }
 }

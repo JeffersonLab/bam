@@ -7,10 +7,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%> 
 <t:page title="Credited Controls"> 
     <jsp:attribute name="stylesheets">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/credited-controls.css"/> 
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/css/credited-controls.css"/>
     </jsp:attribute>
     <jsp:attribute name="scripts">          
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/js/credited-controls.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/js/credited-controls.js"></script>
     </jsp:attribute>        
     <jsp:body>
         <c:if test="${creditedControl ne null}">

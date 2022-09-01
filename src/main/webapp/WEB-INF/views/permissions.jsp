@@ -6,10 +6,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%> 
 <t:page title="Permissions"> 
     <jsp:attribute name="stylesheets">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/permissions.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/css/permissions.css"/>
     </jsp:attribute>
     <jsp:attribute name="scripts">  
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/js/permissions.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/js/permissions.js"></script>
     </jsp:attribute>        
     <jsp:body>
         <section>

@@ -7,13 +7,13 @@
 <t:page title="${title}">  
     <jsp:attribute name="stylesheets">
         <link rel="stylesheet" type="text/css"
-              href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/credited-controls.css"/>
+              href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/css/credited-controls.css"/>
         <link rel="stylesheet" type="text/css"
-              href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/css/control-participation.css"/>
+              href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/css/control-participation.css"/>
     </jsp:attribute>
     <jsp:attribute name="scripts">              
         <script type="text/javascript"
-                src="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/js/control-participation.js"></script>
+                src="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/js/control-participation.js"></script>
     </jsp:attribute>
     <jsp:body>
         <section>

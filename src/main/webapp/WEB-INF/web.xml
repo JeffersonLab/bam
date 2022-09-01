@@ -15,8 +15,8 @@
         <param-value>BAM</param-value>
     </context-param>
     <context-param>
-        <param-name>resourceVersionNumber</param-name>
-        <param-value>@RESOURCE_VERSION@</param-value>
+        <param-name>appSpecificEnvPrefix</param-name>
+        <param-value>BAM</param-value>
     </context-param>
     <context-param>
         <param-name>releaseNumber</param-name>
@@ -25,22 +25,6 @@
     <context-param>
         <param-name>releaseDate</param-name>
         <param-value>@RELEASE_DATE@</param-value>
-    </context-param>
-    <context-param>
-        <param-name>contentContact</param-name>
-        <param-value>Name goes here</param-value>
-    </context-param>
-    <context-param>
-        <param-name>technicalContact</param-name>
-        <param-value>Name goes here</param-value>
-    </context-param>
-    <context-param>
-        <param-name>feedbackFromAddress</param-name>
-        <param-value>bam@jlab.org</param-value>
-    </context-param>
-    <context-param>
-        <param-name>feedbackToAddressCsv</param-name>
-        <param-value>tester@jlab.org</param-value>
     </context-param>
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>
