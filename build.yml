@@ -16,6 +16,11 @@ services:
       file: docker-compose.yml
       service: puppet
 
+  mailhog:
+    extends:
+      file: docker-compose.yml
+      service: mailhog
+
   bam:
     extends:
       file: docker-compose.yml

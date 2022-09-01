@@ -14,6 +14,11 @@ services:
       file: deps.yml
       service: puppet
 
+  mailhog:
+    extends:
+      file: deps.yml
+      service: mailhog
+
   bam:
     hostname: bam
     container_name: bam
