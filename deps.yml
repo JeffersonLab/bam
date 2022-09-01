@@ -29,9 +29,8 @@ services:
       KEYCLOAK_RESOURCE: 'bam'
       KEYCLOAK_SECRET: 'yHi6W2raPmLvPXoxqMA7VWbLAA2WN0eB'
     volumes:
-      - ./docker/keycloak/docker-entrypoint.sh:/docker-entrypoint.sh
-      - ./docker/keycloak/setup.sh:/setup.sh
-    entrypoint: /docker-entrypoint.sh
+      - ./docker/keycloak:/scripts
+    entrypoint: /scripts/docker-entrypoint.sh
 
   puppet:
     image: slominskir/puppet-show:2.1.1

@@ -24,7 +24,9 @@ done
 echo "---------------------"
 echo "| Step 3: Configure |"
 echo "---------------------"
-/setup.sh
+/scripts/setup.sh
+
+/scripts/setup-app-specific.sh
 
 echo "----------"
 echo "| READY! |"

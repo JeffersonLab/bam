@@ -13,7 +13,7 @@
     <function>
         <name>lookupUserByUsername</name>
         <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
-        <function-signature>org.jlab.bam.persistence.view.User lookupUserByUsername(java.lang.String)</function-signature>
+        <function-signature>org.jlab.smoothness.persistence.view.User lookupUserByUsername(java.lang.String)</function-signature>
     </function>
     <function>
         <name>formatUsername</name>
@@ -23,7 +23,7 @@
     <function>
         <name>formatUser</name>
         <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
-        <function-signature>java.lang.String formatUser(org.jlab.bam.persistence.view.User)</function-signature>
+        <function-signature>java.lang.String formatUser(org.jlab.smoothness.persistence.view.User)</function-signature>
     </function>
         <function>
         <name>beamModeList</name>
