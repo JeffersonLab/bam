@@ -23,17 +23,17 @@ import org.jlab.bam.persistence.entity.DestinationAuthorization;
 import org.jlab.bam.persistence.entity.DestinationAuthorizationPK;
 import org.jlab.bam.persistence.entity.VerificationHistory;
 import org.jlab.bam.persistence.entity.Workgroup;
-import org.jlab.bam.persistence.view.User;
 import org.jlab.bam.presentation.util.BeamAuthFunctions;
-import org.jlab.bam.presentation.util.UserAuthorization;
 import org.jlab.jlog.Body;
 import org.jlab.jlog.Library;
 import org.jlab.jlog.LogEntry;
 import org.jlab.jlog.LogEntryAdminExtension;
 import org.jlab.smoothness.business.exception.UserFriendlyException;
 import org.jlab.smoothness.business.service.EmailService;
+import org.jlab.smoothness.business.service.UserAuthorizationService;
 import org.jlab.smoothness.business.util.IOUtil;
 import org.jlab.smoothness.business.util.TimeUtil;
+import org.jlab.smoothness.persistence.view.User;
 
 /**
  *
@@ -151,7 +151,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         List<ControlVerification> downgradeList = new ArrayList<>();
 
-        UserAuthorization auth = UserAuthorization.getInstance();
+        UserAuthorizationService auth = UserAuthorizationService.getInstance();
 
         for (BigInteger controlVerificationId : controlVerificationIdArray) {
             if (controlVerificationId == null) {
@@ -699,7 +699,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
             List<String> toAddresses = new ArrayList<>();
 
-            UserAuthorization auth = UserAuthorization.getInstance();
+            UserAuthorizationService auth = UserAuthorizationService.getInstance();
 
             String role = w.getLeaderRoleName();
 

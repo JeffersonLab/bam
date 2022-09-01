@@ -1,12 +1,13 @@
 package org.jlab.bam.presentation.util;
 
+import org.jlab.smoothness.business.service.UserAuthorizationService;
+import org.jlab.smoothness.persistence.view.User;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-
-import org.jlab.bam.persistence.view.User;
 
 /**
  *
@@ -26,7 +27,7 @@ public final class BeamAuthFunctions {
     }
 
     public static User lookupUserByUsername(String username) {
-        UserAuthorization auth = UserAuthorization.getInstance();
+        UserAuthorizationService auth = UserAuthorizationService.getInstance();
 
         return auth.getUserFromUsername(username);
     }

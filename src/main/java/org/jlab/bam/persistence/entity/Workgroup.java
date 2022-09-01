@@ -1,7 +1,5 @@
 package org.jlab.bam.persistence.entity;
 
-import org.jlab.bam.persistence.view.User;
-
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;

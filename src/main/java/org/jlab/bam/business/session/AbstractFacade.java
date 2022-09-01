@@ -17,11 +17,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
-import javax.servlet.http.HttpServletRequest;
 
 import org.jlab.bam.persistence.entity.Workgroup;
-import org.jlab.bam.persistence.view.User;
-import org.jlab.bam.presentation.util.UserAuthorization;
+import org.jlab.smoothness.business.service.UserAuthorizationService;
+import org.jlab.smoothness.persistence.view.User;
 
 /**
  *
@@ -190,7 +189,7 @@ public abstract class AbstractFacade<T> {
             return false;
         }
 
-        UserAuthorization auth = UserAuthorization.getInstance();
+        UserAuthorizationService auth = UserAuthorizationService.getInstance();
 
         List<User> leaders = auth.getUsersInRole(group.getLeaderRoleName());
         

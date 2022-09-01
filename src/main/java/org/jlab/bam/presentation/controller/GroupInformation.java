@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jlab.bam.business.session.WorkgroupFacade;
 import org.jlab.bam.persistence.entity.Workgroup;
-import org.jlab.bam.persistence.view.User;
-import org.jlab.bam.presentation.util.UserAuthorization;
+import org.jlab.smoothness.business.service.UserAuthorizationService;
+import org.jlab.smoothness.persistence.view.User;
 import org.jlab.smoothness.presentation.util.ParamConverter;
 
 /**
@@ -41,7 +41,7 @@ public class GroupInformation extends HttpServlet {
 
         BigInteger groupId = ParamConverter.convertBigInteger(request, "groupId");
 
-        UserAuthorization auth = UserAuthorization.getInstance();
+        UserAuthorizationService auth = UserAuthorizationService.getInstance();
 
         Workgroup group = null;
 
