@@ -129,7 +129,7 @@ public class BeamPermissions extends HttpServlet {
             String proxyServerName = System.getenv("PROXY_HOSTNAME");
 
             try {
-                authorizationFacade.sendOpsNewAuthorizationEmail(proxyServerName);
+                authorizationFacade.sendOpsNewAuthorizationEmail(proxyServerName, comments);
             } catch(UserFriendlyException e) {
                 errorReason = "Authorization was saved, but we were unable to send to ops an email.  ";
                 LOGGER.log(Level.SEVERE, errorReason, e);

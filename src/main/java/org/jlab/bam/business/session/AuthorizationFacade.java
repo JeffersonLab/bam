@@ -200,7 +200,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
 
     @RolesAllowed("bam-admin")
-    public void sendOpsNewAuthorizationEmail(String linkHostName) throws UserFriendlyException {
+    public void sendOpsNewAuthorizationEmail(String linkHostName, String comments) throws UserFriendlyException {
 
         String toCsv = System.getenv("BAM_PERMISSIONS_EMAIL_CSV");
 
@@ -212,7 +212,9 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         String subject = System.getenv("BAM_PERMISSIONS_SUBJECT");
 
-        String body = "<a href=\"https://" + linkHostName + "/beam-auth\">https://" + linkHostName + "/beam-auth</a>";
+        String body = "<a href=\"https://" + linkHostName + "/bam\">https://" + linkHostName + "/bam</a>";
+
+        body = body + "\n\n<p>Notes: " + comments + "</p>";
 
         String sender = System.getenv("BAM_EMAIL_SENDER");
 
