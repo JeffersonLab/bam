@@ -1,5 +1,5 @@
 ARG BUILD_IMAGE=gradle:7.4-jdk17
-ARG RUN_IMAGE=slominskir/smoothness-weblib:3.7.0
+ARG RUN_IMAGE=slominskir/smoothness-weblib:3.7.1
 
 ################## Stage 0
 FROM ${BUILD_IMAGE} as builder
@@ -18,5 +18,5 @@ RUN cd /app && gradle build -x test --no-watch-fs $OPTIONAL_CERT_ARG
 ################## Stage 1
 FROM ${RUN_IMAGE} as runner
 COPY --from=builder /app/docker/app/app-setup.env /
-RUN /app-setup.sh /app-app-setup.env
+RUN /app-setup.sh /app-setup.env
 COPY --from=builder /app/build/libs/* /opt/jboss/wildfly/standalone/deployments
