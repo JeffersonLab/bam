@@ -50,21 +50,15 @@ This application requires a Java 11+ JVM and standard library to run, plus a Jav
    1. Configure Wildfly<sup>Note</sup> and start it
    1. Navigate your web browser to localhost:8080/bam
 
-**Note**: The docker image configures Wildfly for use in the compose environment and that's a good starting point to copy from.  Outside of a compose environment you may need to tweak the standalone.xml configuration to use different host names and ports (For example Oracle and Keycloak host names would need to be updated to localhost:1521 and localhost:8081 respectively when using the deps.yml and running Wildfly outside the compose network):
-
-```
-docker compose up
-docker exec -it bam /opt/jboss/wildfly/bin/jboss-cli.sh --connect -c "undeploy bam.war"
-docker exec -it bam /opt/jboss/wildfly/bin/jboss-cli.sh --connect -c shutdown
-docker cp bam:/opt/jboss/wildfly .
-```
-
-**Note**: The application requires an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
+**Note**: The application requires [configuration](https://github.com/JeffersonLab/bam#configure) before running and an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
 
 ## Configure
 
-### Environment Variables
-Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#environment-variables) plus the following application specific:
+### Configtime
+Wildfly must be pre-configured before the first deployment of the app.  The [smoothness bash scripts](https://github.com/JeffersonLab/smoothness#configtime) can be used to accomplish this.  See the [Dockerfile](https://github.com/JeffersonLab/bam/blob/main/Dockerfile) for an example.
+
+### Runtime
+Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#global-runtime) plus the following application specific:
 
 | Name | Description |
 |---|---|
