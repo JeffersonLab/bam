@@ -31,7 +31,7 @@ The Beam Authorization application allows the Director of Operations (or a deleg
 git clone https://github.com/JeffersonLab/bam
 cd bam
 ```
-2. Launch Docker
+2. Launch [Compose](https://github.com/docker/compose)
 ```
 docker compose up
 ```
