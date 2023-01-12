@@ -16,7 +16,7 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for beam
 The Beam Authorization application allows the Director of Operations (or a delegate) to clearly communicate and document the maximum current and beam mode ("permissions") that are authorized for a given beam destination.  This information is stored in a database and presented via the web for easy access.   There are three machines, each with their own set of beam destinations and beam modes: CEBAF, LERF, UITF.  In addition to director authorization, the app also tracks Credited Controls and their verification.  Each beam destination is assigned a set of controls and each control is assigned to a particular responsible group.  A beam desintation is ready for beam only if all the controls assigned are verified by their responsible group.  Both group verifications and director permissions have expirations.   Emails and Jefferson Lab logbook entires are created to aid communication of new director permissions, responsible group verifications (upgrades and downgrades), and verification and permissions expirations.
 
 ### Roles
- - **Operations Director** - Responsible for authrozing beam
+ - **Operations Director** - Responsible for authorizing beam
  - **Operability / Admin** - Responsible for process administration and continuous improvement
  - **Operator** - Must honor permissions set by the Director when running the machines
  - **Group Leader** - Responsible for verifying Credited Control readiness and assigning expiration dates for when new checks are required
@@ -98,6 +98,6 @@ gradlew -Pprovided build
 ## Release
 1. Bump the version number in build.gradle and commit and push to GitHub (using [Semantic Versioning](https://semver.org/)).
 2. Create a new release on the GitHub Releases page corresponding to the same version in the build.gradle.   The release should enumerate changes and link issues.   A war artifact can be attached to the release to facilitate easy install by users.
-3. Build and publish a new Docker image [from the GitHub tag](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c#8-build-an-image-based-of-github-tag).
+3. Build and publish a new Docker image [from the GitHub tag](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c#8-build-an-image-based-of-github-tag). GitHub is configured to do this automatically on git push of semver tag (typically part of GitHub release) or the [Publish to DockerHub](https://github.com/JeffersonLab/bam/actions/workflows/docker-publish.yml) action can be manually triggered after selecting a tag.
 4. Bump and commit quick start [image version](https://github.com/JeffersonLab/bam/blob/main/docker-compose.override.yml)
 
