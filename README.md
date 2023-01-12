@@ -45,10 +45,10 @@ See: [Docker Compose Strategy](https://gist.github.com/slominskir/a7da801e8259f5
 ## Install
 This application requires a Java 11+ JVM and standard library to run, plus a Java EE 8+ application server (developed with Wildfly).
 
-   1. Download [Wildfly 26.1.2](https://www.wildfly.org/downloads/) (or just pull it out of the Docker image config and all - see below)
-   1. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
-   1. Configure Wildfly<sup>Note</sup> and start it
-   1. Navigate your web browser to localhost:8080/bam
+1. Download [Wildfly 26.1.2](https://www.wildfly.org/downloads/) (or just pull it out of the Docker image config and all - see below)
+2. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
+3. Configure Wildfly<sup>Note</sup> and start it
+4. Navigate your web browser to localhost:8080/bam
 
 **Note**: The application requires [configuration](https://github.com/JeffersonLab/bam#configure) before running and an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
 
