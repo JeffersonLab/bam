@@ -31,8 +31,7 @@ dependencies {
     // Wildfly 26.1.2.Final provides:
     providedCompile 'javax:javaee-api:8.0.1',
                     'javax.servlet:jstl:1.2',
-                    'org.hibernate:hibernate-core:5.3.28.Final',
-                    'org.jsoup:jsoup:1.14.2'
+                    'org.hibernate:hibernate-core:5.3.28.Final'
 }
 
 war {
