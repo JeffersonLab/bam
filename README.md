@@ -60,18 +60,18 @@ Wildfly must be pre-configured before the first deployment of the app.  The [smo
 ### Runtime
 Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#global-runtime) plus the following application specific:
 
-| Name | Description |
-|---|---|
-| BAM_BOOKS_CSV | Comma separated list of Jefferson Lab Logbook names to log to when permissions are updated or controls are downgraded |
-| BAM_PERMISSIONS_EMAIL_CSV | Comma separated list of email recipients of permissions updated email |
-| BAM_UPCOMING_EXPIRATION_EMAIL_CSV | Comma separated list of email recipients of both expired and upcoming expirations (admin heads-up email) |
-| BAM_EXPIRED_EMAIL_CSV | Comma separated list of email recipients of expired permissions and control verifications (ops semi-synchronous notification of expiration) |
-| BAM_DOWNGRADED_EMAIL_CSV | Comma separated list of email recipients for control verifications downgrades |
-| BAM_PERMISSIONS_SUBJECT | Subject of log entries and emails indicating permissions updated |
-| BAM_UPCOMING_EXPIRATION_SUBJECT | Subject of emails indicating both expired and upcoming expiration of permissions and control verifications (admin heads-up email) |
-| BAM_EXPIRED_SUBJECT | Subject of emails indicating expiration of permissions and control verifications (ops semi-synchrounous notification of expiration) |
-| BAM_DOWNGRADED_SUBJECT | Subject of emails indicating downgrade of control verifications |
-| BAM_EMAIL_SENDER | Sender (and from address) of emails |
+| Name                              | Description                                                                                                                                 |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| BAM_BOOKS_CSV                     | Comma separated list of Jefferson Lab Logbook names to log to when permissions are updated or controls are downgraded                       |
+| BAM_PERMISSIONS_EMAIL_CSV         | Comma separated list of email recipients of permissions updated email                                                                       |
+| BAM_UPCOMING_EXPIRATION_EMAIL_CSV | Comma separated list of email recipients of both expired and upcoming expirations (admin heads-up email)                                    |
+| BAM_EXPIRED_EMAIL_CSV             | Comma separated list of email recipients of expired permissions and control verifications (ops semi-synchronous notification of expiration) |
+| BAM_DOWNGRADED_EMAIL_CSV          | Comma separated list of email recipients for control verifications downgrades                                                               |
+| BAM_PERMISSIONS_SUBJECT           | Subject of log entries and emails indicating permissions updated                                                                            |
+| BAM_UPCOMING_EXPIRATION_SUBJECT   | Subject of emails indicating both expired and upcoming expiration of permissions and control verifications (admin heads-up email)           |
+| BAM_EXPIRED_SUBJECT               | Subject of emails indicating expiration of permissions and control verifications (ops semi-synchrounous notification of expiration)         |
+| BAM_DOWNGRADED_SUBJECT            | Subject of emails indicating downgrade of control verifications                                                                             |
+| BAM_EMAIL_SENDER                  | Sender (and from address) of emails                                                                                                         |
 
 ### Database
 The Beam Auth application requires an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.   The application server hosting the Beam Auth app must also be configured with a JNDI datasource.
