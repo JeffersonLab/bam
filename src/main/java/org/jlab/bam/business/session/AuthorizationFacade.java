@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -273,7 +275,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         try {
             SecurityUtil.disableServerCertificateCheck();
 
-            tmpFile = grabPermissionsScreenshot(proxyServerName);
+            tmpFile = grabPermissionsScreenshot();
             entry.addAttachment(tmpFile.getAbsolutePath());
             logId = entry.submitNow();
 
@@ -347,11 +349,25 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         return builder.toString();
     }
 
-    private File grabPermissionsScreenshot(String serviceHostname) throws
+    private File grabPermissionsScreenshot() throws
             IOException {
-        URL url = new URL("https://" + serviceHostname + "/puppet-show/screenshot?url=https%3A%2F%2F"
-                + serviceHostname
-                + "%2Fbeam-auth%2Fpermissions%3Fprint%3DY&fullPage=true&filename=beam-auth.png&ignoreHTTPSErrors=true");
+
+        String puppetServer = System.getenv("PUPPET_SHOW_SERVER_URL");
+        String internalServer = System.getenv("INTERNAL_SERVER_URL");
+
+        if(puppetServer == null) {
+            puppetServer = "http://localhost";
+        }
+
+        if(internalServer == null) {
+            internalServer = "http://localhost";
+        }
+
+        internalServer = URLEncoder.encode(internalServer, StandardCharsets.UTF_8);
+
+        URL url = new URL(puppetServer + "/puppet-show/screenshot?url="
+                + internalServer
+                + "%2Fbam%2Fpermissions%3Fprint%3DY&fullPage=true&filename=bam.png&ignoreHTTPSErrors=true");
 
         LOGGER.log(Level.FINEST, "Fetching URL: {0}", url.toString());
 
@@ -363,7 +379,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
             URLConnection con = url.openConnection();
             in = con.getInputStream();
 
-            tmpFile = File.createTempFile("beam-auth", ".png");
+            tmpFile = File.createTempFile("bam", ".png");
             out = new FileOutputStream(tmpFile);
             IOUtil.copy(in, out);
 
