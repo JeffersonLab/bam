@@ -50,7 +50,7 @@ This application requires a Java 11+ JVM and standard library to run, plus a Jav
 3. Configure Wildfly<sup>Note</sup> and start it
 4. Navigate your web browser to localhost:8080/bam
 
-**Note**: The application requires [configuration](https://github.com/JeffersonLab/bam#configure) before running and an Oracle 21+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
+**Note**: The application requires [configuration](https://github.com/JeffersonLab/bam#configure) before running and an Oracle 18+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
 
 ## Configure
 
