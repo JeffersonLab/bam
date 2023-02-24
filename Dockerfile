@@ -1,5 +1,5 @@
 ARG BUILD_IMAGE=gradle:7.4-jdk17
-ARG RUN_IMAGE=slominskir/smoothness-weblib:3.9.2
+ARG RUN_IMAGE=slominskir/smoothness-weblib:3.11.0
 
 ################## Stage 0
 FROM ${BUILD_IMAGE} as builder
