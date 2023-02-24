@@ -31,6 +31,7 @@ services:
       BAM_FEEDBACK_TO_ADDRESS_CSV: 'user1@example.com,user2@example.com'
       BAM_CONTENT_CONTACT: 'bob@example.com'
       BAM_TECHNICAL_CONTACT: 'larry@example.com'
+      BAM_DOC_CSV: 'https://github.com/JeffersonLab/bam|BAM Home,https://jlab.org|JLAB Home'
       KEYCLOAK_REALM: 'test-realm'
       KEYCLOAK_RESOURCE: 'bam'
       KEYCLOAK_SECRET: 'yHi6W2raPmLvPXoxqMA7VWbLAA2WN0eB'
