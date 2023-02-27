@@ -53,3 +53,11 @@ insert into BAM_OWNER.control_verification (CONTROL_VERIFICATION_ID, CREDITED_CO
 
 -- Populate Initial Verification History (Control 1, Destination 1)
 insert into BAM_OWNER.verification_history (VERIFICATION_HISTORY_ID, CONTROL_VERIFICATION_ID, VERIFICATION_ID, VERIFICATION_DATE, VERIFIED_BY, EXPIRATION_DATE, COMMENTS, MODIFIED_BY, MODIFIED_DATE) values(BAM_OWNER.verification_history_id.nextval, 1, 100, sysdate, 'tbrown', null, null, 'tbrown', sysdate);
+
+-- Populate Initial Authorization
+insert into BAM_OWNER.authorization (AUTHORIZATION_ID, MODIFIED_BY, MODIFIED_DATE, AUTHORIZATION_DATE, AUTHORIZED_BY, COMMENTS) values(BAM_OWNER.authorization_id.nextval, 'tbrown', sysdate, sysdate, 'tbrown', 'testing');
+
+-- Populate Initial Destination Authorization
+insert into BAM_OWNER.destination_authorization (BEAM_DESTINATION_ID, AUTHORIZATION_ID, BEAM_MODE, CW_LIMIT, COMMENTS, EXPIRATION_DATE) values(1, 1, 'None', null, 'test 1', null);
+insert into BAM_OWNER.destination_authorization (BEAM_DESTINATION_ID, AUTHORIZATION_ID, BEAM_MODE, CW_LIMIT, COMMENTS, EXPIRATION_DATE) values(2, 1, 'Tune', null, 'test 2', null);
+insert into BAM_OWNER.destination_authorization (BEAM_DESTINATION_ID, AUTHORIZATION_ID, BEAM_MODE, CW_LIMIT, COMMENTS, EXPIRATION_DATE) values(3, 1, 'CW', 10, 'test 3', null);
