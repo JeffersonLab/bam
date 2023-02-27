@@ -14,7 +14,7 @@
     float: right;
 }
 .small-icon.comment-icon {
-    background: rgba(0, 0, 0, 0) url("/beam-auth/resources/img/comment.png") repeat scroll 0 0;
+Re    background: rgba(0, 0, 0, 0) url("../img/comment.png") repeat scroll 0 0;
 }
 .editable-field {
     display: none;
