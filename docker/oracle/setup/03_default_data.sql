@@ -48,5 +48,8 @@ insert into BAM_OWNER.control_verification (CONTROL_VERIFICATION_ID, CREDITED_CO
 insert into BAM_OWNER.control_verification (CONTROL_VERIFICATION_ID, CREDITED_CONTROL_ID, BEAM_DESTINATION_ID, VERIFICATION_ID, VERIFICATION_DATE, VERIFIED_BY, EXPIRATION_DATE, COMMENTS, MODIFIED_BY, MODIFIED_DATE) values(BAM_OWNER.control_verification_id.nextval, 4, 6, 100, sysdate, 'admin', null, null, 'admin', sysdate);
 insert into BAM_OWNER.control_verification (CONTROL_VERIFICATION_ID, CREDITED_CONTROL_ID, BEAM_DESTINATION_ID, VERIFICATION_ID, VERIFICATION_DATE, VERIFIED_BY, EXPIRATION_DATE, COMMENTS, MODIFIED_BY, MODIFIED_DATE) values(BAM_OWNER.control_verification_id.nextval, 5, 9, 100, sysdate, 'admin', null, null, 'admin', sysdate);
 insert into BAM_OWNER.control_verification (CONTROL_VERIFICATION_ID, CREDITED_CONTROL_ID, BEAM_DESTINATION_ID, VERIFICATION_ID, VERIFICATION_DATE, VERIFIED_BY, EXPIRATION_DATE, COMMENTS, MODIFIED_BY, MODIFIED_DATE) values(BAM_OWNER.control_verification_id.nextval, 6, 4, 100, sysdate, 'admin', null, null, 'admin', sysdate);
+-- Test null VERIFIED_BY (Control 6, Destination 9)
+insert into BAM_OWNER.control_verification (CONTROL_VERIFICATION_ID, CREDITED_CONTROL_ID, BEAM_DESTINATION_ID, VERIFICATION_ID, VERIFICATION_DATE, VERIFIED_BY, EXPIRATION_DATE, COMMENTS, MODIFIED_BY, MODIFIED_DATE) values(BAM_OWNER.control_verification_id.nextval, 6, 9, 100, sysdate, null, null, null, 'admin', sysdate);
 
-
+-- Populate Initial Verification History (Control 1, Destination 1)
+insert into BAM_OWNER.verification_history (VERIFICATION_HISTORY_ID, CONTROL_VERIFICATION_ID, VERIFICATION_ID, VERIFICATION_DATE, VERIFIED_BY, EXPIRATION_DATE, COMMENTS, MODIFIED_BY, MODIFIED_DATE) values(BAM_OWNER.verification_history_id.nextval, 1, 100, sysdate, 'tbrown', null, null, 'tbrown', sysdate);
