@@ -35,7 +35,10 @@ public class DailyScheduledCheck {
     private void clearTimer() {
         LOGGER.log(Level.FINEST, "Clearing Daily Timer");
         for (Timer t : timerService.getTimers()) {
-            t.cancel();
+            LOGGER.log(Level.INFO, "Found timer: " + t);
+            if("BAMDailyTimer".equals(t.getInfo())) {
+                t.cancel();
+            }
         }
         timer = null;
     }
@@ -47,7 +50,7 @@ public class DailyScheduledCheck {
         schedExp.minute("0");
         schedExp.hour("0");
         
-        TimerConfig config = new TimerConfig(null, false);  // redeploy --keepstate=true might be messing up persistent timers?
+        TimerConfig config = new TimerConfig("BAMDailyTimer", false);  // redeploy --keepstate=true might be messing up persistent timers?
         timer = timerService.createCalendarTimer(schedExp, config);
     }
 
