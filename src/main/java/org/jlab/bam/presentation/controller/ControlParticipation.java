@@ -38,7 +38,7 @@ public class ControlParticipation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        List<BeamDestination> destinationList = destinationFacade.findAllForBeamAuth();
+        List<BeamDestination> destinationList = destinationFacade.findActiveDestinations();
         List<CreditedControl> ccList = ccFacade.findAllWithVerificationList();
         
         request.setAttribute("destinationList", destinationList);

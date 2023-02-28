@@ -47,7 +47,7 @@ public class Destinations extends HttpServlet {
             //adminOrLeader = ccFacade.isAdminOrGroupLeader(request.getRemoteUser(), creditedControl.getWorkgroup().getWorkgroupId());
         }
 
-        List<BeamDestination> destinationList = destinationFacade.findAllForBeamAuth();        
+        List<BeamDestination> destinationList = destinationFacade.findActiveDestinations();
 
         request.setAttribute("destinationList", destinationList);
         request.setAttribute("adminOrLeader", adminOrLeader);

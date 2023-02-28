@@ -33,8 +33,8 @@ public class BeamDestinationFacade extends AbstractFacade<BeamDestination> {
     
     @SuppressWarnings("unchecked")
     @PermitAll
-    public List<BeamDestination> findAllForBeamAuth() {
-        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where beam_destination_id in (select beam_destination_id from BAM_OWNER.beam_destination where ACTIVE_YN = 'Y') order by weight", BeamDestination.class);
+    public List<BeamDestination> findActiveDestinations() {
+        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where ACTIVE_YN = 'Y' order by weight", BeamDestination.class);
         
         return q.getResultList();
     }
@@ -42,7 +42,7 @@ public class BeamDestinationFacade extends AbstractFacade<BeamDestination> {
     @SuppressWarnings("unchecked")
     @PermitAll
     public List<BeamDestination> findCebafDestinations() {
-        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where beam_destination_id in (select beam_destination_id from BAM_OWNER.beam_destination where machine = 'CEBAF' and ACTIVE_YN = 'Y') order by weight", BeamDestination.class);
+        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where machine = 'CEBAF' and ACTIVE_YN = 'Y' order by weight", BeamDestination.class);
         
         return q.getResultList();
     }    
@@ -50,7 +50,7 @@ public class BeamDestinationFacade extends AbstractFacade<BeamDestination> {
     @SuppressWarnings("unchecked")
     @PermitAll
     public List<BeamDestination> findLerfDestinations() {
-        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where beam_destination_id in (select beam_destination_id from BAM_OWNER.beam_destination where machine = 'LERF'  and ACTIVE_YN = 'Y') order by weight", BeamDestination.class);
+        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where machine = 'LERF'  and ACTIVE_YN = 'Y' order by weight", BeamDestination.class);
         
         return q.getResultList();
     }
@@ -58,7 +58,7 @@ public class BeamDestinationFacade extends AbstractFacade<BeamDestination> {
     @SuppressWarnings("unchecked")
     @PermitAll
     public List<BeamDestination> findUitfDestinations() {
-        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where beam_destination_id in (select beam_destination_id from BAM_OWNER.beam_destination where machine = 'UITF'  and ACTIVE_YN = 'Y') order by weight", BeamDestination.class);
+        Query q = em.createNativeQuery("select * from BAM_OWNER.beam_destination where machine = 'UITF'  and ACTIVE_YN = 'Y' order by weight", BeamDestination.class);
 
         return q.getResultList();
     }
