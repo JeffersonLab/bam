@@ -46,7 +46,7 @@
                     </c:choose>
                     <div class="editable-field notification-option-panel">
                         <p>
-                            <label for="generate-elog-checkbox">Generate elog:</label>
+                            <label for="generate-elog-checkbox">Generate elog and email:</label>
                             <input id="generate-elog-checkbox" type="checkbox" name="notification" value="Y" checked="checked"/>
                         </p>
                     </div>     
