@@ -103,7 +103,7 @@ public class BeamDestination {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BeamDestination that = (BeamDestination) o;
-        return beamDestinationId == that.beamDestinationId &&
+        return  Objects.equals(beamDestinationId, that.beamDestinationId) &&
                 Objects.equals(machine, that.machine) &&
                 Objects.equals(currentLimitUnits, that.currentLimitUnits) &&
                 Objects.equals(name, that.name);
@@ -112,5 +112,19 @@ public class BeamDestination {
     @Override
     public int hashCode() {
         return Objects.hash(beamDestinationId, machine, currentLimitUnits, name);
+    }
+
+    @Override
+    public String toString() {
+        return "BeamDestination{" +
+                "beamDestinationId=" + beamDestinationId +
+                ", machine='" + machine + '\'' +
+                ", currentLimitUnits='" + currentLimitUnits + '\'' +
+                ", active=" + active +
+                ", verification=" + verification +
+                ", name='" + name + '\'' +
+                //", controlVerificationList=" + controlVerificationList +
+                ", weight=" + weight +
+                '}';
     }
 }
