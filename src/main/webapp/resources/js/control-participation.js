@@ -54,7 +54,7 @@ jlab.toggle = function() {
 
     });
 
-    request.error(function(xhr, textStatus) {
+    request.fail(function(xhr, textStatus) {
         jlab.restore($td, checked);
         window.console && console.log('Unable to toggle: Text Status: ' + textStatus + ', Ready State: ' + xhr.readyState + ', HTTP Status Code: ' + xhr.status);
         alert('Unable to toggle');

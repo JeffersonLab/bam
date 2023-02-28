@@ -62,7 +62,7 @@ jlab.verify = function () {
 
     });
 
-    request.error(function (xhr, textStatus) {
+    request.fail(function (xhr, textStatus) {
         window.console && console.log('Unable to verify: Text Status: ' + textStatus + ', Ready State: ' + xhr.readyState + ', HTTP Status Code: ' + xhr.status);
         alert('Unable to verify; server did not handle request');
     });
@@ -118,7 +118,7 @@ jlab.save = function () {
 
     });
 
-    request.error(function (xhr, textStatus) {
+    request.fail(function (xhr, textStatus) {
         window.console && console.log('Unable to save: Text Status: ' + textStatus + ', Ready State: ' + xhr.readyState + ', HTTP Status Code: ' + xhr.status);
         alert('Unable to save; server did not handle request');
     });
