@@ -45,13 +45,20 @@ public final class BeamAuthFunctions {
     public static String formatUser(User user) {
         StringBuilder builder = new StringBuilder();
 
-        if (user != null) {
-            builder.append(user.getLastname());
-            builder.append(", ");
-            builder.append(user.getFirstname());
-            builder.append(" (");
-            builder.append(user.getUsername());
-            builder.append(")");
+        if (user != null && user.getUsername() != null && !user.getUsername().isEmpty()) {
+            if(user.getFirstname() == null || user.getLastname() == null ||
+               user.getFirstname().isEmpty() || user.getLastname().isEmpty()) {
+                builder.append("(");
+                builder.append(user.getUsername());
+                builder.append(")");
+            } else {
+                builder.append(user.getLastname());
+                builder.append(", ");
+                builder.append(user.getFirstname());
+                builder.append(" (");
+                builder.append(user.getUsername());
+                builder.append(")");
+            }
         }
 
         return builder.toString();
