@@ -380,7 +380,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     public void sendVerificationDowngradedEmail(String body) throws UserFriendlyException {
             String toCsv = System.getenv("BAM_DOWNGRADED_EMAIL_CSV");
 
-            String proxyHostname = System.getenv("PROXY_HOSTNAME");
+            String proxyHostname = System.getenv("PROXY_SERVER");
 
             String subject = System.getenv("BAM_DOWNGRADED_SUBJECT");
 
@@ -758,7 +758,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         if (expiredAuth || expiredVer || upcomingAuth || upcomingVer) {
 
             LOGGER.log(Level.FINEST, "Notifying users");
-            String proxyServerName = System.getenv("PROXY_HOSTNAME");
+            String proxyServerName = System.getenv("PROXY_SERVER");
 
 
 

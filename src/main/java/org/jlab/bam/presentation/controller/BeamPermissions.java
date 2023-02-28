@@ -126,7 +126,7 @@ public class BeamPermissions extends HttpServlet {
         }
 
         if (errorReason == null && sendNotifications) {
-            String proxyServerName = System.getenv("PROXY_HOSTNAME");
+            String proxyServerName = System.getenv("PROXY_SERVER");
 
             try {
                 authorizationFacade.sendOpsNewAuthorizationEmail(proxyServerName, comments);
@@ -137,7 +137,7 @@ public class BeamPermissions extends HttpServlet {
 
             try {
                 String logbookServerName = System.getenv(
-                        "LOGBOOK_HOSTNAME");
+                        "LOGBOOK_SERVER");
 
                 logId = authorizationFacade.sendELog(proxyServerName, logbookServerName);
             } catch (Exception e) {
