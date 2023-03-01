@@ -3,6 +3,7 @@ package org.jlab.bam.persistence.entity;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -73,6 +74,6 @@ public class Workgroup implements Serializable {
             return false;
         }
         final Workgroup other = (Workgroup) obj;
-        return this.workgroupId == other.workgroupId || (this.workgroupId != null && this.workgroupId.equals(other.workgroupId));
+        return Objects.equals(this.workgroupId, other.workgroupId);
     }
 }
