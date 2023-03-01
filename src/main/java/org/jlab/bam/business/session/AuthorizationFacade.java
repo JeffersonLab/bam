@@ -295,60 +295,6 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         return logId;
     }
 
-    private String getELogHTMLBody(Authorization authorization) {
-        StringBuilder builder = new StringBuilder();
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-        List<DestinationAuthorization> destinationAuthorizationList
-                = authorization.getDestinationAuthorizationList();
-
-        builder.append("<div><b>Beam Authorizations:</b>\n");
-        if (destinationAuthorizationList != null && !destinationAuthorizationList.isEmpty()) {
-            builder.append(
-                    "<table><thead><tr><th>Beam Destination</th><th>Beam Mode</th><th>CW Current Limit</th></tr></thead><tbody>\n");
-            for (DestinationAuthorization da : destinationAuthorizationList) {
-                BeamDestination destination = destinationFacade.find(
-                        da.getDestinationAuthorizationPK().getBeamDestinationId());
-
-                Map<BigInteger, String> unitsMap = this.getUnitsMap();
-                String units;
-
-                if (da.getCwLimit() == null) {
-                    units = "";
-                } else {
-                    units = unitsMap.get(destination.getBeamDestinationId());
-                    if (units == null) {
-                        units = "uA";
-                    }
-                }
-
-                builder.append("<tr><td>");
-                builder.append(IOUtil.escapeXml(destination.getName()));
-                builder.append("</td><td>");
-                builder.append(da.getBeamMode());
-                builder.append("</td><td>");
-                builder.append(
-                        da.getCwLimit() == null ? ("CW".equals(da.getBeamMode()) ? "No Limit" : "No CW") : da.getCwLimit());
-                builder.append(units);
-                builder.append("</td></tr>\n");
-            }
-            builder.append("</tbody></table>\n");
-        } else {
-            builder.append("None\n");
-        }
-        builder.append("</div><div>\n<b>Comments:</b> ");
-        builder.append(IOUtil.escapeXml(authorization.getComments()));
-        builder.append("</div><div>\n\n<b>Authorized By:</b> ");
-        builder.append(BeamAuthFunctions.formatUsername(authorization.getAuthorizedBy()));
-        builder.append("</div><div>\n\n<b>Authorized On:</b> ");
-        builder.append(formatter.format(authorization.getAuthorizationDate()));
-        builder.append(
-                "</div><div>\n\n<b>See:</b> <a href=\"http://accweb/beam-auth/\">Beam Authorization</a></div>\n");
-
-        return builder.toString();
-    }
-
     private File grabPermissionsScreenshot() throws
             IOException {
 
@@ -389,14 +335,14 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         return tmpFile;
     }
 
-    private String getAlternateELogHTMLBody(String serviceHostname) {
+    private String getAlternateELogHTMLBody(String server) {
         StringBuilder builder = new StringBuilder();
 
         builder.append(
                 "[figure:1]<div>\n\n<b><span style=\"color: red;\">Always check the Beam Authorization web application for the latest credited controls status:</span></b> ");
         builder.append("<a href=\"https://");
-        builder.append(serviceHostname);
-        builder.append("/beam-auth/\">Beam Authorization</a></div>\n");
+        builder.append(server);
+        builder.append("/bam/\">Beam Authorization</a></div>\n");
 
         return builder.toString();
     }

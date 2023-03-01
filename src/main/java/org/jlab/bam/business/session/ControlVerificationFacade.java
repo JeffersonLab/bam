@@ -210,7 +210,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     }
 
     @PermitAll
-    public String getExpiredMessageBody(String proxyServerName,
+    public String getExpiredMessageBody(String proxyServer,
             List<DestinationAuthorization> expiredAuthorizationList,
             List<ControlVerification> expiredVerificationList,
             List<DestinationAuthorization> upcomingAuthorizationExpirationList,
@@ -298,14 +298,14 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         }
 
         builder.append("<br/><br/>\n");
-        builder.append("</div><div>\n\n<b>See:</b> <a href=\"https://").append(proxyServerName).append(
-                "/beam-auth/\">Beam Authorization</a></div>\n");
+        builder.append("</div><div>\n\n<b>See:</b> <a href=\"https://").append(proxyServer).append(
+                "/bam/\">Beam Authorization</a></div>\n");
 
         return builder.toString();
     }
 
     @PermitAll
-    public String getVerificationDowngradedMessageBody(String proxyServerName,
+    public String getVerificationDowngradedMessageBody(String proxyServer,
             List<ControlVerification> downgradeList) {
         StringBuilder builder = new StringBuilder();
 
@@ -331,8 +331,8 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 == 50 ? "Provisionally Verified" : "Not Verified"));
         builder.append("</div>\n<div><b>Comments:</b> ");
         builder.append(IOUtil.escapeXml(verification.getComments()));
-        builder.append("</div><div>\n\n<b>See:</b> <a href=\"https://").append(proxyServerName).append(
-                "/beam-auth/\">Beam Authorization</a></div>\n");
+        builder.append("</div><div>\n\n<b>See:</b> <a href=\"https://").append(proxyServer).append(
+                "/bam/\">Beam Authorization</a></div>\n");
 
         return builder.toString();
     }
