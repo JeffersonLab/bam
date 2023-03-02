@@ -431,7 +431,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public void revokeExpiredVerifications(List<ControlVerification> expiredList) {
         Query q = em.createQuery(
-                "update ControlVerification a set a.verificationId = 100, a.comments = 'Expired', a.verifiedBy = null, a.verificationDate = :vDate, a.modifiedDate = :vDate, a.modifiedBy.staffId = 26 where a.controlVerificationId in :list");
+                "update ControlVerification a set a.verificationId = 100, a.comments = 'Expired', a.verifiedBy = null, a.verificationDate = :vDate, a.modifiedDate = :vDate, a.modifiedBy = 'authadm' where a.controlVerificationId in :list");
 
         List<BigInteger> expiredIdList = new ArrayList<>();
 
