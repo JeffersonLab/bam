@@ -3,8 +3,6 @@ services:
     extends:
       file: docker-compose.yml
       service: oracle
-    volumes:
-      - ./run/oracle/oradata:/opt/oracle/oradata
 
   keycloak:
     extends:
