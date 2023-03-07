@@ -40,7 +40,9 @@ docker compose up
 http://localhost:8080/bam
 ```
 
-See: [Docker Compose Strategy](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c)
+**Note**: Login with demo username "tbrown" and password "password".
+
+**See**: [Docker Compose Strategy](https://gist.github.com/slominskir/a7da801e8259f5974c978f9c3091d52c)
 
 ## Install
 This application requires a Java 11+ JVM and standard library to run, plus a Java EE 8+ application server (developed with Wildfly).
