@@ -38,6 +38,7 @@ services:
     image: slominskir/puppet-show:2.1.1
     hostname: puppet
     container_name: puppet
+    privileged: true
     ports:
       - "3000:3000"
     environment:
