@@ -77,7 +77,7 @@ jlab.verify = function () {
         if (success) {
             if (newLogId !== '') {
                 $("#verify-dialog").dialog("close");
-                $("#new-entry-url").attr("href", "https://" + jlab.logbookHost + "/entry/" + newLogId);
+                $("#new-entry-url").attr("href", "https://" + jlab.logbookServer + "/entry/" + newLogId);
                 $("#new-entry-url").text(newLogId);
                 $("#success-dialog").dialog("open");
             } else {
