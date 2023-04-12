@@ -716,7 +716,6 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                     w);
 
             String sender = System.getenv("BAM_EMAIL_SENDER");
-            String emailGroups = System.getenv("BAM_EMAIL_GROUPS_ENABLED");
 
             String body = getExpiredMessageBody(proxyServer, null, groupExpiredList,
                     null, groupUpcomingExpirationsList);
@@ -730,11 +729,8 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                     toCsv = toCsv + "," + toAddresses.get(i);
                 }
 
-                if("true".equals(emailGroups)) {
-                    emailService.sendEmail(sender, sender, toCsv, subject, body, true);
-                } else {
-                    LOGGER.log(Level.FINEST, "notifyGroups, toCsv: {0}, body: {1}", new Object[]{toCsv, body});
-                }
+                // Ensure in test env database records BAM_OWNER.WORKGROUP.LEADER_ROLE_NAME point to bogus group else real people will be notified.
+                emailService.sendEmail(sender, sender, toCsv, subject, body, true);
             }
         }
     }
