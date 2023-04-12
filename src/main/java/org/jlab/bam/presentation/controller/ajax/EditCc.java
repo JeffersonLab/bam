@@ -67,8 +67,8 @@ public class EditCc extends HttpServlet {
         Long logId = null;
 
         if (errorReason == null && downgradeList != null && !downgradeList.isEmpty()) {
-            String proxyServerName = System.getenv("PROXY_SERVER");
-            String body = verificationFacade.getVerificationDowngradedMessageBody(proxyServerName, downgradeList);
+            String proxyServer = System.getenv("FRONTEND_SERVER_URL");
+            String body = verificationFacade.getVerificationDowngradedMessageBody(proxyServer, downgradeList);
 
             try {
                 String logbookServerName = System.getenv("LOGBOOK_SERVER");

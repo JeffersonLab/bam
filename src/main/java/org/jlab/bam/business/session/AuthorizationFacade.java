@@ -214,7 +214,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         String subject = System.getenv("BAM_PERMISSIONS_SUBJECT");
 
-        String body = "<a href=\"https://" + linkHostName + "/bam\">https://" + linkHostName + "/bam</a>";
+        String body = "<a href=\"" + linkHostName + "/bam\">" + linkHostName + "/bam</a>";
 
         body = body + "\n\n<p>Notes: " + comments + "</p>";
 
@@ -232,7 +232,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
     }
 
     @RolesAllowed("bam-admin")
-    public long sendELog(String proxyServerName, String logbookServerName) throws UserFriendlyException {
+    public long sendELog(String proxyServer, String logbookServerName) throws UserFriendlyException {
         String username = checkAuthenticated();
 
         Authorization authorization = findCurrent();
@@ -242,7 +242,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
         }
 
         //String body = getELogHTMLBody(authorization);
-        String body = getAlternateELogHTMLBody(proxyServerName);
+        String body = getAlternateELogHTMLBody(proxyServer);
 
         String subject = System.getenv("BAM_PERMISSIONS_SUBJECT");
 
@@ -299,7 +299,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
             IOException {
 
         String puppetServer = System.getenv("PUPPET_SHOW_SERVER_URL");
-        String internalServer = System.getenv("INTERNAL_SERVER_URL");
+        String internalServer = System.getenv("BACKEND_SERVER_URL");
 
         if(puppetServer == null) {
             puppetServer = "http://localhost";
@@ -340,7 +340,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         builder.append(
                 "[figure:1]<div>\n\n<b><span style=\"color: red;\">Always check the Beam Authorization web application for the latest credited controls status:</span></b> ");
-        builder.append("<a href=\"https://");
+        builder.append("<a href=\"");
         builder.append(server);
         builder.append("/bam/\">Beam Authorization</a></div>\n");
 

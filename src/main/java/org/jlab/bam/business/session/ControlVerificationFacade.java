@@ -298,7 +298,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         }
 
         builder.append("<br/><br/>\n");
-        builder.append("</div><div>\n\n<b>See:</b> <a href=\"https://").append(proxyServer).append(
+        builder.append("</div><div>\n\n<b>See:</b> <a href=\"").append(proxyServer).append(
                 "/bam/\">Beam Authorization</a></div>\n");
 
         return builder.toString();
@@ -331,7 +331,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 == 50 ? "Provisionally Verified" : "Not Verified"));
         builder.append("</div>\n<div><b>Comments:</b> ");
         builder.append(IOUtil.escapeXml(verification.getComments()));
-        builder.append("</div><div>\n\n<b>See:</b> <a href=\"https://").append(proxyServer).append(
+        builder.append("</div><div>\n\n<b>See:</b> <a href=\"").append(proxyServer).append(
                 "/bam/\">Beam Authorization</a></div>\n");
 
         return builder.toString();
@@ -379,8 +379,6 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public void sendVerificationDowngradedEmail(String body) throws UserFriendlyException {
             String toCsv = System.getenv("BAM_DOWNGRADED_EMAIL_CSV");
-
-            String proxyHostname = System.getenv("PROXY_SERVER");
 
             String subject = System.getenv("BAM_DOWNGRADED_SUBJECT");
 
@@ -615,12 +613,12 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
             List<ControlVerification> expiredVerificationList,
             List<DestinationAuthorization> upcomingAuthorizationExpirationList,
             List<ControlVerification> upcomingVerificationExpirationList,
-            String proxyServerName) throws MessagingException, UserFriendlyException {
+            String proxyServer) throws MessagingException, UserFriendlyException {
         String toCsv = System.getenv("BAM_UPCOMING_EXPIRATION_EMAIL_CSV");
 
         String subject = System.getenv("BAM_UPCOMING_EXPIRATION_SUBJECT");
 
-        String body = getExpiredMessageBody(proxyServerName, expiredAuthorizationList,
+        String body = getExpiredMessageBody(proxyServer, expiredAuthorizationList,
                 expiredVerificationList,
                 upcomingAuthorizationExpirationList,
                 upcomingVerificationExpirationList);
@@ -635,12 +633,12 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public void notifyOps(List<DestinationAuthorization> expiredAuthorizationList,
             List<ControlVerification> expiredVerificationList,
-            String proxyServerName) throws MessagingException, UserFriendlyException {
+            String proxyServer) throws MessagingException, UserFriendlyException {
         String toCsv = System.getenv("BAM_EXPIRED_EMAIL_CSV");
 
         String subject = System.getenv("BAM_EXPIRED_SUBJECT");
 
-        String body = getExpiredMessageBody(proxyServerName, expiredAuthorizationList,
+        String body = getExpiredMessageBody(proxyServer, expiredAuthorizationList,
                 expiredVerificationList, null, null);
 
         EmailService emailService = new EmailService();
@@ -654,7 +652,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     @PermitAll
     public void notifyGroups(List<ControlVerification> expiredList,
             List<ControlVerification> upcomingExpirationsList,
-            String proxyServerName) throws MessagingException, UserFriendlyException {
+            String proxyServer) throws MessagingException, UserFriendlyException {
         Map<Workgroup, List<ControlVerification>> expiredGroupMap = new HashMap<>();
         Map<Workgroup, List<ControlVerification>> upcomingExpirationGroupMap = new HashMap<>();
 
@@ -718,8 +716,9 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                     w);
 
             String sender = System.getenv("BAM_EMAIL_SENDER");
+            String emailGroups = System.getenv("BAM_EMAIL_GROUPS_ENABLED");
 
-            String body = getExpiredMessageBody(proxyServerName, null, groupExpiredList,
+            String body = getExpiredMessageBody(proxyServer, null, groupExpiredList,
                     null, groupUpcomingExpirationsList);
 
             if (!toAddresses.isEmpty()) {
@@ -731,7 +730,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                     toCsv = toCsv + "," + toAddresses.get(i);
                 }
 
-                if("accweb.acc.jlab.org".equals(proxyServerName)) {
+                if("true".equals(emailGroups)) {
                     emailService.sendEmail(sender, sender, toCsv, subject, body, true);
                 } else {
                     LOGGER.log(Level.FINEST, "notifyGroups, toCsv: {0}, body: {1}", new Object[]{toCsv, body});
@@ -758,7 +757,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         if (expiredAuth || expiredVer || upcomingAuth || upcomingVer) {
 
             LOGGER.log(Level.FINEST, "Notifying users");
-            String proxyServerName = System.getenv("PROXY_SERVER");
+            String proxyServer = System.getenv("FRONTEND_SERVER_URL");
 
 
 
@@ -766,18 +765,18 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 // Admins
                 notifyAdmins(expiredAuthorizationList, expiredVerificationList,
                         upcomingAuthorizationExpirationList,
-                        upcomingVerificationExpirationList, proxyServerName);
+                        upcomingVerificationExpirationList, proxyServer);
 
                     // Ops
                     if (expiredAuth || expiredVer) {
                         notifyOps(expiredAuthorizationList, expiredVerificationList,
-                                proxyServerName);
+                                proxyServer);
                     }
 
                     // Groups
                     if (expiredVer || upcomingVer) {
                         notifyGroups(expiredVerificationList, upcomingVerificationExpirationList,
-                                proxyServerName);
+                                proxyServer);
                     }
 
             } catch (MessagingException | NullPointerException | UserFriendlyException e) {

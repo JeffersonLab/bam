@@ -126,10 +126,10 @@ public class BeamPermissions extends HttpServlet {
         }
 
         if (errorReason == null && sendNotifications) {
-            String proxyServerName = System.getenv("PROXY_SERVER");
+            String proxyServer = System.getenv("FRONTEND_SERVER_URL");
 
             try {
-                authorizationFacade.sendOpsNewAuthorizationEmail(proxyServerName, comments);
+                authorizationFacade.sendOpsNewAuthorizationEmail(proxyServer, comments);
             } catch(UserFriendlyException e) {
                 errorReason = "Authorization was saved, but we were unable to send to ops an email.  ";
                 LOGGER.log(Level.SEVERE, errorReason, e);
@@ -139,7 +139,7 @@ public class BeamPermissions extends HttpServlet {
                 String logbookServerName = System.getenv(
                         "LOGBOOK_SERVER");
 
-                logId = authorizationFacade.sendELog(proxyServerName, logbookServerName);
+                logId = authorizationFacade.sendELog(proxyServer, logbookServerName);
             } catch (Exception e) {
                 errorReason = "Authorization was saved, but we were unable to send to eLog";
                 LOGGER.log(Level.SEVERE, errorReason, e);
