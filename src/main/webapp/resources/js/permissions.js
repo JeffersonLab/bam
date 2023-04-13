@@ -47,7 +47,7 @@ jlab.save = function () {
 
         if (success) {
             if (newLogId !== null && typeof(newLogId) !== 'undefined') {
-                $("#new-entry-url").attr("href", jlab.logbookServer + "/entry/" + newLogId);
+                $("#new-entry-url").attr("href", jlab.logbookServerUrl + "/entry/" + newLogId);
                 $("#new-entry-url").text(newLogId);
                 $("#success-dialog").dialog("open");
             } else {
