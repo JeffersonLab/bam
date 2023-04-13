@@ -71,8 +71,8 @@ public class EditCc extends HttpServlet {
             String body = verificationFacade.getVerificationDowngradedMessageBody(proxyServer, downgradeList);
 
             try {
-                String logbookServerName = System.getenv("LOGBOOK_SERVER");
-                logId = verificationFacade.sendVerificationDowngradedELog(body, logbookServerName);
+                String logbookServer = System.getenv("LOGBOOK_SERVER_URL");
+                logId = verificationFacade.sendVerificationDowngradedELog(body, logbookServer);
             } catch (Exception e) {
                 errorReason = "Edit saved, but unable to create elog";
                 logger.log(Level.SEVERE, errorReason, e);

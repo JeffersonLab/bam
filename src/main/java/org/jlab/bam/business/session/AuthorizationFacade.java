@@ -232,7 +232,7 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
     }
 
     @RolesAllowed("bam-admin")
-    public long sendELog(String proxyServer, String logbookServerName) throws UserFriendlyException {
+    public long sendELog(String proxyServer, String logbookServer) throws UserFriendlyException {
         String username = checkAuthenticated();
 
         Authorization authorization = findCurrent();
@@ -256,8 +256,8 @@ public class AuthorizationFacade extends AbstractFacade<Authorization> {
 
         Properties config = Library.getConfiguration();
 
-        config.setProperty("SUBMIT_URL", "https://" + logbookServerName + "/incoming");
-        config.setProperty("FETCH_URL", "https://" + logbookServerName + "/entry");
+        config.setProperty("SUBMIT_URL", logbookServer + "/incoming");
+        config.setProperty("FETCH_URL", logbookServer + "/entry");
 
         LogEntry entry = new LogEntry(subject, logbooks);
 

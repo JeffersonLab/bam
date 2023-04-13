@@ -338,7 +338,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
     }
 
     @PermitAll
-    public long sendVerificationDowngradedELog(String body, String logbookServerName) throws
+    public long sendVerificationDowngradedELog(String body, String logbookServer) throws
             UserFriendlyException {
         String username = checkAuthenticated();
 
@@ -354,8 +354,8 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
 
         Properties config = Library.getConfiguration();
 
-        config.setProperty("SUBMIT_URL", "https://" + logbookServerName + "/incoming");
-        config.setProperty("FETCH_URL", "https://" + logbookServerName + "/entry");
+        config.setProperty("SUBMIT_URL", logbookServer + "/incoming");
+        config.setProperty("FETCH_URL", logbookServer + "/entry");
 
         LogEntry entry = new LogEntry(subject, logbooks);
 

@@ -136,10 +136,10 @@ public class BeamPermissions extends HttpServlet {
             }
 
             try {
-                String logbookServerName = System.getenv(
-                        "LOGBOOK_SERVER");
+                String logbookServer = System.getenv(
+                        "LOGBOOK_SERVER_URL");
 
-                logId = authorizationFacade.sendELog(proxyServer, logbookServerName);
+                logId = authorizationFacade.sendELog(proxyServer, logbookServer);
             } catch (Exception e) {
                 errorReason = "Authorization was saved, but we were unable to send to eLog";
                 LOGGER.log(Level.SEVERE, errorReason, e);
