@@ -47,12 +47,11 @@ http://localhost:8080/bam
 ## Install
 This application requires a Java 11+ JVM and standard library to run, plus a Java EE 8+ application server (developed with Wildfly).
 
-1. Download [Wildfly 26.1.3](https://www.wildfly.org/downloads/) (or just pull it out of the Docker image config and all - see below)
-2. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
-3. Configure Wildfly<sup>Note</sup> and start it
-4. Navigate your web browser to localhost:8080/bam
-
-**Note**: The application requires [configuration](https://github.com/JeffersonLab/bam#configure) before running and an Oracle 18+ database with the following [schema](https://github.com/JeffersonLab/bam/tree/main/docker/oracle/setup) installed.
+1. Install service [dependencies](https://github.com/JeffersonLab/bam/blob/main/deps.yml)
+2. Download [Wildfly 26.1.3](https://www.wildfly.org/downloads/)
+3. [Configure](https://github.com/JeffersonLab/bam#configure) Wildfly and start it
+4. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
+5. Navigate your web browser to [localhost:8080/bam](http://localhost:8080/bam)
 
 ## Configure
 
