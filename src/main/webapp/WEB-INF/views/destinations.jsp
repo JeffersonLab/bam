@@ -89,7 +89,7 @@
                                                 <td><c:out value="${verification.creditedControl.name}"/>; <c:out value="${verification.creditedControl.group.name}"/></td>
                                                 <td class="icon-cell"><span title="${verification.verificationId eq 1 ? 'Verified' : (verification.verificationId eq 50 ? 'Provisionally Verified' : 'Not Verified')}" class="small-icon baseline-small-icon ${verification.verificationId eq 1 ? 'verified-icon' : (verification.verificationId eq 50 ? 'provisional-icon' : 'not-verified-icon')}"></span></td>
                                                 <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${verification.verificationDate}"/></td>
-                                                <td><c:out value="${beamauth:formatUsername(verification.verifiedBy)}"/></td>
+                                                <td><c:out value="${s:formatUsername(verification.verifiedBy)}"/></td>
                                                 <td><c:out value="${verification.comments}"/></td>
                                                 <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${verification.expirationDate}"/></td>
                                                 <td><a class="small-icon dialog-ready comment-icon" data-dialog-title="Verification History" href="credited-controls/verification-history?controlVerificationId=${verification.controlVerificationId}" title="Click for verification history"></a></td>

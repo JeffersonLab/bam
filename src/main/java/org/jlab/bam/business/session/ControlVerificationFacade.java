@@ -34,6 +34,7 @@ import org.jlab.smoothness.business.service.UserAuthorizationService;
 import org.jlab.smoothness.business.util.IOUtil;
 import org.jlab.smoothness.business.util.TimeUtil;
 import org.jlab.smoothness.persistence.view.User;
+import org.jlab.smoothness.presentation.util.Functions;
 
 /**
  *
@@ -245,7 +246,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
-                builder.append(BeamAuthFunctions.formatUsername(v.getVerifiedBy()));
+                builder.append(Functions.formatUsername(v.getVerifiedBy()));
                 builder.append("</div>\n<div><b>Expired On:</b> ");
                 builder.append(formatter.format(v.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -288,7 +289,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
                 builder.append("</div>\n<div><b>Verified On:</b> ");
                 builder.append(formatter.format(v.getVerificationDate()));
                 builder.append("</div>\n<div><b>Verified By:</b> ");
-                builder.append(BeamAuthFunctions.formatUsername(v.getVerifiedBy()));
+                builder.append(Functions.formatUsername(v.getVerifiedBy()));
                 builder.append("</div>\n<div><b>Expiring On:</b> ");
                 builder.append(formatter.format(v.getExpirationDate()));
                 builder.append("</div>\n<div><b>Comments:</b> ");
@@ -324,7 +325,7 @@ public class ControlVerificationFacade extends AbstractFacade<ControlVerificatio
         builder.append("</div>\n<div><b>Modified On:</b> ");
         builder.append(formatter.format(verification.getVerificationDate()));
         builder.append("</div>\n<div><b>Modified By:</b> ");
-        builder.append(BeamAuthFunctions.formatUsername(verification.getVerifiedBy()));
+        builder.append(Functions.formatUsername(verification.getVerifiedBy()));
         builder.append("</div>\n<div><b>Verification:</b> ");
         builder.append(
                 verification.getVerificationId() == 1 ? "Verified" : (verification.getVerificationId()

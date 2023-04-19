@@ -1,12 +1,11 @@
 package org.jlab.bam.persistence.entity;
 
-import org.jlab.bam.persistence.util.YnStringToBoolean;
 import org.jlab.bam.persistence.view.BeamDestinationVerification;
+import org.jlab.smoothness.persistence.util.YnStringToBoolean;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +27,7 @@ public class BeamDestination {
 
     @Basic
     @Column(name = "ACTIVE_YN", nullable = false, length = 1)
-    @Convert(converter=YnStringToBoolean.class)
+    @Convert(converter= YnStringToBoolean.class)
     private boolean active;
 
     @OneToOne(fetch = FetchType.EAGER)

@@ -11,21 +11,6 @@
     <uri>http://jlab.org/beamauth/functions</uri>
 
     <function>
-        <name>lookupUserByUsername</name>
-        <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
-        <function-signature>org.jlab.smoothness.persistence.view.User lookupUserByUsername(java.lang.String)</function-signature>
-    </function>
-    <function>
-        <name>formatUsername</name>
-        <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
-        <function-signature>java.lang.String formatUsername(java.lang.String)</function-signature>
-    </function>
-    <function>
-        <name>formatUser</name>
-        <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
-        <function-signature>java.lang.String formatUser(org.jlab.smoothness.persistence.view.User)</function-signature>
-    </function>
-        <function>
         <name>beamModeList</name>
         <function-class>org.jlab.bam.presentation.util.BeamAuthFunctions</function-class>
         <function-signature>java.util.List beamModeList(java.lang.String)</function-signature>

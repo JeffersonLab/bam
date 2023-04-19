@@ -55,9 +55,9 @@
                                 <c:forEach items="${historyList}" var="history">
                                     <tr>
                                         <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${history.modifiedDate}"/></td>
-                                        <td><c:out value="${beamauth:formatUsername(history.modifiedBy)}"/></td>
+                                        <td><c:out value="${s:formatUsername(history.modifiedBy)}"/></td>
                                         <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${history.verificationDate}"/></td>
-                                        <td><c:out value="${beamauth:formatUsername(history.verifiedBy)}"/></td>
+                                        <td><c:out value="${s:formatUsername(history.verifiedBy)}"/></td>
                                         <td class="icon-cell"><span title="${history.verificationId eq 1 ? 'Verified' : (history.verificationId eq 50 ? 'Provisionally Verified' : 'Not Verified')}" class="small-icon baseline-small-icon ${history.verificationId eq 1 ? 'verified-icon' : (history.verificationId eq 50 ? 'provisional-icon' : 'not-verified-icon')}"></span></td>
                                         <td><c:out value="${history.comments}"/></td>
                                         <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${history.expirationDate}"/></td>

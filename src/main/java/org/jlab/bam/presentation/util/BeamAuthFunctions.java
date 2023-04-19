@@ -1,8 +1,5 @@
 package org.jlab.bam.presentation.util;
 
-import org.jlab.smoothness.business.service.UserAuthorizationService;
-import org.jlab.smoothness.persistence.view.User;
-
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,44 +21,6 @@ public final class BeamAuthFunctions {
 
     private BeamAuthFunctions() {
         // cannot instantiate publicly
-    }
-
-    public static User lookupUserByUsername(String username) {
-        UserAuthorizationService auth = UserAuthorizationService.getInstance();
-
-        return auth.getUserFromUsername(username);
-    }
-
-    public static String formatUsername(String username) {
-        User user = lookupUserByUsername(username);
-
-        if(user != null) {
-            return formatUser(user);
-        } else {
-            return username;
-        }
-    }
-
-    public static String formatUser(User user) {
-        StringBuilder builder = new StringBuilder();
-
-        if (user != null && user.getUsername() != null && !user.getUsername().isEmpty()) {
-            if(user.getFirstname() == null || user.getLastname() == null ||
-               user.getFirstname().isEmpty() || user.getLastname().isEmpty()) {
-                builder.append("(");
-                builder.append(user.getUsername());
-                builder.append(")");
-            } else {
-                builder.append(user.getLastname());
-                builder.append(", ");
-                builder.append(user.getFirstname());
-                builder.append(" (");
-                builder.append(user.getUsername());
-                builder.append(")");
-            }
-        }
-
-        return builder.toString();
     }
 
     public static List<String> beamModeList(String facility) {

@@ -50,9 +50,9 @@
                                 <c:forEach items="${historyList}" var="history">
                                     <tr>
                                         <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${history.modifiedDate}"/></td>
-                                        <td><c:out value="${beamauth:formatUsername(history.modifiedBy)}"/></td>
+                                        <td><c:out value="${s:formatUsername(history.modifiedBy)}"/></td>
                                         <td><fmt:formatDate pattern="${s:getFriendlyDateTimePattern()}" value="${history.authorizationDate}"/></td>
-                                        <td><c:out value="${beamauth:formatUsername(history.authorizedBy)}"/></td>
+                                        <td><c:out value="${s:formatUsername(history.authorizedBy)}"/></td>
                                         <td><c:out value="${history.comments}"/></td>
                                         <td><a href="destinations-authorization-history?authorizationId=${history.authorizationId}">Destination Details</a></td>
                                     </tr>

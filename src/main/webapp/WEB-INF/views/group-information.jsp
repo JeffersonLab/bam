@@ -26,7 +26,7 @@
                             <tbody>
                                 <c:forEach items="${leaderList}" var="leader">
                                     <tr>
-                                        <td><c:out value="${beamauth:formatUser(leader)}"/></td>
+                                        <td><c:out value="${s:formatUser(leader)}"/></td>
                                     </tr>
                                 </c:forEach> 
                             </tbody>
