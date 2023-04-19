@@ -28,7 +28,7 @@
                             <span title="Not Verified" class="small-icon baseline-small-icon not-verified-icon"></span>
                         </c:otherwise>
                     </c:choose>  
-                    <a href="destinations?destinationId=${beamDestination.beamDestinationId}"><c:out value="${beamDestination.name}"/></a> Credited Control Status
+                    <a href="${pageContext.request.contextPath}/destinations?destinationId=${beamDestination.beamDestinationId}"><c:out value="${beamDestination.name}"/></a> Credited Control Status
                 </h3>
                 <c:choose>
                     <c:when test="${fn:length(verificationList) > 0}">
@@ -43,7 +43,7 @@
                             <tbody>
                                 <c:forEach items="${verificationList}" var="verification">
                                     <tr>
-                                        <td><a href="credited-controls?creditedControlId=${verification.creditedControl.creditedControlId}"><c:out value="${verification.creditedControl.name}"/></a></td>
+                                        <td><a href="${pageContext.request.contextPath}/credited-controls?creditedControlId=${verification.creditedControl.creditedControlId}"><c:out value="${verification.creditedControl.name}"/></a></td>
                                         <td class="icon-cell">
                                             <c:choose>
                                                 <c:when test="${verification.verificationId eq 1}">

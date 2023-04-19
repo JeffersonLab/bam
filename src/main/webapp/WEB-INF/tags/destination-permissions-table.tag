@@ -32,7 +32,7 @@
             <c:set var="destinationAuthorization" value="${destinationAuthorizationMap[destination.beamDestinationId]}"/>
             <c:set var="units" value="${unitsMap[destination.beamDestinationId] ne null ? unitsMap[destination.beamDestinationId] : 'uA'}"/>
             <tr>
-                <td><a data-dialog-title="${destination.name} Information" class="dialog-ready" href="beam-destination-information?beamDestinationId=${destination.beamDestinationId}"><c:out value="${destination.name}"/></a></td>
+                <td><a data-dialog-title="${destination.name} Information" class="dialog-ready" href="${pageContext.request.contextPath}/beam-destination-information?beamDestinationId=${destination.beamDestinationId}"><c:out value="${destination.name}"/></a></td>
                     <c:if test="${not isHistory}">
                     <td class="icon-cell">
                         <c:choose>
