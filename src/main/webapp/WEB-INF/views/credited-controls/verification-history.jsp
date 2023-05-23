@@ -11,8 +11,8 @@
     <jsp:attribute name="scripts">
     </jsp:attribute>        
     <jsp:body>
-        <div class="breadbox">
-            <ul class="breadcrumb">
+        <div class="banner-breadbox">
+            <ul>
                 <li>
                     <a href="${pageContext.request.contextPath}/credited-controls">Credited Controls</a>
                 </li>

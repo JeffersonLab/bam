@@ -14,8 +14,8 @@
     </jsp:attribute>        
     <jsp:body>
         <c:if test="${creditedControl ne null}">
-            <div class="breadbox">
-                <ul class="breadcrumb">
+            <div class="banner-breadbox">
+                <ul>
                     <li>
                         <a href="credited-controls">Credited Controls</a>
                     </li>

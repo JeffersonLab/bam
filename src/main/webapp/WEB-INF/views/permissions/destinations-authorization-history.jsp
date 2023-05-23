@@ -12,8 +12,8 @@
     <jsp:attribute name="scripts">
     </jsp:attribute>        
     <jsp:body>
-        <div class="breadbox">
-            <ul class="breadcrumb">
+        <div class="banner-breadbox">
+            <ul>
                 <li>
                     <a href="${pageContext.request.contextPath}/permissions">Director's Authorization</a>
                 </li>

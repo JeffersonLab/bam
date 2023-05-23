@@ -26,8 +26,8 @@
     </jsp:attribute>        
     <jsp:body>
         <c:if test="${destination ne null}">
-            <div class="breadbox">
-                <ul class="breadcrumb">
+            <div class="banner-breadbox">
+                <ul>
                     <li>
                         <a href="destinations">Beam Destinations</a>
                     </li>
