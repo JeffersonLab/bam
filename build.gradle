@@ -3,8 +3,8 @@ plugins {
 }
 description = 'Beam authorization manager app'
 group 'org.jlab'
-version '3.5.1'
-ext.releaseDate = 'April 19 2023'
+version '3.6.0'
+ext.releaseDate = 'May 23 2023'
 
 tasks.withType(JavaCompile) {
     options.release = 11
