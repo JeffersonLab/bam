@@ -50,7 +50,7 @@ http://localhost:8080/bam
 ## Install
 This application requires a Java 11+ JVM and standard library to run, plus a Java EE 8+ application server (developed with Wildfly).
 
-1. Install service [dependencies](https://github.com/JeffersonLab/bam/blob/main/deps.yml)
+1. Install service [dependencies](https://github.com/JeffersonLab/bam/blob/main/deps.yaml)
 2. Download [Wildfly 26.1.3](https://www.wildfly.org/downloads/)
 3. [Configure](https://github.com/JeffersonLab/bam#configure) Wildfly and start it
 4. Download [bam.war](https://github.com/JeffersonLab/bam/releases) and deploy it to Wildfly
@@ -97,7 +97,7 @@ gradlew build
 ## Develop
 In order to iterate rapidly when making changes it's often useful to run the app directly on the local workstation, perhaps leveraging an IDE.  In this scenario run the service dependencies with:
 ```
-docker compose -f deps.yml up
+docker compose -f deps.yaml up
 ```
 **Note**: The local install of Wildfly should be [configured](https://github.com/JeffersonLab/bam#configure) to proxy connections to services via localhost and therefore the environment variables should contain:
 ```
